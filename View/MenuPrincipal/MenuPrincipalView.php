@@ -68,6 +68,28 @@
         </div>
     </body>
 </html>
+<div class="modal fade bd-example-modal-lg" id="updateDemanda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Editar Demanda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?php include_once "../Demandas/CadDemandasView.php";?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+        <button type="button" class="btn btn-info" id="btnHistorico">Histórico</button>
+        <button type="button" class="btn btn-info" id="btnDescricao">Inserir Descrição</button>
+        <button type="button" class="btn btn-info" id="btnArquivos">Arquivos</button>
+        <button type="button" class="btn btn-primary" id="btnSalvarDemanda">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade bd-modal-lg" id="descricaoDemanda" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">

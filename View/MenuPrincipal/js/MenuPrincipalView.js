@@ -1,3 +1,4 @@
+var dadosMinhaDemanda;
 function carregaGridDemandasPendentes(){
     ExecutaDispatch('Demandas', 'ListarDemandasPendentes', undefined, montaGridDemandasPendentes);
 }
@@ -78,6 +79,7 @@ function carregaGridDemandasUsuario(){
 function montaGridDemandasUsuario(dados){
    if(dados[0]){
         if(dados[1] !== null){
+            dadosMinhaDemanda = dados[1];
             dados = dados[1];
             var grid = '<table id="tbDemandasU" class="display" style="width:100%">';
             grid += '<thead><tr>';
@@ -88,12 +90,14 @@ function montaGridDemandasUsuario(dados){
             grid += ' <th><b>Status</b></th>';
             grid += '</tr></thead><tbody>';
             for (i=0;i<dados.length;i++){
-                grid += '<tr>';
+                grid += "<tr onClick=\"javascript:carregaCamposMinhaDemanda("+i+");\">";
+                // grid += "<a href=\"javascript:carregaCamposMinhaDemanda("+i+");\">";
                 grid += ' <td>'+dados[i].COD_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].DSC_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].NME_SISTEMA+'</td>';
                 grid += ' <td>'+dados[i].NME_USUARIO_COMPLETO+'</td>';
                 grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
+                // grid += '</a>';
                 grid += '</tr>';
             }
             grid += '</tbody>';
@@ -136,6 +140,21 @@ function montaGridDemandasUsuario(dados){
         }
         
     } 
+}
+
+function carregaCamposMinhaDemanda(indice){
+//    console.log(dadosMinhaDemanda[indice]);
+    $("#codDemanda").val(dadosMinhaDemanda[indice].COD_DEMANDA);
+    $("#dscDemanda").val(dadosMinhaDemanda[indice].DSC_DEMANDA);
+    $("#dtaDemanda").val(dadosMinhaDemanda[indice].DTA_DEMANDA);
+    $("#comboResponsaveis").val(dadosMinhaDemanda[indice].COD_RESPONSAVEIS);
+    $("#comboSistema").val(dadosMinhaDemanda[indice].COD_SISTEMA);
+    $("#codSistemaOrigem").val(dadosMinhaDemanda[indice].COD_SISTEMA_ORIGEM);
+    $("#comboSituacao").val(dadosMinhaDemanda[indice].COD_SITUACAO);
+    $("#comboPrioridade").val(dadosMinhaDemanda[indice].IND_PRIORIDADE);
+    $("#comboTipoDemanda").val(dadosMinhaDemanda[indice].TPO_DEMANDA);
+    $("#codSituacaoAnterior").val(dadosMinhaDemanda[indice].COD_SITUACAO);
+    $("#updateDemanda").modal('show');
 }
 
 function carregaGridContagemStatus(){

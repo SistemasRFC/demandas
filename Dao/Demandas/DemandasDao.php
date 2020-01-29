@@ -190,9 +190,17 @@ class DemandasDao extends BaseDao
     Public Function ListarDemandasUsuario($codUsuario){
         $sql= "SELECT D.COD_DEMANDA,
                       D.DSC_DEMANDA,
+                      D.DTA_DEMANDA AS DATA_DEMANDA,
+                      DATE_FORMAT(D.DTA_DEMANDA,'%d/%m/%Y %T') AS DTA_DEMANDA, 
+                      D.COD_RESPONSAVEIS,
+                      D.COD_SISTEMA,
                       S.NME_SISTEMA,
+                      D.COD_SISTEMA_ORIGEM,
                       U.NME_USUARIO_COMPLETO,
-                      SI.DSC_SITUACAO
+                      D.COD_SITUACAO,
+                      SI.DSC_SITUACAO,
+                      D.IND_PRIORIDADE,
+                      D.TPO_DEMANDA
                  FROM EN_DEMANDAS D
                 INNER JOIN EN_SISTEMAS S
                    ON D.COD_SISTEMA = S.COD_SISTEMA

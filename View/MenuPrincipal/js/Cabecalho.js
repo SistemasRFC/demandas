@@ -54,7 +54,8 @@ function CarregaMenu(){
 }
 
 function MontaMenu(Dados){
-    var listaMenus='<ul class="navbar-nav mr-auto">';
+    var listaMenus = '<div class="collapse navbar-collapse">';
+    listaMenus += '<ul class="navbar-nav mr-auto">';
     for(i=0;i<Dados.length;i++){
         if (parseInt(Dados[i].QTD_FILHOS)>0){
             listaMenus += '<li class="nav-item dropdown">';
@@ -75,7 +76,10 @@ function MontaMenu(Dados){
             
         }
     }
-    listaMenus+='</ul>';
+    listaMenus += ' <li class="nav-item"><a class="nav-link" href="../../index.php">Logoff</a></li>';
+    // listaMenus += ' <li class="nav-item active"><a class="nav-link" href="../../index.php"><img src="../../Resources/bootstrap/glyphicons_free/glyphicons/png/glyphicons-64-power.png" width="22px" /></a></li>';
+    listaMenus += '</ul>';
+    listaMenus += '</div>';
     $("#MenuTop").html(listaMenus);
 }
 
