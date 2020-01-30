@@ -18,7 +18,6 @@
     </head>
     <body>
         <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
-        <input type="hidden" id="codUsuario">
         <div class="container-fluid">
             <div class="row">&nbsp;</div>
             <div class="row">

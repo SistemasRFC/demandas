@@ -55,6 +55,7 @@ function retornoInsertDemandas(retorno){
             type: "success",
             confirmButtonText: "Fechar"
         });
+        $("#updateDemanda").modal("hide");
     }else{
         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
         swal({

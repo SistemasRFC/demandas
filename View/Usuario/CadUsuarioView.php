@@ -1,5 +1,6 @@
 <script src="../../View/Usuario/js/CadUsuarioView.js?rdm=<?php echo time(); ?>"></script>
 <div class="container-fluid">
+    <input type="hidden" id="codUsuario">
     <div class="row">
         <div class="col-8"><b>Nome Completo</b></div>
         <div class="w-100"></div>
