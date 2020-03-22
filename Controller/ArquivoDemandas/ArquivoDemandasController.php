@@ -31,7 +31,7 @@ class ArquivoDemandasController extends BaseController
         $arquivo = $_FILES['arquivo'];
         $tipos = array('sql', 'txt', 'js', 'php', 'doc', 'docx', 'xls', 'pdf', 'jpg', 'png', 'rar', 'zip');
 //        var_dump($arquivo);die;
-        $enviar = $this->uploadFile($arquivo, 'D:\\Dropbox\\Sistemas\\desenv\\demandas\\Resources\\arquivos\\', $tipos);
+        $enviar = $this->uploadFile($arquivo, '\\var\\www\\html\\demandas\\Resources\\arquivos\\', $tipos);
         $data['sucesso'] = false;
         if(isset($enviar['erro'])){
             $data['msg'] = $enviar['erro'];

@@ -26,6 +26,26 @@ class DemandasDao extends BaseDao
                       COALESCE(TIMESTAMPDIFF(DAY,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0) AS DIAS_DECORRIDAS,
                       CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA))<0 THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)), '24:00:00')
                       ELSE TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)) END AS HORAS_DECORRIDAS,
+                      SUM(COALESCE(TIMESTAMPDIFF(DAY,L.DTA_OPERACAO, COALESCE((SELECT L1.DTA_OPERACAO
+                                                                                 FROM EN_LOG_SITUACAO_DEMANDA L1
+                                                                                WHERE L1.COD_SITUACAO NOT IN (2)
+                                                                                  AND L1.COD_DEMANDA = L.COD_DEMANDA
+                                                                                  AND L1.COD_OPERACAO > L.COD_OPERACAO LIMIT 1,1), NOW())), 0)) AS DIAS_EXECUCAO,
+                      TIME(SUM(CASE WHEN TIMEDIFF(TIME(COALESCE((SELECT L1.DTA_OPERACAO
+                                                                   FROM EN_LOG_SITUACAO_DEMANDA L1
+                                                                  WHERE L1.COD_SITUACAO NOT IN (2)
+                                                                    AND L1.COD_DEMANDA = L.COD_DEMANDA
+                                                                    AND L1.COD_OPERACAO > L.COD_OPERACAO LIMIT 1,1), NOW())), TIME(L.DTA_OPERACAO))<0
+                                    THEN COALESCE(ADDTIME(TIMEDIFF(TIME(COALESCE((SELECT L1.DTA_OPERACAO
+                                                                                    FROM EN_LOG_SITUACAO_DEMANDA L1
+                                                                                   WHERE L1.COD_SITUACAO NOT IN (2)
+                                                                                     AND L1.COD_DEMANDA = L.COD_DEMANDA
+                                                                                     AND L1.COD_OPERACAO > L.COD_OPERACAO LIMIT 1,1), NOW())), TIME(L.DTA_OPERACAO)), '24:00:00'), 0)
+                               ELSE COALESCE(TIMEDIFF(TIME(COALESCE((SELECT L1.DTA_OPERACAO
+                                                                       FROM EN_LOG_SITUACAO_DEMANDA L1
+                                                                      WHERE L1.COD_SITUACAO NOT IN (2)
+                                                                        AND L1.COD_DEMANDA = L.COD_DEMANDA
+                                                                        AND L1.COD_OPERACAO > L.COD_OPERACAO LIMIT 1,1), NOW())), TIME(L.DTA_OPERACAO)),0) END)) AS HORAS_EXECUCAO,
                       D.DSC_DEMANDA,
                       D.COD_SISTEMA,
                       D.COD_SISTEMA_ORIGEM,
@@ -57,6 +77,9 @@ class DemandasDao extends BaseDao
                    ON D.COD_SITUACAO = SI.COD_SITUACAO
                  LEFT JOIN SE_USUARIO U
                    ON D.COD_RESPONSAVEIS = U.COD_USUARIO
+                 LEFT JOIN EN_LOG_SITUACAO_DEMANDA L
+                   ON D.COD_DEMANDA = L.COD_DEMANDA
+                  AND L.COD_SITUACAO = 2
                  LEFT JOIN EN_CONFIGURA_COR CC
                    ON (COALESCE(TIMESTAMPDIFF(HOUR,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)+
                        COALESCE(TIMESTAMPDIFF(MINUTE,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)+

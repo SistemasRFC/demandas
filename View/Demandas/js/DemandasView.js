@@ -39,6 +39,7 @@ function montaGridDemandas(dados){
              grid += '<thead><tr>';
              grid += ' <th width="3%"><b>Nro.</b></th>';
              grid += ' <th width="10%"><b>Duração</b></th>';
+             grid += ' <th width="10%"><b>Em execução</b></th>';
              grid += ' <th width="8%"><b>Data</b></th>';
              grid += ' <th width="6%"><b>Tipo</b></th>';
              grid += ' <th width="35%"><b>Demanda</b></th>';
@@ -52,6 +53,7 @@ function montaGridDemandas(dados){
                  grid += '<tr style=" background-color:'+dados[i].DSC_COR+'">';
                  grid += ' <td>'+dados[i].COD_DEMANDA+'</td>';
                  grid += ' <td>'+dados[i].DIAS_DECORRIDAS+' Dia(s)<br>'+dados[i].HORAS_DECORRIDAS+' Hr(s)</td>';
+                 grid += ' <td>'+dados[i].DIAS_EXECUCAO+' Dia(s)<br>'+dados[i].HORAS_EXECUCAO+' Hr(s)</td>';
                  grid += ' <td>'+dados[i].DTA_DEMANDA+'</td>';
                  grid += ' <td align="center">'+dados[i].DSC_TIPO+'</td>';
                  grid += ' <td>'+dados[i].DSC_DEMANDA+'</td>';

@@ -17,14 +17,16 @@ class DemandasModel extends BaseModel
         }
     }
 
-    Public Function ListarDemandas($Json=true){
+    Public Function ListarDemandas(){
         $dao = new DemandasDao();
         $lista = $dao->ListarDemandas($_SESSION['cod_usuario']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
+        if($lista[0]){
+            $total = count($lista[1]);
+            for($i=0;$i<$total;$i++) {
+                $lista[1][$i]['HORAS_EXECUCAO'] = substr($lista[1][$i]['HORAS_EXECUCAO'], 0, 8);
+            }
         }
+        return json_encode($lista);
     }
     
     Public Function InsertDemandas(){
