@@ -1,6 +1,3 @@
-<!-- DataTables -->
-<link rel="stylesheet" type="text/css" href="../../Resources/datatable/datatable.css"/> 
-<script type="text/javascript" src="../../Resources/datatable/datatable.js"></script>
 <script src="../../View/Demandas/js/CadArquivoView.js?rdm=<?php echo time(); ?>"></script>
 <form name="ArquivoForm" enctype="multpart/form-data" id="cadArquivoForm">
 <input type="hidden" id="codArquivo">

@@ -32,10 +32,10 @@ function SalvarPermissao(){
 function MontaListaMenus(ListaMenus){
     if (ListaMenus[0]){
         ListaMenus = ListaMenus[1];
-        count=3;
-        tabela = '<table width="100%">';
+        count=4;
+        tabela = '<table class="table table-striped" width="100%">';
         for(i=0;i<ListaMenus.length;i++){
-            if (count==3){
+            if (count==4){
                 tabela += "<tr>";
                 count=0;
             }       
@@ -44,11 +44,11 @@ function MontaListaMenus(ListaMenus){
             }else{
                 dscMenu = ListaMenus[i].DSC_MENU;
             }
-            tabela += "<td width='400px'>";
+            tabela += "<td>";
             tabela += "<input type='checkbox' id='chk"+ListaMenus[i].COD_MENU+"' name='codMenu[]' codMenu='"+ListaMenus[i].COD_MENU+"' class='check'><span>"+dscMenu+"</span></div><br>";
             tabela += "</td>";
             count++;
-            if (count==3){
+            if (count==4){
                 tabela += "</tr>";
             }
         }

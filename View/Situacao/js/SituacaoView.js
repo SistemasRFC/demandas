@@ -2,6 +2,7 @@ $(function() {
     $("#btnNovaSituacao").click(function(){
         $("#codSituacao").val('');
         $("#dscSituacao").val('');
+        $("#cadSituacaoTitle").html("Incluir Situação");
         $("#cadSituacao").modal("show");
     });
 
@@ -13,8 +14,7 @@ function carregaGridSituacao(){
 
 function montaGridSituacao(dados){
     if(dados[0]){
-        dados = dados[1];
-        var tabela = '<table class="table table-sm table-striped">';
+        var tabela = '<table id="tbSituacoes" class="table table-striped">';
         tabela += '<thead>';
         tabela += '<tr>';
         tabela += '<th>Situação</th>';
@@ -22,17 +22,23 @@ function montaGridSituacao(dados){
         tabela += '</tr>';
         tabela += '</thead>';
         tabela += '<tbody>';
-        for (i=0;i<dados.length;i++){
-
-            tabela += '<tr>';
-            tabela += '<td>'+dados[i].DSC_SITUACAO+'</td>';
-            tabela += "<td><a href=\"javascript:carregaCamposSituacao('"+dados[i].COD_SITUACAO+"', '"+dados[i].DSC_SITUACAO+"');\">Editar</a></td>";
-            tabela += '</tr>';
-
+        if(dados[1]!=null) {
+            dados = dados[1];
+            for (i=0;i<dados.length;i++){
+                tabela += '<tr>';
+                    tabela += '<td>'+dados[i].DSC_SITUACAO+'</td>';
+                    tabela += ' <td>';
+                    tabela += '   <button class="btn btn-link" title="Editar" onClick="javascript:carregaCamposSituacao('+dados[i].COD_SITUACAO+', `'+dados[i].DSC_SITUACAO+'`);">';
+                    tabela += '       <i class="fa-solid fa-pencil"></i>';
+                    tabela += '   </button>';
+                    tabela += ' </td>';
+                tabela += '</tr>';
+            }
         }
         tabela += '</tbody>';
         tabela += '</table>';
         $("#tabelaSituacao").html(tabela);
+        criarDataTable("tbSituacoes");
     }
 }
 

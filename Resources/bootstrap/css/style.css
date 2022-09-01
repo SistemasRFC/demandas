@@ -1,0 +1,40 @@
+.color-primary {
+    color: #780a0a !important;
+}
+
+.color-secondary {
+    color: #c82828 !important;
+}
+
+.bg-gradient-primary {
+    background-color: #ddd;
+    background-image: linear-gradient(45deg, #780a0a 20%, #c82828 90%);
+    background-size: cover;
+}
+.bg-color-primary {
+    background-color: #780a0a;
+    color: #fff;
+}
+.bg-color-white {
+    background-color: white;
+}
+.color-white {
+    color: white;
+}
+
+.bl-1 {
+    border-left: 1px solid #222;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0 0 0 / 30%);
+    margin: auto;
+    max-width: 95%;
+    margin-top: 2rem;
+    font-family: arial;
+}
+
+.card-login {
+    max-width: 21rem;
+    margin-top: 5rem;
+}

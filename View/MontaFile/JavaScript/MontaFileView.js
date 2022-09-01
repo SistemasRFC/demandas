@@ -1,3 +1,9 @@
+$(function() {
+    $("#btnAtualizar").click(function() {
+        MontaListaTabelas();
+    });
+})
+
 function GeraFile(dscTabela,nmeFile){    
     parametros = "dscTabela;"+dscTabela+"|nmeFile;"+nmeFile;
     ExecutaDispatch('MontaFile', 'GeraFile', parametros, undefined);    
@@ -14,6 +20,7 @@ function MontarListaTabelas(dados){
         tabela += '<thead>';
         tabela += '<tr>';
         tabela += '<th>Tabela</th>';
+        tabela += '<th>Ação</th>';
         tabela += '</tr>';
         tabela += '</thead>';
         tabela += '<tbody>';
@@ -21,7 +28,7 @@ function MontarListaTabelas(dados){
 
             tabela += '<tr>';
             tabela += '<td>'+dados[i].NME_TABELA+'</td>';
-            tabela += "<td><a href=\"javascript:AbreTelaNomeArquivo('"+dados[i].NME_TABELA+"');\">Editar</a></td>";
+            tabela += "<td><a href=\"javascript:AbreTelaNomeArquivo('"+dados[i].NME_TABELA+"');\">Gerar arquivos</a></td>";
             tabela += '</tr>';
 
         }
@@ -42,6 +49,6 @@ function AbreTelaNomeArquivo(nmeTabela){
     }    
 }
 
-$(document).ready(function () { 
+$(document).ready(function () {
     ListarTabelas();
 });

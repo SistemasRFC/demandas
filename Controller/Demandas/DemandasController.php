@@ -43,6 +43,11 @@ class DemandasController extends BaseController
         echo $DemandasModel->ListarDemandasPendentes();
     }
 
+    Public Function ListarDemandasAguardando(){
+        $DemandasModel = new DemandasModel();
+        echo $DemandasModel->ListarDemandasAguardando();
+    }
+
     Public Function ListarDemandasUsuario(){
         $DemandasModel = new DemandasModel();
         echo $DemandasModel->ListarDemandasUsuario();

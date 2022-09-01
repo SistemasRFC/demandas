@@ -1,65 +1,40 @@
 <html>
     <head>
-        <title>Sistema de Gerenciamento de Recursos</title>
-        <script src="../../Resources/jquery/jquery-1.10.1.min.js"></script>
-        <script src="../../Resources/bootstrap/js/popper.min.js"></script>
-        <script src="../../Resources/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Bootstrap core CSS -->
-        <link href="../../Resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="../../Resources/bootstrap/css/dashboard.css" rel="stylesheet">
-        <script src="../../Resources/swal/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../Resources/swal/dist/sweetalert.css">          
+        <title>Demandas - Menus</title>
+        <?php include "../../Resources/imports-html.php"; ?>
         <script src="../../View/Menu/js/MenuView.js?rdm=<?php echo time(); ?>"></script>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     </head>
     <body>
-        <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>        
-        <table align="center" width="100%">
-            <tr>
-                <td align="left">
-                    <span style="font-size: 20px; color: white;">Lista de Menus do Sistema</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <br>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" id="btnNovo">
-                        Novo Menu
-                    </button>
-                    <br>
-                </td>
-            </tr>
-            <tr>
-                <td id="tdListaMenus" align="left">
-                    <div class="container-fluid">
-                        
-                        <div id="ListaMenus" class="table-responsive"></div>
+      <div id="wrapper">
+        <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content">
+            <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
+
+            <div class="container-fluid">
+              <div class="d-sm-flex align-items-center justify-content-between">
+                <h1 class="h3 mb-0 text-gray-800">Restrito - <small>Menu</small></h1>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-12 col-md-12 mx-0 px-0">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-end">
+                      <button id="btnNovoMenu" class="btn btn-primary d-lg-inline">Novo Menu</button>
                     </div>
-                </td>
-            </tr>
-        </table>
+                    <div class="card-body">
+                      <div class="container">
+                        <div class="row">
+                          <div id="ListaMenus" class="table"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </body>
 </html>
-<div class="modal fade bd-example-modal-lg" id="cadastroMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Cadastro de Menus</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <?php include_once "CadMenuView.php";?>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-        <button type="button" class="btn btn-primary" id="btnSalvarMenu">Salvar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+<?php include_once "CadMenuView.php";?>

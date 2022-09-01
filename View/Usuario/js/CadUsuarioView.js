@@ -121,7 +121,7 @@ function listaComboPerfil(){
 function montaComboPerfil(dados){
     if(dados[0]){
         dados = dados[1];
-         combo = '<select id="comboPerfil" class="btn btn-outline-secondary dropdown-toggle" >';
+         combo = '<select id="comboPerfil" class="form-control dropdown-toggle" >';
          combo += '<option value="" disabled selected hidden>Selecione uma opção</option>';
         for (i=0;i<dados.length;i++){
             combo += '<option value="'+dados[i].COD_PERFIL+'">'+dados[i].DSC_PERFIL+'</option>';
@@ -139,7 +139,7 @@ function listaComboSistemas(){
 function montaComboSistemas(dados){
     if(dados[0]){
         dados = dados[1];
-         combo = '<select id="comboSistema" multiple class="btn btn-outline-secondary dropdown-toggle" style="width: 100%; height: 150px;">';
+         combo = '<select id="comboSistema" multiple class="form-control text-center dropdown-toggle">';
          combo += '<option value="" disabled selected hidden>Selecione uma opção</option>';
         for (i=0;i<dados.length;i++){
             combo += '<option value="'+dados[i].COD_SISTEMA+'">'+dados[i].NME_SISTEMA+'</option>';

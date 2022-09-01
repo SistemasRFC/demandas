@@ -58,7 +58,8 @@ function carregaCamposSistema(codSistema, nmeSistema, nmeBanco, indAtivo){
         $("#indAtivo").prop('checked', false);
     }else{
         $("#indAtivo").prop('checked', 'checked');
-    }
+    }    
+    $("#updateSistemaTitle").html("Editar Sistema");
     $("#updateSistema").modal('show');
 }
 

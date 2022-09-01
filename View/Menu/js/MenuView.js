@@ -1,58 +1,64 @@
+var listaMenus;
 function carregarListaMenus(){
     ExecutaDispatch('Menu', 'CarregaMenu', undefined, MontaGrid);
 }
 
 function MontaGrid(dados){
     if (dados[0]){
-        dados = dados[1];
-        var tabela = '<table class="table table-striped">';
+        var tabela = '<table id="tbMenu" class="table table-striped">';
         tabela += '<thead>';
         tabela += '<tr>';
         tabela += '<th>Menu</th>';
         tabela += '<th>Controller</th>';
         tabela += '<th>Método</th>';
-        tabela += '<th>Ativo?</th>';
-        tabela += '<th>Visível?</th>';
+        tabela += '<th>Ativo</th>';
+        tabela += '<th>Visível</th>';
         tabela += '<th>Ações</th>';
         tabela += '</tr>';
         tabela += '</thead>';
         tabela += '<tbody>';
-        for (i=0;i<dados.length;i++){
-
-            tabela += '<tr>';
-            tabela += '<td>'+dados[i].DSC_MENU+'</td>';
-            tabela += '<td>'+dados[i].NME_CONTROLLER+'</td>';
-            tabela += '<td>'+dados[i].NME_METHOD+'</td>';
-            tabela += '<td>'+dados[i].IND_ATIVO+'</td>';
-            tabela += '<td>'+dados[i].IND_VISIBLE+'</td>';
-            tabela += '<td><a href="javascript:abreTelaCadastro('+dados[i].COD_MENU+');">Editar</a></td>';
-            tabela += '</tr>';
-
+        if(dados[1]!=null) {
+            listaMenus = dados[1];
+            dados = dados[1];
+            for (i=0;i<dados.length;i++){
+                var indAtivo = dados[i].IND_ATIVO=="S"?"Sim":"Não"
+                var indVisivel = dados[i].IND_VISIBLE=="S"?"Sim":"Não"
+                tabela += '<tr>';
+                tabela += '<td>'+dados[i].DSC_MENU+'</td>';
+                tabela += '<td>'+dados[i].NME_CONTROLLER+'</td>';
+                tabela += '<td>'+dados[i].NME_METHOD+'</td>';
+                tabela += '<td>'+indAtivo+'</td>';
+                tabela += '<td>'+indVisivel+'</td>';
+                tabela += ' <td>';
+                tabela += '   <button class="btn btn-link" title="Editar" onClick="javascript:editarMenu('+i+');">';
+                tabela += '       <i class="fa-solid fa-pencil"></i>';
+                tabela += '   </button>';
+                tabela += ' </td>';
+                tabela += '</tr>';
+            }
         }
-        tabela += '</tbody>';         
+        tabela += '</tbody>';
         tabela += '</tbody>';
         tabela += '</table>';
         $("#ListaMenus").html(tabela);
-        swal.close();
+        criarDataTable("tbMenu");
     }
 }
 
-function abreTelaCadastro(codMenu){
-    ExecutaDispatch('Menu', 'CarregaMenuByCod', "codMenu;"+codMenu, carregaCampos);
+function editarMenu(indice){
+    carregaCampos(listaMenus[indice]);
 }
 
 function carregaCampos(dados){
-    if (dados[0]){
-        dados = dados[1][0];
-        $("#codMenu").val(dados.COD_MENU);
-        $("#dscMenu").val(dados.DSC_MENU);
-        $("#nmeController").val(dados.NME_CONTROLLER);
-        $("#nmeMethod").val(dados.NME_METHOD);
-        $("#codMenuPai").val(dados.COD_MENU_PAI);
-        $("#indAtivo").prop('checked', dados.ATIVO);
-        $("#indVisible").prop('checked', dados.VISIBLE);
-        $("#cadastroMenu").modal('show');
-    }
+    $("#codMenu").val(dados.COD_MENU);
+    $("#dscMenu").val(dados.DSC_MENU);
+    $("#nmeController").val(dados.NME_CONTROLLER);
+    $("#nmeMethod").val(dados.NME_METHOD);
+    $("#codMenuPai").val(dados.COD_MENU_PAI);
+    $("#indAtivo").prop('checked', dados.ATIVO);
+    $("#indVisible").prop('checked', dados.VISIBLE);
+    $("#cadastroMenuTitle").html('Editar Menu');
+    $("#cadastroMenu").modal('show');
 }
 
 function limparCampos(){
@@ -68,8 +74,9 @@ function limparCampos(){
 
 $(document).ready(function(){
     carregarListaMenus();
-    $("#btnNovo").click(function(){
+    $("#btnNovoMenu").click(function(){
         limparCampos();
+        $("#cadastroMenuTitle").html('Incluir Menu');
         $("#cadastroMenu").modal('show');
     });
 });

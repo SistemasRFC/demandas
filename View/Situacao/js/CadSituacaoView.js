@@ -47,6 +47,7 @@ function retornoInsert(retorno){
 function carregaCamposSituacao(codSituacao, dscSituacao){
     $("#codSituacao").val(codSituacao);
     $("#dscSituacao").val(dscSituacao);
+    $("#cadSituacaoTitle").html("Editar Situação");
     $("#cadSituacao").modal('show');
 }
 

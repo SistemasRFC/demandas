@@ -36,41 +36,12 @@ function salvarMenu(){
                     "indAtivo;"+indAtivo+"|"+
                     "indVisible;"+indVisible, trataRetornoSalvar);
 
-  
-//    $.post('../../Dispatch.php',
-//           {
-//               method: 'SalvarMenu',
-//               controller: 'Menu',
-//               dscMenu: $("#dscMenu").val(),
-//               codMenu: $("#codMenu").val(),
-//               nmeController: $("#nmeController").val(),
-//               nmeMethod: $("#nmeMethod").val(),
-//               codMenuPai: $("#codMenuPai").val(),
-//               indAtivo: indAtivo,
-//               indVisible: indVisible
-//           },
-//           function(retorno){
-//                retorno = eval ('('+retorno+')');
-//                if (retorno[0]==true){
-//                    $("#codMenu").val(retorno[2]);
-//                    swal.close();
-//                    carregarListaMenus();
-//                }else{
-//                    $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-//                    swal({
-//                        title: "Erro!",
-//                        text: retorno[1],
-//                        type: "error",
-//                        confirmButtonText: "Fechar"
-//                    });
-//                }
-//           }
-//    );
 }
 
 function trataRetornoSalvar(retorno){
     if (retorno[0]==true){
         $("#codMenu").val(retorno[2]);
+        $("#cadastroMenu").modal("hide");
         swal.close();
         carregarListaMenus();
     }else{
@@ -85,11 +56,6 @@ function trataRetornoSalvar(retorno){
 }
 
 function ListarControllers(){
-    swal({
-        title: "Aguarde!",
-        imageUrl: "../../Resources/images/preload.gif",
-        showConfirmButton: false
-    });
     $.post('../../Dispatch.php',
            {
                method: 'ListarClasses',
@@ -124,22 +90,17 @@ function ListarMetodos(){
         });
         return;
     }
-    swal({
-        title: "Aguarde, salvando registro!",
-        imageUrl: "../../Resources/images/preload.gif",
-        showConfirmButton: false
-    });
     $.post('../../Dispatch.php',
-           {
-               method: 'ListarMetodos',
-               controller: 'Menu',
-               nmeController: $("#nmeController").val()
-           },
-           function(retorno){
-                retorno = eval ('('+retorno+')');
-                swal.close();
-                carregarListaMetodos(retorno);
-           }
+        {
+            method: 'ListarMetodos',
+            controller: 'Menu',
+            nmeController: $("#nmeController").val()
+        },
+        function(retorno){
+            retorno = eval ('('+retorno+')');
+            swal.close();
+            carregarListaMetodos(retorno);
+        }
     );
 }
 

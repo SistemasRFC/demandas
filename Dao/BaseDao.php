@@ -11,10 +11,10 @@ class BaseDao{
         self::disconnect();
     }
     private static $dbtype   = "mysql";
-    private static $host     = "localhost";
+    private static $host     = "192.168.0.74";
     private static $port     = "3306";
-    private static $user     = "maker";
-    private static $password = "maker";
+    private static $user     = "root";
+    private static $password = "Rfm1440@";
     private static $conexao = "";
     private static $db       = "demandas";
     public static $qtdRegistros = 0;

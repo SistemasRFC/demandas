@@ -33,6 +33,7 @@ class DemandasDao extends BaseDao
                       D.DTA_DEMANDA AS DATA_DEMANDA,
                       DATE_FORMAT(D.DTA_DEMANDA,'%d/%m/%Y %T') AS DTA_DEMANDA, 
                       D.COD_RESPONSAVEIS,
+                      D.COD_USUARIO,
                       COALESCE(U.NME_USUARIO_COMPLETO, 'Sem Responsável') AS NME_USUARIO_COMPLETO,
                       D.COD_SITUACAO,
                       SI.DSC_SITUACAO,
@@ -65,13 +66,13 @@ class DemandasDao extends BaseDao
         if($this->Populate('comboTpoDemanda', 'I') !== '0'){
             $sql .=" AND D.COD_SITUACAO = ".$this->Populate('comboTpoDemanda', 'I');
         }
-        if($codUsuario !== '1'){
-            $sql .=" AND (COD_RESPONSAVEIS = $codUsuario
-                      OR D.COD_USUARIO = $codUsuario)";
-        }
+        // if($codUsuario !== '1'){
+        //     $sql .=" AND (COD_RESPONSAVEIS = $codUsuario
+        //               OR D.COD_USUARIO = $codUsuario)";
+        // }
             $sql .=" GROUP BY COD_DEMANDA
                      ORDER BY DATA_DEMANDA DESC";
-//            echo $sql; die;
+        //    echo $sql; die;
         return $this->selectDB($sql, false);
     }
     
@@ -183,6 +184,43 @@ class DemandasDao extends BaseDao
         }
             $sql .=" GROUP BY COD_DEMANDA
                 ORDER BY IND_PRIORIDADE DESC, COD_DEMANDA";
+//            echo $sql; die;
+        return $this->selectDB($sql, false);
+    }
+    
+    Public Function ListarDemandasAguardando(){
+        $sql= "SELECT D.COD_DEMANDA,
+                      D.DSC_DEMANDA,
+                      D.COD_SISTEMA,
+                      D.COD_SISTEMA_ORIGEM,
+                      S.NME_SISTEMA,
+                      D.DTA_DEMANDA AS DATA_DEMANDA,
+                      DATE_FORMAT(D.DTA_DEMANDA,'%d/%m/%Y %T') AS DTA_DEMANDA,
+                      COALESCE(U.NME_USUARIO_COMPLETO, 'Sem Responsável') AS NME_USUARIO_COMPLETO,
+                      CASE WHEN IND_PRIORIDADE = '0' THEN ''
+                           WHEN IND_PRIORIDADE = '1' THEN 'Baixa'
+                           WHEN IND_PRIORIDADE = '2' THEN 'Normal'
+                           WHEN IND_PRIORIDADE = '3' THEN 'Alta'
+                           WHEN IND_PRIORIDADE = '4' THEN 'Crítica'
+                      END AS DSC_PRIORIDADE,
+                      D.IND_PRIORIDADE,
+                      CASE WHEN TPO_DEMANDA = '0' THEN ''
+                           WHEN TPO_DEMANDA = '1' THEN 'Incidente'
+                           WHEN TPO_DEMANDA = '2' THEN 'Corretiva'
+                           WHEN TPO_DEMANDA = '3' THEN 'Evolutiva'
+                      END AS DSC_TIPO,
+                      D.TPO_DEMANDA
+                 FROM EN_DEMANDAS D
+                INNER JOIN EN_SISTEMAS S
+                   ON D.COD_SISTEMA = S.COD_SISTEMA
+                INNER JOIN EN_SITUACAO SI
+                   ON D.COD_SITUACAO = SI.COD_SITUACAO
+                 LEFT JOIN SE_USUARIO U
+                   ON D.COD_RESPONSAVEIS = U.COD_USUARIO
+                WHERE D.COD_SITUACAO = 1
+                AND D.COD_RESPONSAVEIS IS NULL
+                GROUP BY COD_DEMANDA
+                ORDER BY DATA_DEMANDA";
 //            echo $sql; die;
         return $this->selectDB($sql, false);
     }

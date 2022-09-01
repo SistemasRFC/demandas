@@ -1,24 +1,44 @@
 
 <html>
     <head>
-        <meta charset="UTF-8">
-        <script src="../../Resources/jquery/jquery-1.10.1.min.js"></script>
-        <script src="../../Resources/bootstrap/js/popper.min.js"></script>
-        <script src="../../Resources/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Bootstrap core CSS -->
-        <link href="../../Resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="../../Resources/bootstrap/css/dashboard.css" rel="stylesheet">
-        <script src="../../Resources/swal/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../Resources/swal/dist/sweetalert.css">          
-        <title>Cadastro - kart</title>
+        <title>Demandas - MontaFile</title>
+        <?php include "../../Resources/imports-html.php"; ?>
         <script src="../../View/MontaFile/JavaScript/MontaFileView.js?rdm=<?php echo time(); ?>"></script>        
     </head>
     <body>
-        <?php include_once "../../View/MenuPrincipal/Cabecalho.php"; ?>
-        <input type="hidden" id="method">
-        <input type="hidden" id="codUsuario">
+        <div id="wrapper">
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+                    <?php include_once "../../View/MenuPrincipal/Cabecalho.php"; ?>
+                    <input type="hidden" id="method">
+                    <input type="hidden" id="codUsuario">
+
+                    <div class="container-fluid">
+                        <div class="d-sm-flex align-items-center justify-content-between">
+                            <h1 class="h3 mb-0 text-gray-800">Restrito - <small>MontaFile</small></h1>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 mx-0 px-0">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex align-items-end">
+                                        <button id="btnAtualizar" class="btn btn-primary d-lg-inline">Atualizar</button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div id="listaTabelas"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- 
+
         <table>
             <tr>
                 <td>
@@ -29,6 +49,6 @@
                 <td id="listaTabelas">
                 </td>
             </tr>
-        </table>
+        </table> -->
     </body>
 </html>

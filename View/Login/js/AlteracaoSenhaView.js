@@ -2,8 +2,9 @@
     valor = '{x:'+$(window).width/2+', y:'+$(window).heigth/2+'}';
 
     $("#btnLogin").click(function(){
-        if ($("#txtSenhaNova").val()!=$("#txtSenhaConfirmacao").val()){
-            swal("", "A Nova senha não confere com a confirmação!", "error");
+        var validacao = verificaCampos();
+        if (!validacao[0]){
+            swal("", validacao[1], "error");
             return;
         }
         swal({
@@ -46,6 +47,20 @@
     });
 
 });
+
+function verificaCampos() {
+    var retorno = [true, ""];
+    console.log("==1==", $("#txtSenhaAtual").val())
+    if($("#txtSenhaAtual").val()==""||$("#txtSenhaNova").val()==""||$("#txtSenhaConfirmacao").val()=="") {
+        retorno[0] = false;
+        retorno[1] = "Obrigatório o preenchimento de todos os campos!"
+    } else if ($("#txtSenhaNova").val()!=$("#txtSenhaConfirmacao").val()){
+        retorno[0] = false;
+        retorno[1] = "Nova senha diferente da senha de confirmação!";
+    }
+    return retorno;
+}
+
 $(document).ready(function(){
     $("#txtSenhaAtual").focus();
 });

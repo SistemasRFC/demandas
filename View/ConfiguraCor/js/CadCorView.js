@@ -49,6 +49,7 @@ function carregaCamposPeriodo(codConfiguraCor, tempoInicial, tempoFinal, dscCor)
     $("#vlrTempoInicial").val(tempoInicial);
     $("#vlrTempoFinal").val(tempoFinal);
     $("#dscCor").val(dscCor);
+    $("#cadCorPeriodoTitle").html("Editar Configuração");
     $("#cadCorPeriodo").modal('show');
 }
 

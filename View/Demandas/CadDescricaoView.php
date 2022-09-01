@@ -1,6 +1,4 @@
 <!-- DataTables -->
-<link rel="stylesheet" type="text/css" href="../../Resources/datatable/datatable.css"/> 
-<script type="text/javascript" src="../../Resources/datatable/datatable.js"></script>
 <script src="../../View/Demandas/js/CadDescricaoView.js?rdm=<?php echo time(); ?>"></script>
 <input type="hidden" id="codDescricao">
 <div class="container" id="tdCadDescricao">

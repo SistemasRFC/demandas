@@ -1,71 +1,58 @@
-<!doctype html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <title>Menu Principal</title>
-<!--        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
-        <script src="../../Resources/jquery/jquery-1.10.1.min.js"></script>
-        <script src="../../Resources/bootstrap/js/popper.min.js"></script>
-        <script src="../../Resources/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Bootstrap core CSS -->
-        <link href="../../Resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="../../Resources/bootstrap/css/dashboard.css" rel="stylesheet">
-        <script src="../../Resources/swal/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../Resources/swal/dist/sweetalert.css">           
-        <!-- DataTables -->
-        <link rel="stylesheet" type="text/css" href="../../Resources/datatable/datatable.css"/> 
-        <script type="text/javascript" src="../../Resources/datatable/datatable.js"></script>
+        <title>Demandas - Início</title>
+        <?php include "../../Resources/imports-html.php"; ?>
         <script src="../../View/MenuPrincipal/js/MenuPrincipalView.js?rdm=<?php echo time(); ?>"></script>
     </head>
 
     <body>
-        <?php include "Cabecalho.php"; ?>
-        <input type="hidden" id="codDemanda">
-        <div class="container-fluid">
-            <div class="row">&nbsp;</div>
-            <div class="row">
-                <div class="col-6">
-                    <h4>Demandas Aguardando Atendimento</h4>
-                    <div class="container-fluid">
-                        <div id="tbDemandasPendentes" class="table-responsive"></div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <h4>Minhas Demandas</h4>
-                    <div class="container-fluid">
-                        <div id="tbDemandasUsuario" class="table-responsive"></div>
-                    </div>
-                </div>
+      <div id="wrapper">
+        <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content">
+            <?php include "Cabecalho.php"; ?>
+            <div class="container-fluid">
+              <input type="hidden" id="codDemanda" />
+              <div class="d-sm-flex align-items-center justify-content-between">
+                  <h1 class="h3 mb-0 text-gray-800">Início</h1>
+              </div>
+
+              <div class="row mb-2">
+                  <div class="col-xl-12 col-md-12 mx-0 px-0">
+                      <div class="card h-100 mx-0">
+                          <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                              <h6 class="m-0 font-weight-bold">MINHAS DEMANDAS</h6>
+                          </div>
+                          <div class="card-body">
+                            <div class="container">
+                              <div class="row">
+                                <div id="tbDemandasUsuario" class="table"></div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xl-12 col-md-12 mx-0 px-0">
+                      <div class="card h-100 mx-0">
+                          <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                              <h6 class="m-0 font-weight-bold">DEMANDAS AGUARDANDO ATENDIMENTO</h6>
+                          </div>
+                          <div class="card-body">
+                            <div class="container">
+                              <div class="row">
+                                <div id="tbDemandasAguardando" class="table"></div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
-            <div class="row">&nbsp;</div>
-            <div class="row" ><div class="col-12" align="center"><h5>Contagem de Demandas</h5></div></div>
-            <div class="row">
-                <div class="col-4">
-                    <div class="container">
-                        <div id="tbContagemStatus" class="table-responsive"></div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="container">
-                        <div id="tbContagemPrioridade" class="table-responsive"></div>
-                    </div>
-                </div>
-                <div class="col-1"></div>
-                <div class="col-2" align="center">
-                    <div class="container">
-                        <div id="tbContagemTotal" class="table-responsive"></div>
-                    </div>
-                </div>
-                <div class="col-1"></div>
-            </div>
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
+          </div>
         </div>
+      </div>
     </body>
 </html>
 <div class="modal fade bd-example-modal-lg" id="updateDemanda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -81,7 +68,7 @@
         <?php include_once "../Demandas/CadDemandasView.php";?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-info" id="btnHistorico">Histórico</button>
         <button type="button" class="btn btn-info" id="btnDescricao">Inserir Descrição</button>
         <button type="button" class="btn btn-info" id="btnArquivos">Arquivos</button>
@@ -103,7 +90,7 @@
         <?php include_once "../Demandas/CadDescricaoView.php";?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" id="btnSalvarDescricao">Salvar</button>
       </div>
     </div>

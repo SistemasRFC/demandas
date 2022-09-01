@@ -1,4 +1,4 @@
-$(function() {  
+$(function() {
     $("#btnLogin").click(function(){
         swal({title: "Aguarde!", imageUrl: "Resources/images/preload.gif",showConfirmButton: false});
         if ($("#nmeLogin").val().trim()==''){
@@ -30,3 +30,8 @@ $(function() {
     });
 
 });
+$(document).on('keypress',function(e) {
+    if(e.which == 13) {
+        $("#btnLogin").click();
+    }
+})

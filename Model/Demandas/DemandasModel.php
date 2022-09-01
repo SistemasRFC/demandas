@@ -148,6 +148,16 @@ class DemandasModel extends BaseModel
         }
     }
 
+    Public Function ListarDemandasAguardando($Json=true){
+        $dao = new DemandasDao();
+        $lista = $dao->ListarDemandasAguardando();
+        if ($Json){
+            return json_encode($lista);
+        }else{
+            return $lista;        
+        }
+    }
+
     Public Function ListarDemandasUsuario($Json=true){
         $dao = new DemandasDao();
         $lista = $dao->ListarDemandasUsuario($_SESSION['cod_usuario']);
