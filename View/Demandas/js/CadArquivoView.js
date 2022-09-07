@@ -79,15 +79,15 @@ function carregaGridArquivo(){
 
 function montaGridArquivo(dados){
     if (dados[0]) {
+        var grid = '<table id="tbArquivo" class="display" style="width:100%">';
+        grid += '<thead><tr>';
+        grid += ' <th><b>Data</b></th>';
+        grid += ' <th><b>Descrição</b></th>';
+        grid += ' <th><b>Arquivo</b></th>';
+        grid += ' <th><b>Ação</b></th>';
+        grid += '</tr></thead><tbody>';
         if (dados[1] !== null) {
             dados = dados[1];
-            var grid = '<table id="tbArquivo" class="display" style="width:100%">';
-            grid += '<thead><tr>';
-            grid += ' <th><b>Data</b></th>';
-            grid += ' <th><b>Descrição</b></th>';
-            grid += ' <th><b>Arquivo</b></th>';
-            grid += ' <th><b>Ação</b></th>';
-            grid += '</tr></thead><tbody>';
             for (i = 0; i < dados.length; i++) {
                 grid += '<tr>';
                 grid += ' <td>' + dados[i].DTA_ARQUIVO + '</td>';
@@ -97,43 +97,12 @@ function montaGridArquivo(dados){
                 grid += " <td><a href=\"javascript:excluirArquivo('" + dados[i].COD_ARQUIVO + "');\">Excluir</a></td>";
                 grid += '</tr>';
             }
-            grid += '</tbody>';
-            grid += '</table>';
-            $("#tabelaArquivo").html(grid);
-            $('#tbArquivo').DataTable({
-                "filter": false,
-                "ordering": false,
-                "info": false,
-                "paging": false,
-                "language": {
-                    "emptyTable": "Nenhum registro encontrado",
-                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando 0 até 0 de 0 registros",
-                    "infoFiltered": "(Filtrados de _MAX_ registros)",
-                    "infoPostFix": "",
-                    "infoThousands": ".",
-                    "lengthMenu": "_MENU_ resultados por página",
-                    "loadingRecords": "Carregando...",
-                    "processing": "Processando...",
-                    "zeroRecords": "Nenhum registro encontrado",
-                    "search": "Pesquisar: ",
-                    "paginate": {
-                        "next": "Próximo",
-                        "previous": "Anterior",
-                        "first": "Primeiro",
-                        "last": "Último"
-                    },
-                    "aria": {
-                        "sortAscending": ": Ordenar colunas de forma ascendente",
-                        "sortDescending": ": Ordenar colunas de forma descendente"
-                    }
-                }
-            });
-        }else{
-            var grid = 'Sem dados!';            
-            $("#tabelaArquivo").html(grid);
-        }
-    } 
+        } 
+        grid += '</tbody>';
+        grid += '</table>';
+        $("#tabelaArquivo").html(grid);
+        criarDataTableBasic("tbArquivo");
+    }
 }
 
 //function baixarArquivo(txtCompleto){

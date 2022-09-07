@@ -18,14 +18,11 @@ class DemandaModel extends BaseModel
         }
     }
 
-    Public Function ListarDemandas($Json=true){
+    Public Function ListarDemandas(){
         $dao = new DemandaDao();
         $lista = $dao->ListarDemandas($_SESSION['cod_usuario']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
+
+        return json_encode($lista);
     }
     
     Public Function InsertDemandas(){
@@ -123,7 +120,7 @@ class DemandaModel extends BaseModel
         return $result;
     }	
     
-    Public Function ListarLogsDemanda($Json=true){
+    Public Function ListarLogsDemanda(){
         $dao = new DemandaDao();
         $lista = $dao->ListarLogsDemanda();
         if ($lista[0]){
@@ -132,71 +129,19 @@ class DemandaModel extends BaseModel
                 $lista[1][$i]['NME_USUARIO'] = $nmeUsuario[1][0]['NME_USUARIO'];
             }
         }
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
+        return json_encode($lista);
     }
 
-    Public Function ListarDemandasPendentes($Json=true){
-        $dao = new DemandaDao();
-        $lista = $dao->ListarDemandasPendentes($_SESSION['cod_usuario']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
-    }
-
-    Public Function ListarDemandasAguardando($Json=true){
+    Public Function ListarDemandasAguardando(){
         $dao = new DemandaDao();
         $lista = $dao->ListarDemandasAguardando($_SESSION['cod_usuario']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
+        return json_encode($lista);
     }
 
-    Public Function ListarDemandasUsuario($Json=true){
+    Public Function ListarDemandasUsuario(){
         $dao = new DemandaDao();
         $lista = $dao->ListarDemandasUsuario($_SESSION['cod_usuario']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
-    }
-
-    Public Function ContagemDemandasStatus($Json=true){
-        $dao = new DemandaDao();
-        $lista = $dao->ContagemDemandasStatus($_SESSION['cod_usuario']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
-    }
-
-    Public Function ContagemDemandasPrioridade($Json=true){
-        $dao = new DemandaDao();
-        $lista = $dao->ContagemDemandasPrioridade($_SESSION['cod_usuario']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
-    }
-
-    Public Function ContagemDemandasTotal($Json=true){
-        $dao = new DemandaDao();
-        $lista = $dao->ContagemDemandasTotal($_SESSION['cod_usuario']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
+        return json_encode($lista);
     }
 }
 

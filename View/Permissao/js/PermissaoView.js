@@ -58,8 +58,7 @@ function MontaListaMenus(ListaMenus){
         for(i=0;i<ListaMenus.length;i++){        
             if (parseInt(ListaMenus[i].QTD)==0){            
                 $("#chk"+ListaMenus[i].COD_MENU).prop('checked', false);
-            }else{            
-    //            alert(123);
+            }else{
                 $("#chk"+ListaMenus[i].COD_MENU).prop('checked', 'checked');
             }
         }   

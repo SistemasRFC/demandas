@@ -66,13 +66,8 @@ class DemandaDao extends BaseDao
         if($this->Populate('comboTpoDemanda', 'I') !== '0'){
             $sql .=" AND D.COD_SITUACAO = ".$this->Populate('comboTpoDemanda', 'I');
         }
-        // if($codUsuario !== '1'){
-        //     $sql .=" AND (COD_RESPONSAVEL = $codUsuario
-        //               OR D.COD_USUARIO = $codUsuario)";
-        // }
             $sql .=" GROUP BY COD_DEMANDA
                      ORDER BY DATA_DEMANDA DESC";
-        //    echo $sql; die;
         return $this->selectDB($sql, false);
     }
     
@@ -165,29 +160,6 @@ class DemandaDao extends BaseDao
         return $this->selectDB($sql, false);
     }
     
-    Public Function ListarDemandasPendentes($codUsuario){
-//         $sql= "SELECT D.COD_DEMANDA,
-//                       D.DSC_DEMANDA,
-//                       S.NME_SISTEMA,
-//                       CASE WHEN IND_PRIORIDADE = '0' THEN ''
-//                            WHEN IND_PRIORIDADE = '1' THEN 'Baixa'
-//                            WHEN IND_PRIORIDADE = '2' THEN 'Normal'
-//                            WHEN IND_PRIORIDADE = '3' THEN 'Alta'
-//                            WHEN IND_PRIORIDADE = '4' THEN 'Crítica'
-//                       END AS DSC_PRIORIDADE
-//                  FROM EN_DEMANDAS D
-//                 INNER JOIN EN_SISTEMAS S
-//                    ON D.COD_SISTEMA = S.COD_SISTEMA
-//                 WHERE D.COD_SITUACAO = 1";
-//         if($codUsuario !== '1'){
-//             $sql .=" AND D.COD_RESPONSAVEL = $codUsuario";
-//         }
-//             $sql .=" GROUP BY COD_DEMANDA
-//                 ORDER BY IND_PRIORIDADE DESC, COD_DEMANDA";
-// //            echo $sql; die;
-//         return $this->selectDB($sql, false);
-    }
-    
     Public Function ListarDemandasAguardando($codUsuario){
         $sql= "SELECT D.COD_DEMANDA,
                       D.DSC_DEMANDA,
@@ -225,7 +197,6 @@ class DemandaDao extends BaseDao
                   AND US.COD_USUARIO = ".$codUsuario."
                 GROUP BY COD_DEMANDA
                 ORDER BY DATA_DEMANDA";
-//            echo $sql; die;
         return $this->selectDB($sql, false);
     }
     
@@ -267,55 +238,7 @@ class DemandaDao extends BaseDao
         }
             $sql .=" GROUP BY COD_DEMANDA
                      ORDER BY D.IND_PRIORIDADE DESC, COD_DEMANDA";
-//            echo $sql; die;
         return $this->selectDB($sql, false);
-    }
-    
-    Public Function ContagemDemandasStatus($codUsuario){
-//         $sql= "SELECT COUNT( D.COD_DEMANDA) AS QTD,
-//                       S.COD_SITUACAO,
-//                       S.DSC_SITUACAO
-//                  FROM EN_DEMANDAS D
-//                 INNER JOIN EN_SITUACAO S
-//                    ON D.COD_SITUACAO = S.COD_SITUACAO
-//                 WHERE 1=1";
-//         if($codUsuario !== '1'){
-//             $sql .=" AND D.COD_RESPONSAVEL = $codUsuario";
-//         }
-//             $sql .=" GROUP BY D.COD_SITUACAO
-//                      ORDER BY D.COD_SITUACAO";
-// //            echo $sql; die;
-//         return $this->selectDB($sql, false);
-    }
-    
-    Public Function ContagemDemandasPrioridade($codUsuario){
-//         $sql= "SELECT COUNT( COD_DEMANDA) AS QTD,
-//                       IND_PRIORIDADE,
-//                       CASE WHEN IND_PRIORIDADE = '0' THEN 'Sem Prioridade'
-//                            WHEN IND_PRIORIDADE = '1' THEN 'Baixa'
-//                            WHEN IND_PRIORIDADE = '2' THEN 'Normal'
-//                            WHEN IND_PRIORIDADE = '3' THEN 'Alta'
-//                            WHEN IND_PRIORIDADE = '4' THEN 'Crítica'
-//                       END AS DSC_PRIORIDADE
-//                  FROM EN_DEMANDAS 
-//                 WHERE 1=1";
-//         if($codUsuario !== '1'){
-//             $sql .=" AND COD_RESPONSAVEL = $codUsuario";
-//         }
-//             $sql .=" GROUP BY IND_PRIORIDADE
-//                      ORDER BY IND_PRIORIDADE";
-// //            echo $sql; die;
-//         return $this->selectDB($sql, false);
-    }
-    
-    Public Function ContagemDemandasTotal($codUsuario){
-        // $sql= "SELECT COUNT(COD_DEMANDA) AS QTD_TOTAL
-        //          FROM EN_DEMANDAS 
-        //         WHERE 1=1";
-        // if($codUsuario !== '1'){
-        //     $sql .=" AND COD_RESPONSAVEL = $codUsuario";
-        // }
-        // return $this->selectDB($sql, false);
     }
     
     Public Function RetornaUsuariosDemanda($codDemanda){

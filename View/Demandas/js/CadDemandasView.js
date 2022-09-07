@@ -9,7 +9,6 @@ $(function() {
     });
     
     $("#btnInformacao").click(function(){
-        // carregaGridDescricao();
         $("#txtDescricao").prop('disabled', false);
         $("#tpoDescricao").prop('disabled', false);
         $("#descricaoDemanda").modal("show");
@@ -79,7 +78,6 @@ function montaDescricaoEdit(dados){
 }
 
 function visualizarDescricaoEdit(indice) {
-    console.log(dadosDsc);
     $("#txtDescricao").val(dadosDsc[indice].TXT_DESCRICAO_TOTAL);
     $("#tpoDescricao").val(dadosDsc[indice].TPO_DESCRICAO.substring(0,1));
     $("#txtDescricao").prop('disabled', true);

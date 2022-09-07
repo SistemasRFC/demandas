@@ -22,9 +22,7 @@ function montaGridDemandas(dados){
     if(dados[0]){
         var grid = '<table id="tbDemandas" class="table table-striped table-responsive">';
         grid += '<thead><tr>';
-        // grid += ' <th width="3%"><b>Nro.</b></th>';
         grid += ' <th width="10%"><b>Duração</b></th>';
-        // grid += ' <th width="8%"><b>Data</b></th>';
         grid += ' <th width="6%"><b>Tipo</b></th>';
         grid += ' <th width="35%"><b>Demanda</b></th>';
         grid += ' <th width="8%"><b>Sistema</b></th>';
@@ -38,9 +36,7 @@ function montaGridDemandas(dados){
             dados = dados[1];
             for (i=0;i<dados.length;i++){
                 grid += '<tr>';
-                // grid += ' <td style="background-color:'+dados[i].DSC_COR+'">'+dados[i].COD_DEMANDA+'</td>';
                 grid += ' <td style="background-color:'+dados[i].DSC_COR+'">'+dados[i].DIAS_DECORRIDAS+' Dia(s)<br>'+dados[i].HORAS_DECORRIDAS+' Hr(s)</td>';
-                // grid += ' <td>'+dados[i].DTA_DEMANDA+'</td>';
                 grid += ' <td align="center">'+dados[i].DSC_TIPO+'</td>';
                 grid += ' <td>'+dados[i].DSC_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].NME_SISTEMA+'</td>';
@@ -96,7 +92,6 @@ function visualizarDemanda(indice) {
 }
 
 function carregaCamposDemanda(indice){
-//    console.log(dadosListagem[indice].COD_DEMANDA);
     $("#codDemanda").val(dadosListagem[indice].COD_DEMANDA);
     $("#dscDemanda").val(dadosListagem[indice].DSC_DEMANDA);
     $("#dtaDemanda").val(dadosListagem[indice].DTA_DEMANDA);

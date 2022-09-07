@@ -1,15 +1,9 @@
 $(function() {
     $("#btnDescricao").click(function(){
-        console.log("AQUI");
         $("#txtDescricao").prop('disabled', false);
         $("#tpoDescricao").prop('disabled', false);
         $("#descricaoDemanda").modal("show");
     });
-    
-    // $("#btnArquivos").click(function() {
-    //     carregaGridArquivo();
-    //     $("#ArquivosDemanda").modal("show");
-    // });
     
     $("#btnDsc").click(function() {
         carregaDscDemanda();

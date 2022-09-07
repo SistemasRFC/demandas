@@ -17,7 +17,6 @@ class ArquivoDemandasModel extends BaseModel
             for($i=0;$i<count($lista[1]);$i++){
                 $tipo = explode('.', $lista[1][$i]['TXT_CAMINHO_ARQUIVO']);
                 $lista[1][$i]['DSC_TIPO_ARQUIVO'] = $this->RetornaIconeTipo($tipo[count($tipo)-1]);
-//                var_dump($tipo);
             }
         }
         if ($Json){

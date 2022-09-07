@@ -8,7 +8,6 @@ function carregaDadosUsuario(){
             $("#codUsuarioSessao").val(result[1][0].COD_USUARIO);
             localStorage.setItem("codUsuario", result[1][0].COD_USUARIO);
             $("#usuSessao").html(''+result[1][0].NME_USUARIO_COMPLETO);
-            // CarregaMenu();
         }
     });    
 }

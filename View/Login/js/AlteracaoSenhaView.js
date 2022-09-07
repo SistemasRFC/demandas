@@ -50,7 +50,6 @@
 
 function verificaCampos() {
     var retorno = [true, ""];
-    console.log("==1==", $("#txtSenhaAtual").val())
     if($("#txtSenhaAtual").val()==""||$("#txtSenhaNova").val()==""||$("#txtSenhaConfirmacao").val()=="") {
         retorno[0] = false;
         retorno[1] = "Obrigatório o preenchimento de todos os campos!"
