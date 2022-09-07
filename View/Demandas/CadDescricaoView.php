@@ -1,4 +1,3 @@
-<!-- DataTables -->
 <script src="../../View/Demandas/js/CadDescricaoView.js?rdm=<?php echo time(); ?>"></script>
 
 <div class="modal fade" id="descricaoDemanda" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1051 !important;">

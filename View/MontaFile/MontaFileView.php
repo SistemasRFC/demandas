@@ -36,19 +36,5 @@
                 </div>
             </div>
         </div>
-
-<!-- 
-
-        <table>
-            <tr>
-                <td>
-                    <input type="button" id="Refresh" value="Atualiza" onclick="javascript:MontaListaTabelas();">
-                </td>
-            </tr>
-            <tr>
-                <td id="listaTabelas">
-                </td>
-            </tr>
-        </table> -->
     </body>
 </html>

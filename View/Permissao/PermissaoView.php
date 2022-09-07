@@ -42,48 +42,6 @@
                 </div>
             </div>
         </div>
-
-
-<!-- 
-        <?php //include "../../View/MenuPrincipal/Cabecalho.php"; ?>        
-        <table align="center" width="100%">
-            <tr>
-                <td>
-                    <table width="30%" border="0" align="left">
-                        <tr>
-                            <td class="style3">Perfil</td>
-                            <td class="styleTD1" id="tdCodPerfil">
-                            </td>
-                            <td><input type="button" class="btn-sm btn-primary" value="Carregar Lista" id="btnPesquisar"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>            
-            <tr>
-                <td>
-                    <br>
-                    <input type="button" class="btnSalvarPermissao btn-sm btn-primary" value="Salvar Permissões">
-                    <br>
-                </td>
-            </tr>
-            <tr>
-                <td align="left">
-                    <span style="font-size: 20px; color: black;">Lista de Permissões do Sistema</span>
-                </td>
-            </tr>
-            <tr>
-                <td id="tdListaPermissaos" align="left">
-                    <div id="ListaPermissaos" style="overflow: auto; width: 50%"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <br>
-                    <input type="button" class="btnSalvarPermissao btn-sm btn-primary" value="Salvar Permissões">
-                    <br>
-                </td>
-            </tr>            
-        </table> -->
     </body>
 </html>
 

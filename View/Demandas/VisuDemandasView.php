@@ -52,7 +52,6 @@
                 </div>
 			</div>
 			<div class="modal-footer" id="footer-visu">
-				<!-- <button class="btn btn-info" id="btnArquivos">Arquivos</button> -->
 				<button class="btn btn-primary" id="btnDescricao">Adicionar Informação</button>
 			</div>
 		</div>
