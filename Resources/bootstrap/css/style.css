@@ -38,3 +38,23 @@
     max-width: 21rem;
     margin-top: 5rem;
 }
+
+.accordion-header {
+    padding: 0.3rem 1.25rem;
+    border: 1px solid #e3e6f0;
+}
+.accordion-body {
+    padding: 0.75rem 1.25rem;
+    border-left: 1px solid #e3e6f0;
+    border-right: 1px solid #e3e6f0;
+    border-bottom: 1px solid #e3e6f0;
+}
+
+.description-block {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+}
+.border-right {
+    border-right: 1px solid #f4f4f4;
+}

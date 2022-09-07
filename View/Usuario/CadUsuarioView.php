@@ -52,8 +52,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btnVoltar" data-dismiss="modal">Cancelar</button>
+            <div class="modal-footer btn-group">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-info" id="btnReiniciaSenha">Reiniciar Senha</button>
                 <button type="button" class="btn btn-success" id="btnSalvarUsuario">Salvar</button>
             </div>

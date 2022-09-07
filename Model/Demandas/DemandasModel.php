@@ -1,7 +1,7 @@
 <?php
 include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Demandas/DemandasDao.php");
-class DemandasModel extends BaseModel
+class DemandaModel extends BaseModel
 {
     public static $dscDemandas = array(1=>'AGUARDANDO ATENDIMENTO',
                                 2=>'EM DESENVOLVIMENTO',
@@ -10,6 +10,7 @@ class DemandasModel extends BaseModel
                                 5=>'ENVIADA PARA HOMOLOGAÇÃO',
                                 6=>'FINALIZADA',
                                 7=>'CANCELADA');
+
     public function DemandasModel(){
         If (!isset($_SESSION)){
             ob_start();
@@ -18,7 +19,7 @@ class DemandasModel extends BaseModel
     }
 
     Public Function ListarDemandas($Json=true){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $lista = $dao->ListarDemandas($_SESSION['cod_usuario']);
         if ($Json){
             return json_encode($lista);
@@ -28,7 +29,7 @@ class DemandasModel extends BaseModel
     }
     
     Public Function InsertDemandas(){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $dao->IniciaTransacao();
         $result = $dao->InsertDemandas($_SESSION['cod_usuario']);
         if($result[0] && $result[1]!=null){
@@ -52,7 +53,7 @@ class DemandasModel extends BaseModel
     }
     
     Public Function UpdateDemandas(){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $dao->IniciaTransacao();
         $result[0] = false;
         $result[1] = "Essa demanda não pode ser alterada!";
@@ -91,7 +92,7 @@ class DemandasModel extends BaseModel
         return json_encode($result);
     }
 
-    Public Function EnviarDemandaPorEmail(DemandasDao $dao, $codDemanda, $titulo, $mensagem){
+    Public Function EnviarDemandaPorEmail(DemandaDao $dao, $codDemanda, $titulo, $mensagem){
         $result = $dao->RetornaUsuariosDemanda($codDemanda);
         $nmeBanco = $result[1][0]['NME_BANCO'];
         $codUsuario = $result[1][0]['COD_CRIADOR'];
@@ -123,7 +124,7 @@ class DemandasModel extends BaseModel
     }	
     
     Public Function ListarLogsDemanda($Json=true){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $lista = $dao->ListarLogsDemanda();
         if ($lista[0]){
             for($i=0;$i<count($lista[1]);$i++){
@@ -139,7 +140,7 @@ class DemandasModel extends BaseModel
     }
 
     Public Function ListarDemandasPendentes($Json=true){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $lista = $dao->ListarDemandasPendentes($_SESSION['cod_usuario']);
         if ($Json){
             return json_encode($lista);
@@ -149,8 +150,8 @@ class DemandasModel extends BaseModel
     }
 
     Public Function ListarDemandasAguardando($Json=true){
-        $dao = new DemandasDao();
-        $lista = $dao->ListarDemandasAguardando();
+        $dao = new DemandaDao();
+        $lista = $dao->ListarDemandasAguardando($_SESSION['cod_usuario']);
         if ($Json){
             return json_encode($lista);
         }else{
@@ -159,7 +160,7 @@ class DemandasModel extends BaseModel
     }
 
     Public Function ListarDemandasUsuario($Json=true){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $lista = $dao->ListarDemandasUsuario($_SESSION['cod_usuario']);
         if ($Json){
             return json_encode($lista);
@@ -169,7 +170,7 @@ class DemandasModel extends BaseModel
     }
 
     Public Function ContagemDemandasStatus($Json=true){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $lista = $dao->ContagemDemandasStatus($_SESSION['cod_usuario']);
         if ($Json){
             return json_encode($lista);
@@ -179,7 +180,7 @@ class DemandasModel extends BaseModel
     }
 
     Public Function ContagemDemandasPrioridade($Json=true){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $lista = $dao->ContagemDemandasPrioridade($_SESSION['cod_usuario']);
         if ($Json){
             return json_encode($lista);
@@ -189,7 +190,7 @@ class DemandasModel extends BaseModel
     }
 
     Public Function ContagemDemandasTotal($Json=true){
-        $dao = new DemandasDao();
+        $dao = new DemandaDao();
         $lista = $dao->ContagemDemandasTotal($_SESSION['cod_usuario']);
         if ($Json){
             return json_encode($lista);

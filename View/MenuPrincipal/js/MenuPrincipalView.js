@@ -1,4 +1,5 @@
 var dadosMinhaDemanda;
+var dadosDemandaPendente;
 
 function openDescDemandas(cadDemanda){
     $('#codDemanda').val(cadDemanda);
@@ -9,8 +10,6 @@ function openDescDemandas(cadDemanda){
 
 function montaGridDemandasUsuario(dados){
    if(dados[0]){
-       dadosMinhaDemanda = dados[1];
-       dados = dados[1];
        var grid = '<table id="tbDemandasU" class="table table-striped" style="width:100%">';
        grid += '<thead><tr>';
        grid += ' <th><b>Cód.</b></th>';
@@ -21,16 +20,17 @@ function montaGridDemandasUsuario(dados){
        grid += ' <th><b>Ações</b></th>';
        grid += '</tr></thead><tbody>';
        if(dados[1] !== null){
+           dadosMinhaDemanda = dados[1];
+           dados = dados[1];
             for (i=0;i<dados.length;i++){
-                grid += "<tr onClick=\"javascript:carregaCamposMinhaDemanda("+i+");\">";
-                // grid += "<a href=\"javascript:carregaCamposMinhaDemanda("+i+");\">";
+                grid += "<tr>";
                 grid += ' <td>'+dados[i].COD_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].DSC_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].NME_SISTEMA+'</td>';
                 grid += ' <td>'+dados[i].NME_USUARIO_COMPLETO+'</td>';
                 grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
                 grid += ' <td>';
-                grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:carregaCamposMinhaDemanda('+i+');">';
+                grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:visualizarDemanda('+i+');">';
                 grid += '       <i class="fa-regular fa-eye"></i>';
                 grid += '   </button>';
                 grid += ' </td>';
@@ -53,26 +53,26 @@ function montaGridDemandasAguardando(dados){
         grid += ' <th><b>Cód.</b></th>';
         grid += ' <th><b>Demanda</b></th>';
         grid += ' <th><b>Sistema</b></th>';
-        grid += ' <th><b>Responsável</b></th>';
-        grid += ' <th><b>Status</b></th>';
+        grid += ' <th><b>Tipo de Demanda</b></th>';
+        grid += ' <th><b>Prioridade</b></th>';
         grid += ' <th><b>Ações</b></th>';
         grid += '</tr></thead><tbody>';
         if(dados[1] !== null){
-            dadosMinhaDemanda = dados[1];
+            dadosDemandaPendente = dados[1];
             dados = dados[1];
             for (i=0;i<dados.length;i++){
                 grid += "<tr>";
                 grid += ' <td>'+dados[i].COD_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].DSC_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].NME_SISTEMA+'</td>';
-                grid += ' <td>'+dados[i].NME_USUARIO_COMPLETO+'</td>';
-                grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
+                grid += ' <td>'+dados[i].DSC_TIPO+'</td>';
+                grid += ' <td>'+dados[i].DSC_PRIORIDADE+'</td>';
                 grid += ' <td>';
-                grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:carregaVisualizarDemanda('+i+');">';
+                grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:visualizarDemanda('+i+', `P`);">';
                 grid += '       <i class="fa-regular fa-eye"></i>';
                 grid += '   </button>';
                 grid += '   <button class="btn btn-link" title="Atribuir para mim" onClick="javascript:mudarResponsavel('+dados[i].COD_USUARIO+');">';
-                grid += '       <i class="fa-regular fa-eye"></i>';
+                grid += '       <i class="fa-regular fa-user"></i>';
                 grid += '   </button>';
                 grid += ' </td>';
                 grid += '</tr>';
@@ -85,19 +85,24 @@ function montaGridDemandasAguardando(dados){
     } 
 }
 
-function carregaCamposMinhaDemanda(indice){
-//    console.log(dadosMinhaDemanda[indice]);
-    $("#codDemanda").val(dadosMinhaDemanda[indice].COD_DEMANDA);
-    $("#dscDemanda").val(dadosMinhaDemanda[indice].DSC_DEMANDA);
-    $("#dtaDemanda").val(dadosMinhaDemanda[indice].DTA_DEMANDA);
-    $("#comboResponsaveis").val(dadosMinhaDemanda[indice].COD_RESPONSAVEIS);
-    $("#comboSistema").val(dadosMinhaDemanda[indice].COD_SISTEMA);
-    $("#codSistemaOrigem").val(dadosMinhaDemanda[indice].COD_SISTEMA_ORIGEM);
-    $("#comboSituacao").val(dadosMinhaDemanda[indice].COD_SITUACAO);
-    $("#comboPrioridade").val(dadosMinhaDemanda[indice].IND_PRIORIDADE);
-    $("#comboTipoDemanda").val(dadosMinhaDemanda[indice].TPO_DEMANDA);
-    $("#codSituacaoAnterior").val(dadosMinhaDemanda[indice].COD_SITUACAO);
-    $("#updateDemanda").modal('show');
+function visualizarDemanda(indice, ref="M") {
+    if(ref=="P"){
+        carregaDemanda(indice, dadosDemandaPendente);
+    } else {
+        carregaDemanda(indice, dadosMinhaDemanda);
+    }
+    $("#visuDemanda").modal('show');
+}
+
+function carregaDemanda(i, lista){
+    $(".codDemanda").val(lista[i].COD_DEMANDA);
+    $(".dscDemanda").html(""+lista[i].DSC_DEMANDA);
+    $(".responsavel").html(""+lista[i].NME_USUARIO_COMPLETO);
+    $(".dscSistema").html(""+lista[i].NME_SISTEMA);
+    $(".dscSituacao").html(""+lista[i].DSC_SITUACAO);
+    $("#status").html(""+lista[i].DSC_SITUACAO);
+    $(".dscPrioridade").html(""+lista[i].DSC_PRIORIDADE);
+    $(".tipoDemanda").html(""+lista[i].DSC_TIPO);
 }
 
 $(document).ready(function() {

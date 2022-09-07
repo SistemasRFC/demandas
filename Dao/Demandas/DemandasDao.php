@@ -1,6 +1,6 @@
 <?php
 include_once(PATH."Dao/BaseDao.php");
-class DemandasDao extends BaseDao
+class DemandaDao extends BaseDao
 {
     Protected $tableName = "EN_DEMANDAS";
     
@@ -8,7 +8,7 @@ class DemandasDao extends BaseDao
                                 "dscDemanda"   => array("column" =>"DSC_DEMANDA", "typeColumn" =>"S"),
                                 "codSistema"   => array("column" =>"COD_SISTEMA", "typeColumn" =>"I"),
                                 "dtaDemanda"   => array("column" =>"DTA_DEMANDA", "typeColumn" =>"D"),
-                                "codResponsaveis"   => array("column" =>"COD_RESPONSAVEIS", "typeColumn" =>"S"),
+                                "codResponsavel"   => array("column" =>"COD_RESPONSAVEL", "typeColumn" =>"I"),
                                 "codSituacao"   => array("column" =>"COD_SITUACAO", "typeColumn" =>"I"),
                                 "indPrioridade"   => array("column" =>"IND_PRIORIDADE", "typeColumn" =>"I"),
                                 "dtaFimDemanda"   => array("column" =>"DTA_FIM_DEMANDA", "typeColumn" =>"D"),
@@ -32,7 +32,7 @@ class DemandasDao extends BaseDao
                       S.NME_SISTEMA,
                       D.DTA_DEMANDA AS DATA_DEMANDA,
                       DATE_FORMAT(D.DTA_DEMANDA,'%d/%m/%Y %T') AS DTA_DEMANDA, 
-                      D.COD_RESPONSAVEIS,
+                      D.COD_RESPONSAVEL,
                       D.COD_USUARIO,
                       COALESCE(U.NME_USUARIO_COMPLETO, 'Sem Responsável') AS NME_USUARIO_COMPLETO,
                       D.COD_SITUACAO,
@@ -57,7 +57,7 @@ class DemandasDao extends BaseDao
                 INNER JOIN EN_SITUACAO SI
                    ON D.COD_SITUACAO = SI.COD_SITUACAO
                  LEFT JOIN SE_USUARIO U
-                   ON D.COD_RESPONSAVEIS = U.COD_USUARIO
+                   ON D.COD_RESPONSAVEL = U.COD_USUARIO
                  LEFT JOIN EN_CONFIGURA_COR CC
                    ON (COALESCE(TIMESTAMPDIFF(HOUR,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)+
                        COALESCE(TIMESTAMPDIFF(MINUTE,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)+
@@ -67,7 +67,7 @@ class DemandasDao extends BaseDao
             $sql .=" AND D.COD_SITUACAO = ".$this->Populate('comboTpoDemanda', 'I');
         }
         // if($codUsuario !== '1'){
-        //     $sql .=" AND (COD_RESPONSAVEIS = $codUsuario
+        //     $sql .=" AND (COD_RESPONSAVEL = $codUsuario
         //               OR D.COD_USUARIO = $codUsuario)";
         // }
             $sql .=" GROUP BY COD_DEMANDA
@@ -80,7 +80,7 @@ class DemandasDao extends BaseDao
         $sql = "UPDATE EN_DEMANDAS SET DSC_DEMANDA = '".$this->Populate('dscDemanda','S')."',
                                        COD_SISTEMA = ".$this->Populate('codSistema','I').",
                                        COD_SISTEMA_ORIGEM = '".$this->Populate('codSistemaOrigem','I')."',
-                                       COD_RESPONSAVEIS = '".$this->Populate('codResponsaveis','S')."',
+                                       COD_RESPONSAVEL = '".$this->Populate('codResponsavel','I')."',
                                        COD_SITUACAO = '".$this->Populate('codSituacao','I')."',
                                        IND_PRIORIDADE = '".$this->Populate('indPrioridade','I')."',
                                        TPO_DEMANDA = '".$this->Populate('tpoDemanda','I')."'
@@ -92,7 +92,7 @@ class DemandasDao extends BaseDao
         $sql = "UPDATE EN_DEMANDAS SET DSC_DEMANDA = '".$this->Populate('dscDemanda','S')."',
                                        COD_SISTEMA = ".$this->Populate('codSistema','I').",
                                        COD_SISTEMA_ORIGEM = '".$this->Populate('codSistemaOrigem','I')."',
-                                       COD_RESPONSAVEIS = '".$this->Populate('codResponsaveis','S')."',
+                                       COD_RESPONSAVEL = '".$this->Populate('codResponsavel','I')."',
                                        COD_SITUACAO = '".$this->Populate('codSituacao','I')."',
                                        IND_PRIORIDADE = '".$this->Populate('indPrioridade','I')."',
                                        TPO_DEMANDA = '".$this->Populate('tpoDemanda','I')."',
@@ -107,7 +107,7 @@ class DemandasDao extends BaseDao
                     COD_SISTEMA, 
                     COD_SISTEMA_ORIGEM, 
                     DTA_DEMANDA, 
-                    COD_RESPONSAVEIS, 
+                    COD_RESPONSAVEL, 
                     COD_SITUACAO,
                     IND_PRIORIDADE,
                     TPO_DEMANDA,
@@ -117,7 +117,7 @@ class DemandasDao extends BaseDao
                     ".$this->Populate('codSistema','I').",
                     ".$this->Populate('codSistemaOrigem','I').",
                     NOW(), 
-                    '".$this->Populate('codResponsaveis','S')."',
+                    '".$this->Populate('codResponsavel','I')."',
                     '".$this->Populate('codSituacao','I')."',
                     '".$this->Populate('indPrioridade','I')."',
                     '".$this->Populate('tpoDemanda','I')."',
@@ -166,34 +166,35 @@ class DemandasDao extends BaseDao
     }
     
     Public Function ListarDemandasPendentes($codUsuario){
-        $sql= "SELECT D.COD_DEMANDA,
-                      D.DSC_DEMANDA,
-                      S.NME_SISTEMA,
-                      CASE WHEN IND_PRIORIDADE = '0' THEN ''
-                           WHEN IND_PRIORIDADE = '1' THEN 'Baixa'
-                           WHEN IND_PRIORIDADE = '2' THEN 'Normal'
-                           WHEN IND_PRIORIDADE = '3' THEN 'Alta'
-                           WHEN IND_PRIORIDADE = '4' THEN 'Crítica'
-                      END AS DSC_PRIORIDADE
-                 FROM EN_DEMANDAS D
-                INNER JOIN EN_SISTEMAS S
-                   ON D.COD_SISTEMA = S.COD_SISTEMA
-                WHERE D.COD_SITUACAO = 1";
-        if($codUsuario !== '1'){
-            $sql .=" AND D.COD_RESPONSAVEIS = $codUsuario";
-        }
-            $sql .=" GROUP BY COD_DEMANDA
-                ORDER BY IND_PRIORIDADE DESC, COD_DEMANDA";
-//            echo $sql; die;
-        return $this->selectDB($sql, false);
+//         $sql= "SELECT D.COD_DEMANDA,
+//                       D.DSC_DEMANDA,
+//                       S.NME_SISTEMA,
+//                       CASE WHEN IND_PRIORIDADE = '0' THEN ''
+//                            WHEN IND_PRIORIDADE = '1' THEN 'Baixa'
+//                            WHEN IND_PRIORIDADE = '2' THEN 'Normal'
+//                            WHEN IND_PRIORIDADE = '3' THEN 'Alta'
+//                            WHEN IND_PRIORIDADE = '4' THEN 'Crítica'
+//                       END AS DSC_PRIORIDADE
+//                  FROM EN_DEMANDAS D
+//                 INNER JOIN EN_SISTEMAS S
+//                    ON D.COD_SISTEMA = S.COD_SISTEMA
+//                 WHERE D.COD_SITUACAO = 1";
+//         if($codUsuario !== '1'){
+//             $sql .=" AND D.COD_RESPONSAVEL = $codUsuario";
+//         }
+//             $sql .=" GROUP BY COD_DEMANDA
+//                 ORDER BY IND_PRIORIDADE DESC, COD_DEMANDA";
+// //            echo $sql; die;
+//         return $this->selectDB($sql, false);
     }
     
-    Public Function ListarDemandasAguardando(){
+    Public Function ListarDemandasAguardando($codUsuario){
         $sql= "SELECT D.COD_DEMANDA,
                       D.DSC_DEMANDA,
                       D.COD_SISTEMA,
                       D.COD_SISTEMA_ORIGEM,
                       S.NME_SISTEMA,
+                      SI.DSC_SITUACAO,
                       D.DTA_DEMANDA AS DATA_DEMANDA,
                       DATE_FORMAT(D.DTA_DEMANDA,'%d/%m/%Y %T') AS DTA_DEMANDA,
                       COALESCE(U.NME_USUARIO_COMPLETO, 'Sem Responsável') AS NME_USUARIO_COMPLETO,
@@ -216,9 +217,12 @@ class DemandasDao extends BaseDao
                 INNER JOIN EN_SITUACAO SI
                    ON D.COD_SITUACAO = SI.COD_SITUACAO
                  LEFT JOIN SE_USUARIO U
-                   ON D.COD_RESPONSAVEIS = U.COD_USUARIO
+                   ON D.COD_RESPONSAVEL = U.COD_USUARIO
+                INNER JOIN RE_USUARIO_SISTEMA US
+                   ON S.COD_SISTEMA = US.COD_SISTEMA
                 WHERE D.COD_SITUACAO = 1
-                AND D.COD_RESPONSAVEIS IS NULL
+                  AND D.COD_RESPONSAVEL IS NULL
+                  AND US.COD_USUARIO = ".$codUsuario."
                 GROUP BY COD_DEMANDA
                 ORDER BY DATA_DEMANDA";
 //            echo $sql; die;
@@ -230,14 +234,25 @@ class DemandasDao extends BaseDao
                       D.DSC_DEMANDA,
                       D.DTA_DEMANDA AS DATA_DEMANDA,
                       DATE_FORMAT(D.DTA_DEMANDA,'%d/%m/%Y %T') AS DTA_DEMANDA, 
-                      D.COD_RESPONSAVEIS,
+                      D.COD_RESPONSAVEL,
                       D.COD_SISTEMA,
                       S.NME_SISTEMA,
                       D.COD_SISTEMA_ORIGEM,
                       U.NME_USUARIO_COMPLETO,
                       D.COD_SITUACAO,
                       SI.DSC_SITUACAO,
+                      CASE WHEN IND_PRIORIDADE = '0' THEN ''
+                           WHEN IND_PRIORIDADE = '1' THEN 'Baixa'
+                           WHEN IND_PRIORIDADE = '2' THEN 'Normal'
+                           WHEN IND_PRIORIDADE = '3' THEN 'Alta'
+                           WHEN IND_PRIORIDADE = '4' THEN 'Crítica'
+                      END AS DSC_PRIORIDADE,
                       D.IND_PRIORIDADE,
+                      CASE WHEN TPO_DEMANDA = '0' THEN ''
+                           WHEN TPO_DEMANDA = '1' THEN 'Incidente'
+                           WHEN TPO_DEMANDA = '2' THEN 'Corretiva'
+                           WHEN TPO_DEMANDA = '3' THEN 'Evolutiva'
+                      END AS DSC_TIPO,
                       D.TPO_DEMANDA
                  FROM EN_DEMANDAS D
                 INNER JOIN EN_SISTEMAS S
@@ -245,10 +260,10 @@ class DemandasDao extends BaseDao
                 INNER JOIN EN_SITUACAO SI
                    ON D.COD_SITUACAO = SI.COD_SITUACAO
                  LEFT JOIN SE_USUARIO U
-                   ON D.COD_RESPONSAVEIS = U.COD_USUARIO
+                   ON D.COD_RESPONSAVEL = U.COD_USUARIO
                 WHERE D.COD_SITUACAO NOT IN (6,7)";
         if($codUsuario !== '1'){
-            $sql .=" AND D.COD_USUARIO = $codUsuario";
+            $sql .=" AND D.COD_RESPONSAVEL = $codUsuario";
         }
             $sql .=" GROUP BY COD_DEMANDA
                      ORDER BY D.IND_PRIORIDADE DESC, COD_DEMANDA";
@@ -257,50 +272,50 @@ class DemandasDao extends BaseDao
     }
     
     Public Function ContagemDemandasStatus($codUsuario){
-        $sql= "SELECT COUNT( D.COD_DEMANDA) AS QTD,
-                      S.COD_SITUACAO,
-                      S.DSC_SITUACAO
-                 FROM EN_DEMANDAS D
-                INNER JOIN EN_SITUACAO S
-                   ON D.COD_SITUACAO = S.COD_SITUACAO
-                WHERE 1=1";
-        if($codUsuario !== '1'){
-            $sql .=" AND D.COD_RESPONSAVEIS = $codUsuario";
-        }
-            $sql .=" GROUP BY D.COD_SITUACAO
-                     ORDER BY D.COD_SITUACAO";
-//            echo $sql; die;
-        return $this->selectDB($sql, false);
+//         $sql= "SELECT COUNT( D.COD_DEMANDA) AS QTD,
+//                       S.COD_SITUACAO,
+//                       S.DSC_SITUACAO
+//                  FROM EN_DEMANDAS D
+//                 INNER JOIN EN_SITUACAO S
+//                    ON D.COD_SITUACAO = S.COD_SITUACAO
+//                 WHERE 1=1";
+//         if($codUsuario !== '1'){
+//             $sql .=" AND D.COD_RESPONSAVEL = $codUsuario";
+//         }
+//             $sql .=" GROUP BY D.COD_SITUACAO
+//                      ORDER BY D.COD_SITUACAO";
+// //            echo $sql; die;
+//         return $this->selectDB($sql, false);
     }
     
     Public Function ContagemDemandasPrioridade($codUsuario){
-        $sql= "SELECT COUNT( COD_DEMANDA) AS QTD,
-                      IND_PRIORIDADE,
-                      CASE WHEN IND_PRIORIDADE = '0' THEN 'Sem Prioridade'
-                           WHEN IND_PRIORIDADE = '1' THEN 'Baixa'
-                           WHEN IND_PRIORIDADE = '2' THEN 'Normal'
-                           WHEN IND_PRIORIDADE = '3' THEN 'Alta'
-                           WHEN IND_PRIORIDADE = '4' THEN 'Crítica'
-                      END AS DSC_PRIORIDADE
-                 FROM EN_DEMANDAS 
-                WHERE 1=1";
-        if($codUsuario !== '1'){
-            $sql .=" AND COD_RESPONSAVEIS = $codUsuario";
-        }
-            $sql .=" GROUP BY IND_PRIORIDADE
-                     ORDER BY IND_PRIORIDADE";
-//            echo $sql; die;
-        return $this->selectDB($sql, false);
+//         $sql= "SELECT COUNT( COD_DEMANDA) AS QTD,
+//                       IND_PRIORIDADE,
+//                       CASE WHEN IND_PRIORIDADE = '0' THEN 'Sem Prioridade'
+//                            WHEN IND_PRIORIDADE = '1' THEN 'Baixa'
+//                            WHEN IND_PRIORIDADE = '2' THEN 'Normal'
+//                            WHEN IND_PRIORIDADE = '3' THEN 'Alta'
+//                            WHEN IND_PRIORIDADE = '4' THEN 'Crítica'
+//                       END AS DSC_PRIORIDADE
+//                  FROM EN_DEMANDAS 
+//                 WHERE 1=1";
+//         if($codUsuario !== '1'){
+//             $sql .=" AND COD_RESPONSAVEL = $codUsuario";
+//         }
+//             $sql .=" GROUP BY IND_PRIORIDADE
+//                      ORDER BY IND_PRIORIDADE";
+// //            echo $sql; die;
+//         return $this->selectDB($sql, false);
     }
     
     Public Function ContagemDemandasTotal($codUsuario){
-        $sql= "SELECT COUNT(COD_DEMANDA) AS QTD_TOTAL
-                 FROM EN_DEMANDAS 
-                WHERE 1=1";
-        if($codUsuario !== '1'){
-            $sql .=" AND COD_RESPONSAVEIS = $codUsuario";
-        }
-        return $this->selectDB($sql, false);
+        // $sql= "SELECT COUNT(COD_DEMANDA) AS QTD_TOTAL
+        //          FROM EN_DEMANDAS 
+        //         WHERE 1=1";
+        // if($codUsuario !== '1'){
+        //     $sql .=" AND COD_RESPONSAVEL = $codUsuario";
+        // }
+        // return $this->selectDB($sql, false);
     }
     
     Public Function RetornaUsuariosDemanda($codDemanda){
@@ -311,7 +326,7 @@ class DemandasDao extends BaseDao
                        D.COD_USUARIO AS COD_CRIADOR
                   FROM EN_DEMANDAS D
                   LEFT JOIN SE_USUARIO UR
-                    ON D.COD_RESPONSAVEIS = UR.COD_USUARIO
+                    ON D.COD_RESPONSAVEL = UR.COD_USUARIO
                  INNER JOIN EN_SISTEMAS S
                     ON D.COD_SISTEMA_ORIGEM = S.COD_SISTEMA
                  WHERE D.COD_DEMANDA = ".$codDemanda;

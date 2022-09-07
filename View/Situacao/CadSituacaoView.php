@@ -10,6 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="codSituacao" name="codSituacao" class='persist'>
                 <div class="container">
                     <div class="row">
                         <div class="form-group col-12">
@@ -19,9 +20,9 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer btn-group">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnSalvarSituacao">Salvar</button>
+                <button type="button" class="btn btn-success" id="btnSalvarSituacao">Salvar</button>
             </div>
         </div>
     </div>

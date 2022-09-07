@@ -28,13 +28,13 @@
                             </div>
                             <div class="card-body">
                                 <div class="row mb-1">
-                                    <button class="btn btn-success d-lg-inline btnSalvarPermissao">Atualizar Permissões</button>
+                                    <button class="btn btn-success btn-block d-lg-inline btnSalvarPermissao">Atualizar Permissões</button>
                                 </div>
                                 <div class="row">
                                     <div id="ListaPermissaos"></div>
                                 </div>
                                 <div class="row">
-                                    <button class="btn btn-success d-lg-inline btnSalvarPermissao">Atualizar Permissões</button>
+                                    <button class="btn btn-success btn-block d-lg-inline btnSalvarPermissao">Atualizar Permissões</button>
                                 </div>
                             </div>
                         </div>

@@ -19,52 +19,52 @@ class DemandasController extends BaseController
     }
     
     Public Function ListarDemandas(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->ListarDemandas();
     }
     
     Public Function InsertDemandas(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->InsertDemandas();
     }
 
     Public Function UpdateDemandas(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->UpdateDemandas();
     }
 
     Public Function ListarLogsDemanda(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->ListarLogsDemanda();
     }
 
     Public Function ListarDemandasPendentes(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->ListarDemandasPendentes();
     }
 
     Public Function ListarDemandasAguardando(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->ListarDemandasAguardando();
     }
 
     Public Function ListarDemandasUsuario(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->ListarDemandasUsuario();
     }
 
     Public Function ContagemDemandasStatus(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->ContagemDemandasStatus();
     }
 
     Public Function ContagemDemandasPrioridade(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->ContagemDemandasPrioridade();
     }
 
     Public Function ContagemDemandasTotal(){
-        $DemandasModel = new DemandasModel();
+        $DemandasModel = new DemandaModel();
         echo $DemandasModel->ContagemDemandasTotal();
     }
 }

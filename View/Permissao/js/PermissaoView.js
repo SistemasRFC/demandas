@@ -71,6 +71,7 @@ function MontaComboPerfil(ListaPerfis){
     if (ListaPerfis[0]){
         ListaPerfis = ListaPerfis[1];
         var combo = '<select id="codPerfil" class="form-control">';
+        combo += '<option value="" selected disabled>Selecione</option>';
         for (i=0;i<ListaPerfis.length;i++){
             combo += '<option value="'+ListaPerfis[i].COD_PERFIL+'">'+ListaPerfis[i].DSC_PERFIL+'</option>';
         }

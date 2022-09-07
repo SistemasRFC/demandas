@@ -10,20 +10,19 @@ class DescricaoDemandasModel extends BaseModel
         }
     }
 
-    Public Function ListarDescricaoDemandas($Json=true){
+    Public Function ListarDescricaoDemandas(){
         $dao = new DescricaoDemandasDao();
         $lista = $dao->ListarDescricaoDemandas();
-        if ($lista[0]){
-            for($i=0;$i<count($lista[1]);$i++){
-                $nmeUsuario = $dao->RetornaUsuarioBanco($lista[1][$i]['COD_USUARIO'], $lista[1][$i]['NME_BANCO']);
-                $lista[1][$i]['NME_USUARIO'] = $nmeUsuario[1][0]['NME_USUARIO'];
+        if ($lista[0]) {
+            if ($lista[1]!=null) {
+                $total = count($lista[1]);
+                for($i=0;$i<$total;$i++) {
+                    $nmeUsuario = $dao->RetornaUsuarioBanco($lista[1][$i]['COD_USUARIO'], $lista[1][$i]['NME_BANCO']);
+                    $lista[1][$i]['NME_USUARIO'] = $nmeUsuario[1][0]['NME_USUARIO'];
+                }
             }
         }
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
+        return json_encode($lista);
     }
     
     Public Function InsertDescricaoDemandas(){
