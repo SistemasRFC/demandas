@@ -1,5 +1,7 @@
 <?php
 include_once 'Constantes.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 class Dispatch{
     
     Public Function __construct() {

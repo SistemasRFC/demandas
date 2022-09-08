@@ -10,7 +10,7 @@ class SistemasDao extends BaseDao
     
     Protected $columnKey = array("codSistema"=> array("column" =>"COD_SISTEMA", "typeColumn" => "I"));
     
-    Public Function SistemasDao(){
+    Function  __construct(){
         $this->conect();
     }
 

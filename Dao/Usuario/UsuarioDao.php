@@ -16,7 +16,7 @@ class UsuarioDao extends BaseDao
     
     Protected $columnKey = array("codUsuario"=> array("column" =>"COD_USUARIO", "typeColumn" => "I"));
     
-    Public Function UsuarioDao(){
+    Public Function __construct(){
         $this->conect();
     }
 

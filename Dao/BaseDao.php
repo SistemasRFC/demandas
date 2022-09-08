@@ -11,9 +11,9 @@ class BaseDao{
         self::disconnect();
     }
     private static $dbtype   = "mysql";
-    private static $host     = "192.168.0.74";
+    private static $host     = "localhost";
     private static $port     = "3306";
-    private static $user     = "root";
+    private static $user     = "sago";
     private static $password = "Rfm1440@";
     private static $conexao = "";
     private static $db       = "demandas";
