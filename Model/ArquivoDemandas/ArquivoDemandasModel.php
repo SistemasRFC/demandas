@@ -3,7 +3,7 @@ include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/ArquivoDemandas/ArquivoDemandasDao.php");
 class ArquivoDemandasModel extends BaseModel
 {
-    public function ArquivoDemandasModel(){
+    public function __construct(){
         If (!isset($_SESSION)){
             ob_start();
             session_start();

@@ -13,7 +13,7 @@ class DescricaoDemandasDao extends BaseDao
     
     Protected $columnKey = array("codDescricao"=> array("column" =>"COD_DESCRICAO", "typeColumn" => "I"));
     
-    Public Function DescricaoDemandasDao(){
+    Public Function __construct(){
         $this->conect();
     }
 

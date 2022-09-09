@@ -11,7 +11,7 @@ class DemandaModel extends BaseModel
                                 6=>'FINALIZADA',
                                 7=>'CANCELADA');
 
-    public function DemandasModel(){
+    public function __construct(){
         If (!isset($_SESSION)){
             ob_start();
             session_start();
@@ -141,6 +141,12 @@ class DemandaModel extends BaseModel
     Public Function ListarDemandasUsuario(){
         $dao = new DemandaDao();
         $lista = $dao->ListarDemandasUsuario($_SESSION['cod_usuario']);
+        return json_encode($lista);
+    }
+
+    Public Function MudarResponsavelDemanda(){
+        $dao = new DemandaDao();
+        $lista = $dao->MudarResponsavelDemanda($_SESSION['cod_usuario']);
         return json_encode($lista);
     }
 }

@@ -3,7 +3,7 @@ include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Sistemas/SistemasDao.php");
 class SistemasModel extends BaseModel
 {
-    public function SistemasModel(){
+    public function __construct(){
         If (!isset($_SESSION)){
             ob_start();
             session_start();

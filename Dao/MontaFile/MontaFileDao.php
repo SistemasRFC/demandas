@@ -4,7 +4,7 @@ include_once(PATH."/Dao/BaseDao.php");
 
 class MontaFileDao extends BaseDao {
 
-    function MontaFileDao() {
+    function __construct() {
         $this->conect();
     }
 

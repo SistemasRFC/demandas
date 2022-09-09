@@ -9,7 +9,7 @@ class PerfilDao extends BaseDao
     
     Protected $columnKey = array("codPerfil"=> array("column" =>"COD_PERFIL", "typeColumn" => "I"));
     
-    Public Function PerfilDao(){
+    Public Function __construct(){
         $this->conect();
     }
 

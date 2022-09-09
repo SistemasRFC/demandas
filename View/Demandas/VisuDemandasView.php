@@ -38,10 +38,12 @@
                     </div>
                 </div>
                 <div id="accordion">
-                    <div class="btn btn-block accordion-header color-primary" id="topDescricao">
-                        <h5 id="btnDsc" class="mb-0" data-toggle="collapse" data-target="#descricao" aria-expanded="true" aria-controls="collapseOne">
-                            <b>Mais Informações</b>
-                        </h5>
+                    <div class="btn btn-block accordion-header bg-color-primary" id="topDescricao">
+                        <i class="ml-auto fa-solid fa-angle-right"></i>
+                        <span id="btnDsc" class="mb-0 h5" data-toggle="collapse" data-target="#descricao" aria-expanded="true" aria-controls="collapseOne">
+                            Mais Informações
+                        </span>
+                        <i class="ml-auto fa-solid fa-angle-left"></i>
                     </div>
 
                     <div id="descricao" class="collapse accordion-body" aria-labelledby="topDescricao" data-parent="#accordion">

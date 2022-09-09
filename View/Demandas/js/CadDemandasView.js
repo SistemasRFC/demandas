@@ -105,14 +105,14 @@ function retornoInsertDemandas(retorno){
         $("#codDemanda").val(retorno[2]);
         $("#comboTpoDemanda").val($("#comboTipoDemanda").val());
         carregaGridDemandas();
-        carregaGridDescricao();
         swal({
             title: "Sucesso!",
             text: "Registro salvo com sucesso!",
             type: "success",
-            confirmButtonText: "Fechar"
+            timer: 2000,
+            showconfirmButtonText: false
         });
-        $("#updateDemanda").modal("hide");
+        // $("#updateDemanda").modal("hide");
     }else{
         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
         swal({
@@ -165,7 +165,7 @@ function montaComboSistemas(dados){
     if(dados[0]){
         dados = dados[1];
          combo = '<select id="comboSistema" class="form-control dropdown-toggle" >';
-         combo += '<option value="" disabled selected hidden>Selecione</option>';
+         combo += '<option value="" disabled selected>Selecione</option>';
         for (i=0;i<dados.length;i++){
             combo += '<option value="'+dados[i].COD_SISTEMA+'">'+dados[i].NME_SISTEMA+'</option>';
         }
@@ -182,7 +182,7 @@ function montaComboSituacao(dados){
     if(dados[0]){
         dados = dados[1];
          combo = '<select id="comboSituacao" class="form-control dropdown-toggle" >';
-         combo += '<option value="" disabled selected hidden>Selecione</option>';
+         combo += '<option value="" disabled selected >Selecione</option>';
         for (i=0;i<dados.length;i++){
             combo += '<option value="'+dados[i].COD_SITUACAO+'">'+dados[i].DSC_SITUACAO+'</option>';
         }
@@ -199,7 +199,7 @@ function montaComboResponsaveis(dados){
     if(dados[0]){
         dados = dados[1];
          combo = '<select id="comboResponsaveis" class="form-control dropdown-toggle">';
-         combo += '<option value="" disabled selected hidden>Selecione uma opção</option>';
+         combo += '<option value="" disabled selected>Selecione</option>';
         for (i=0;i<dados.length;i++){
             combo += '<option value="'+dados[i].COD_USUARIO+'">'+dados[i].NME_USUARIO_COMPLETO+'</option>';
         }

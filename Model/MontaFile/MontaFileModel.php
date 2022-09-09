@@ -4,7 +4,7 @@ include_once(PATH."/Dao/MontaFile/MontaFileDao.php");
 
 class MontaFileModel {
 
-    public function MontaFileModel() {
+    public function __construct() {
         if (!isset($_SESSION)) {
             ob_start();
             session_start();

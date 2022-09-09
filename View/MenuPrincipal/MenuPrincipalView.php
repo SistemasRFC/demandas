@@ -55,3 +55,4 @@
     </body>
 </html>
 <?php include_once "../Demandas/VisuDemandasView.php";?>
+<?php include_once "../Demandas/CadDemandasView.php";?>

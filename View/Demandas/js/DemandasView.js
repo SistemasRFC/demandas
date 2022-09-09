@@ -9,6 +9,7 @@ $(function() {
         $("#comboSituacao").val('');
         $("#comboPrioridade").val('');
         $("#comboTipoDemanda").val('');
+        $("#accordionEdit").hide();
         $("#updateDemandaTitle").html("Incluir Demanda");
         $("#updateDemanda").modal("show");
     });
@@ -71,6 +72,7 @@ function montaGridDemandas(dados){
 
 function editarDemanda(indice) {
     carregaCamposDemanda(indice);
+    $("#accordionEdit").show();
     $("#updateDemandaTitle").html('Editar Demanda');
     $("#updateDemanda").modal('show');
 }

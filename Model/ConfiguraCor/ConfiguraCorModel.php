@@ -3,7 +3,7 @@ include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/ConfiguraCor/ConfiguraCorDao.php");
 class ConfiguraCorModel extends BaseModel
 {
-    public function ConfiguraCorModel(){
+    public function __construct(){
         If (!isset($_SESSION)){
             ob_start();
             session_start();

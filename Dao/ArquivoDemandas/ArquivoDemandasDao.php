@@ -11,7 +11,7 @@ class ArquivoDemandasDao extends BaseDao
     
     Protected $columnKey = array("codArquivo"=> array("column" =>"cod_arquivo", "typeColumn" => "I"));
     
-    Public Function ArquivoDemandasDao(){
+    Public Function __construct() {
         $this->conect();
     }
 

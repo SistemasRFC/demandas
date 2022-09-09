@@ -20,7 +20,7 @@
                         <div class="form-group col-6">
                             <label for="nroCelular" class="mb-0">Tipo</label>
                             <select id="comboTipoDemanda" class="form-control dropdown-toggle">
-                                <option value="" disabled selected hidden>Selecione</option>
+                                <option value="" disabled selected>Selecione</option>
                                 <option value="1"> Incidente </option>
                                 <option value="2"> Corretiva </option>
                                 <option value="3"> Evolutiva </option>
@@ -45,7 +45,7 @@
                         <div class="form-group col-6">
                             <label for="codPrioridade" class="mb-0">Prioridade</label>
                             <select id="comboPrioridade" class="form-control dropdown-toggle">
-                                <option value="" disabled selected hidden>Selecione uma opção</option>
+                                <option value="" disabled selected>Selecione</option>
                                 <option value="1"> Baixa </option>
                                 <option value="2"> Normal </option>
                                 <option value="3"> Alta </option>
@@ -55,10 +55,12 @@
                     </div>
                 </div>
                 <div id="accordionEdit">
-                    <div class="btn btn-block accordion-header color-primary" id="topDescricaoEdit">
-                        <h5 id="btnDscEdit" class="mb-0" data-toggle="collapse" data-target="#descricaoEdit" aria-expanded="true" aria-controls="collapseOne">
-                            <b>Mais Informações</b>
-                        </h5>
+                    <div class="btn btn-block accordion-header bg-color-primary" id="topDescricaoEdit">
+                        <i class="ml-auto fa-solid fa-angle-right"></i>
+                        <span id="btnDscEdit" class="mb-0 h5" data-toggle="collapse" data-target="#descricaoEdit" aria-expanded="true" aria-controls="collapseOne">
+                            Mais Informações
+                        </span>
+                        <i class="ml-auto fa-solid fa-angle-left"></i>
                     </div>
 
                     <div id="descricaoEdit" class="collapse accordion-body" aria-labelledby="topDescricaoEdit" data-parent="#accordionEdit">

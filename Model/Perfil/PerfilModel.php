@@ -3,7 +3,7 @@ include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Perfil/PerfilDao.php");
 class PerfilModel extends BaseModel
 {
-    public function PerfilModel(){
+    public function __construct(){
         If (!isset($_SESSION)){
             ob_start();
             session_start();

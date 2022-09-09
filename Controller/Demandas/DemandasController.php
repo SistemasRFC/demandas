@@ -38,11 +38,6 @@ class DemandasController extends BaseController
         echo $DemandasModel->ListarLogsDemanda();
     }
 
-    Public Function ListarDemandasPendentes(){
-        $DemandasModel = new DemandaModel();
-        echo $DemandasModel->ListarDemandasPendentes();
-    }
-
     Public Function ListarDemandasAguardando(){
         $DemandasModel = new DemandaModel();
         echo $DemandasModel->ListarDemandasAguardando();
@@ -53,19 +48,9 @@ class DemandasController extends BaseController
         echo $DemandasModel->ListarDemandasUsuario();
     }
 
-    Public Function ContagemDemandasStatus(){
+    Public Function MudarResponsavelDemanda(){
         $DemandasModel = new DemandaModel();
-        echo $DemandasModel->ContagemDemandasStatus();
-    }
-
-    Public Function ContagemDemandasPrioridade(){
-        $DemandasModel = new DemandaModel();
-        echo $DemandasModel->ContagemDemandasPrioridade();
-    }
-
-    Public Function ContagemDemandasTotal(){
-        $DemandasModel = new DemandaModel();
-        echo $DemandasModel->ContagemDemandasTotal();
+        echo $DemandasModel->MudarResponsavelDemanda();
     }
 }
 $classController = new DemandasController();

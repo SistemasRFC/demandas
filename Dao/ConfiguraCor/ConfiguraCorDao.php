@@ -10,7 +10,7 @@ class ConfiguraCorDao extends BaseDao
     
     Protected $columnKey = array("codConfiguraCor"=> array("column" =>"COD_CONFIGURA_COR", "typeColumn" => "I"));
     
-    Public Function ConfiguraCorDao(){
+    Public Function __construct(){
         $this->conect();
     }
 

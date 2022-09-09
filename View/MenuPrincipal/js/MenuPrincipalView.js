@@ -30,8 +30,8 @@ function montaGridDemandasUsuario(dados){
                 grid += ' <td>'+dados[i].NME_USUARIO_COMPLETO+'</td>';
                 grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
                 grid += ' <td>';
-                grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:visualizarDemanda('+i+');">';
-                grid += '       <i class="fa-regular fa-eye"></i>';
+                grid += '   <button class="btn btn-link" title="Editar" onClick="javascript:editarDemanda('+i+');">';
+                grid += '       <i class="fa-solid fa-pencil"></i>';
                 grid += '   </button>';
                 grid += ' </td>';
                 grid += '</tr>';
@@ -71,7 +71,7 @@ function montaGridDemandasAguardando(dados){
                 grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:visualizarDemanda('+i+', `P`);">';
                 grid += '       <i class="fa-regular fa-eye"></i>';
                 grid += '   </button>';
-                grid += '   <button class="btn btn-link" title="Atribuir para mim" onClick="javascript:mudarResponsavel('+dados[i].COD_USUARIO+');">';
+                grid += '   <button class="btn btn-link" title="Atribuir para mim" onClick="javascript:mudarResponsavel('+dados[i].COD_DEMANDA+');">';
                 grid += '       <i class="fa-regular fa-user"></i>';
                 grid += '   </button>';
                 grid += ' </td>';
@@ -85,24 +85,46 @@ function montaGridDemandasAguardando(dados){
     } 
 }
 
-function visualizarDemanda(indice, ref="M") {
-    if(ref=="P"){
-        carregaDemanda(indice, dadosDemandaPendente);
-    } else {
-        carregaDemanda(indice, dadosMinhaDemanda);
-    }
+function editarDemanda(indice) {
+    carregaCamposDemanda(indice);
+    $("#updateDemandaTitle").html('Editar Demanda');
+    $("#updateDemanda").modal('show');
+}
+
+function visualizarDemanda(i) {
+    $("#codDemanda").val(dadosDemandaPendente[i].COD_DEMANDA);
+    $(".dscDemanda").html(""+dadosDemandaPendente[i].DSC_DEMANDA);
+    $(".responsavel").html(""+dadosDemandaPendente[i].NME_USUARIO_COMPLETO);
+    $(".dscSistema").html(""+dadosDemandaPendente[i].NME_SISTEMA);
+    $(".dscSituacao").html(""+dadosDemandaPendente[i].DSC_SITUACAO);
+    $("#status").html(""+dadosDemandaPendente[i].DSC_SITUACAO);
+    $(".dscPrioridade").html(""+dadosDemandaPendente[i].DSC_PRIORIDADE);
+    $(".tipoDemanda").html(""+dadosDemandaPendente[i].DSC_TIPO);
     $("#visuDemanda").modal('show');
 }
 
-function carregaDemanda(i, lista){
-    $(".codDemanda").val(lista[i].COD_DEMANDA);
-    $(".dscDemanda").html(""+lista[i].DSC_DEMANDA);
-    $(".responsavel").html(""+lista[i].NME_USUARIO_COMPLETO);
-    $(".dscSistema").html(""+lista[i].NME_SISTEMA);
-    $(".dscSituacao").html(""+lista[i].DSC_SITUACAO);
-    $("#status").html(""+lista[i].DSC_SITUACAO);
-    $(".dscPrioridade").html(""+lista[i].DSC_PRIORIDADE);
-    $(".tipoDemanda").html(""+lista[i].DSC_TIPO);
+function carregaCamposDemanda(indice){
+    $("#codDemanda").val(dadosMinhaDemanda[indice].COD_DEMANDA);
+    $("#dscDemanda").val(dadosMinhaDemanda[indice].DSC_DEMANDA);
+    $("#dtaDemanda").val(dadosMinhaDemanda[indice].DTA_DEMANDA);
+    $("#comboResponsaveis").val(dadosMinhaDemanda[indice].COD_RESPONSAVEL);
+    $("#comboSistema").val(dadosMinhaDemanda[indice].COD_SISTEMA);
+    $("#codSistemaOrigem").val(dadosMinhaDemanda[indice].COD_SISTEMA_ORIGEM);
+    $("#comboSituacao").val(dadosMinhaDemanda[indice].COD_SITUACAO);
+    $("#comboPrioridade").val(dadosMinhaDemanda[indice].IND_PRIORIDADE);
+    $("#comboTipoDemanda").val(dadosMinhaDemanda[indice].TPO_DEMANDA);
+    $("#codSituacaoAnterior").val(dadosMinhaDemanda[indice].COD_SITUACAO);
+}
+
+function mudarResponsavel(codDemanda) {
+    ExecutaDispatch('Demandas', 'MudarResponsavelDemanda', 'codDemanda;'+codDemanda, retornoMudarResponsavel);
+}
+
+function retornoMudarResponsavel(resp) {
+    if(resp[0]) {
+        ExecutaDispatch('Demandas', 'ListarDemandasUsuario', undefined, montaGridDemandasUsuario);
+        ExecutaDispatch('Demandas', 'ListarDemandasAguardando', undefined, montaGridDemandasAguardando);
+    }
 }
 
 $(document).ready(function() {

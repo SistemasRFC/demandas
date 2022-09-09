@@ -8,7 +8,7 @@ class SituacaoDao extends BaseDao
     
     Protected $columnKey = array("codSituacao"=> array("column" =>"COD_SITUACAO", "typeColumn" => "I"));
     
-    Public Function SituacaoDao(){
+    Public Function __construct(){
         $this->conect();
     }
 

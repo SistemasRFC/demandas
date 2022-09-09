@@ -17,7 +17,7 @@ class DemandaDao extends BaseDao
     
     Protected $columnKey = array("codDemanda"=> array("column" =>"COD_DEMANDA", "typeColumn" => "I"));
     
-    Public Function DemandasDao(){
+    Public Function __construct(){
         $this->conect();
     }
 
@@ -97,30 +97,58 @@ class DemandaDao extends BaseDao
     }
 
     Public Function InsertDemandas($codUsuario){
-        $sql = "INSERT INTO EN_DEMANDAS
-                (   DSC_DEMANDA, 
-                    COD_SISTEMA, 
-                    COD_SISTEMA_ORIGEM, 
-                    DTA_DEMANDA, 
-                    COD_RESPONSAVEL, 
-                    COD_SITUACAO,
-                    IND_PRIORIDADE,
-                    TPO_DEMANDA,
-                    COD_USUARIO)
-                VALUES
-                (   '".$this->Populate('dscDemanda','S')."',
-                    ".$this->Populate('codSistema','I').",
-                    ".$this->Populate('codSistemaOrigem','I').",
-                    NOW(), 
-                    '".$this->Populate('codResponsavel','I')."',
-                    '".$this->Populate('codSituacao','I')."',
-                    '".$this->Populate('indPrioridade','I')."',
-                    '".$this->Populate('tpoDemanda','I')."',
-                    $codUsuario)";
-        $codDemanda = "SELECT MAX(COD_DEMANDA) FROM EN_DEMANDAS";
-        $return[2] = $this->selectDB($codDemanda, false);
-        $return = $this->insertDB($sql);
-        return $return;
+        $responsavel = $this->Populate('codResponsavel','I');
+        // echo $this->Populate('codResponsavel','I')==""; die;
+        if($responsavel == ""){
+            $sql = "INSERT INTO EN_DEMANDAS
+                    (   DSC_DEMANDA, 
+                        COD_SISTEMA, 
+                        COD_SISTEMA_ORIGEM, 
+                        DTA_DEMANDA,
+                        COD_SITUACAO,
+                        IND_PRIORIDADE,
+                        TPO_DEMANDA,
+                        COD_USUARIO)
+                    VALUES
+                    (   '".$this->Populate('dscDemanda','S')."',
+                        ".$this->Populate('codSistema','I').",
+                        ".$this->Populate('codSistemaOrigem','I').",
+                        NOW(),
+                        '".$this->Populate('codSituacao','I')."',
+                        '".$this->Populate('indPrioridade','I')."',
+                        '".$this->Populate('tpoDemanda','I')."',
+                        $codUsuario)";
+            $codDemanda = "SELECT MAX(COD_DEMANDA) FROM EN_DEMANDAS";
+            $return[2] = $this->selectDB($codDemanda, false);
+            $return = $this->insertDB($sql);
+            return $return;
+        } else {
+            $sql = "INSERT INTO EN_DEMANDAS
+                    (   DSC_DEMANDA, 
+                        COD_SISTEMA, 
+                        COD_SISTEMA_ORIGEM, 
+                        DTA_DEMANDA, 
+                        COD_RESPONSAVEL, 
+                        COD_SITUACAO,
+                        IND_PRIORIDADE,
+                        TPO_DEMANDA,
+                        COD_USUARIO)
+                    VALUES
+                    (   '".$this->Populate('dscDemanda','S')."',
+                        ".$this->Populate('codSistema','I').",
+                        ".$this->Populate('codSistemaOrigem','I').",
+                        NOW(), 
+                        ".$responsavel.",
+                        '".$this->Populate('codSituacao','I')."',
+                        '".$this->Populate('indPrioridade','I')."',
+                        '".$this->Populate('tpoDemanda','I')."',
+                        $codUsuario)";
+            $codDemanda = "SELECT MAX(COD_DEMANDA) FROM EN_DEMANDAS";
+            $return[2] = $this->selectDB($codDemanda, false);
+            $return = $this->insertDB($sql);
+            return $return;
+
+        }
     }
     
     Public Function RegistraSituacaoOperacao($codDemanda, $codSituacao, $tpoOperacao, $codUsuario, $codSistemaOrigem){
@@ -270,5 +298,10 @@ class DemandaDao extends BaseDao
                   FROM $nmeBanco.SE_USUARIO
                  WHERE COD_USUARIO = ".$codCriador;
         return $this->selectDB($sql, false);
+    }
+    
+    Public Function MudarResponsavelDemanda($codUsuario){
+        $sql = "UPDATE EN_DEMANDAS SET COD_RESPONSAVEL= $codUsuario WHERE COD_DEMANDA = ".$this->Populate('codDemanda', 'I');
+        return $this->insertDB($sql, false);
     }
 }
