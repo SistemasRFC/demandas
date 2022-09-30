@@ -105,6 +105,7 @@ function retornoInsertDemandas(retorno){
         $("#codDemanda").val(retorno[2]);
         $("#comboTpoDemanda").val($("#comboTipoDemanda").val());
         carregaGridDemandas();
+        carregaGridDemandasUsuario();
         swal({
             title: "Sucesso!",
             text: "Registro salvo com sucesso!",
@@ -134,27 +135,6 @@ function updateDemanda(){
     parametros += '|codSistemaOrigem;'+"1"+'|codResponsavel;'+$("#comboResponsaveis").val()+'|codSituacao;'+$("#comboSituacao").val();
     parametros += '|codSituacaoAnterior;'+$("#codSituacaoAnterior").val()+'|indPrioridade;'+$("#comboPrioridade").val()+'|tpoDemanda;'+$("#comboTipoDemanda").val();
     ExecutaDispatch('Demandas', 'UpdateDemandas', parametros, retornoUpdateDemandas);
-}
-
-function retornoUpdateDemandas(retorno){
-    if (retorno[0]){
-        $("#codSituacaoAnterior").val($("#comboSituacao").val());
-        carregaGridDemandas();
-        swal({
-            title: "Sucesso!",
-            text: "Registro salvo com sucesso!",
-            type: "success",
-            confirmButtonText: "Fechar"
-        });
-    }else{
-        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-        swal({
-            title: "Erro!",
-            text: retorno[1],
-            type: "error",
-            confirmButtonText: "Fechar"
-        });
-    }
 }
 
 function listaComboSistemas(){

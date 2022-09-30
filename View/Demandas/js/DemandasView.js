@@ -46,11 +46,9 @@ function montaGridDemandas(dados){
                 grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
                 grid += ' <td>';
                 if(dados[i].COD_SITUACAO != 6) {
-                    if(localStorage.getItem("codUsuario") == dados[i].COD_RESPONSAVEL || localStorage.getItem("codUsuario") == dados[i].COD_USUARIO) {
-                        grid += '   <button class="btn btn-link" title="Editar" onClick="javascript:editarDemanda('+i+');">';
-                        grid += '       <i class="fa-solid fa-pencil"></i>';
-                        grid += '   </button>';
-                    }
+                    grid += '   <button class="btn btn-link" title="Editar" onClick="javascript:editarDemanda('+i+');">';
+                    grid += '       <i class="fa-solid fa-pencil"></i>';
+                    grid += '   </button>';
                 }else {
                     grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:visualizarDemanda('+i+');">';
                     grid += '       <i class="fa-regular fa-eye"></i>';
@@ -75,6 +73,29 @@ function editarDemanda(indice) {
     $("#accordionEdit").show();
     $("#updateDemandaTitle").html('Editar Demanda');
     $("#updateDemanda").modal('show');
+}
+
+function retornoUpdateDemandas(retorno){
+    if (retorno[0]){
+        $("#codSituacaoAnterior").val($("#comboSituacao").val());
+        carregaGridDemandas();
+        swal({
+            title: "Sucesso!",
+            text: "Registro salvo com sucesso!",
+            type: "success",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        $("#updateDemanda").modal('hide');
+    }else{
+        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
+        swal({
+            title: "Erro!",
+            text: retorno[1],
+            type: "error",
+            confirmButtonText: "Fechar"
+        });
+    }
 }
 
 function visualizarDemanda(indice) {

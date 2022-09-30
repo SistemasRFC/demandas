@@ -91,6 +91,29 @@ function editarDemanda(indice) {
     $("#updateDemanda").modal('show');
 }
 
+function retornoUpdateDemandas(retorno){
+    if (retorno[0]){
+        $("#codSituacaoAnterior").val($("#comboSituacao").val());
+        carregaGridDemandasUsuario();
+        swal({
+            title: "Sucesso!",
+            text: "Registro salvo com sucesso!",
+            type: "success",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        $("#updateDemanda").modal('hide');
+    }else{
+        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
+        swal({
+            title: "Erro!",
+            text: retorno[1],
+            type: "error",
+            confirmButtonText: "Fechar"
+        });
+    }
+}
+
 function visualizarDemanda(i) {
     $("#codDemanda").val(dadosDemandaPendente[i].COD_DEMANDA);
     $(".dscDemanda").html(""+dadosDemandaPendente[i].DSC_DEMANDA);
@@ -122,12 +145,18 @@ function mudarResponsavel(codDemanda) {
 
 function retornoMudarResponsavel(resp) {
     if(resp[0]) {
-        ExecutaDispatch('Demandas', 'ListarDemandasUsuario', undefined, montaGridDemandasUsuario);
-        ExecutaDispatch('Demandas', 'ListarDemandasAguardando', undefined, montaGridDemandasAguardando);
     }
 }
 
-$(document).ready(function() {
+function carregaGridDemandasUsuario() {
     ExecutaDispatch('Demandas', 'ListarDemandasUsuario', undefined, montaGridDemandasUsuario);
+}
+
+function carregaGridDemandasAguardando() {
     ExecutaDispatch('Demandas', 'ListarDemandasAguardando', undefined, montaGridDemandasAguardando);
+}
+
+$(document).ready(function() {
+    carregaGridDemandasUsuario();
+    carregaGridDemandasAguardando();
 } );

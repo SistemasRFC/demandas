@@ -19,12 +19,12 @@
                   <div class="col-xl-12 col-md-12">
                       <div class="card h-100 mx-auto">
                           <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                              <h6 class="m-0 font-weight-bold">MINHAS DEMANDAS</h6>
+                              <h6 class="m-0 font-weight-bold">DEMANDAS AGUARDANDO ATENDIMENTO</h6>
                           </div>
                           <div class="card-body">
                             <div class="container">
                               <div class="row">
-                                <div id="tbDemandasUsuario" class="table"></div>
+                                <div id="tbDemandasAguardando" class="table"></div>
                               </div>
                             </div>
                           </div>
@@ -36,12 +36,12 @@
                   <div class="col-xl-12 col-md-12">
                       <div class="card h-100 mx-auto">
                           <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                              <h6 class="m-0 font-weight-bold">DEMANDAS AGUARDANDO ATENDIMENTO</h6>
+                              <h6 class="m-0 font-weight-bold">MINHAS DEMANDAS</h6>
                           </div>
                           <div class="card-body">
                             <div class="container">
                               <div class="row">
-                                <div id="tbDemandasAguardando" class="table"></div>
+                                <div id="tbDemandasUsuario" class="table"></div>
                               </div>
                             </div>
                           </div>
