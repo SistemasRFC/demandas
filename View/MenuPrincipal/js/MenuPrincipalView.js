@@ -87,6 +87,8 @@ function montaGridDemandasAguardando(dados){
 
 function editarDemanda(indice) {
     carregaCamposDemanda(indice);
+    $("#descricaoEdit").removeClass("show");
+    $("#accordionDscEdit").html("");
     $("#updateDemandaTitle").html('Editar Demanda');
     $("#updateDemanda").modal('show');
 }
@@ -100,7 +102,7 @@ function retornoUpdateDemandas(retorno){
             text: "Registro salvo com sucesso!",
             type: "success",
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
         });
         $("#updateDemanda").modal('hide');
     }else{

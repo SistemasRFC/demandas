@@ -11,6 +11,7 @@ $(function() {
     $("#btnInformacao").click(function(){
         $("#txtDescricao").prop('disabled', false);
         $("#tpoDescricao").prop('disabled', false);
+        $("#accordionEdit").show();
         $("#descricaoDemanda").modal("show");
     });
     
@@ -103,15 +104,13 @@ function inserirDemanda(){
 function retornoInsertDemandas(retorno){
     if (retorno[0]){
         $("#codDemanda").val(retorno[2]);
-        $("#comboTpoDemanda").val($("#comboTipoDemanda").val());
         carregaGridDemandas();
-        carregaGridDemandasUsuario();
         swal({
             title: "Sucesso!",
             text: "Registro salvo com sucesso!",
             type: "success",
-            timer: 2000,
-            showconfirmButtonText: false
+            showConfirmButton: false,
+            timer: 1500
         });
         // $("#updateDemanda").modal("hide");
     }else{

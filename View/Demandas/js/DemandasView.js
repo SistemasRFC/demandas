@@ -64,13 +64,15 @@ function montaGridDemandas(dados){
         grid += '</tbody>';
         grid += '</table>';
         $("#tabelaDemandas").html(grid);
-        criarDataTable("tbDemandas");
+        criarDataTable("tbDemandas", 7);
     } 
 }
 
 function editarDemanda(indice) {
     carregaCamposDemanda(indice);
     $("#accordionEdit").show();
+    $("#descricaoEdit").removeClass("show");
+    $("#accordionDscEdit").html("");
     $("#updateDemandaTitle").html('Editar Demanda');
     $("#updateDemanda").modal('show');
 }
@@ -84,7 +86,7 @@ function retornoUpdateDemandas(retorno){
             text: "Registro salvo com sucesso!",
             type: "success",
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
         });
         $("#updateDemanda").modal('hide');
     }else{

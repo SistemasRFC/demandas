@@ -67,19 +67,30 @@ class DemandaDao extends BaseDao
             $sql .=" AND D.COD_SITUACAO = ".$this->Populate('comboTpoDemanda', 'I');
         }
             $sql .=" GROUP BY COD_DEMANDA
-                     ORDER BY DATA_DEMANDA DESC";
+                     ORDER BY D.COD_SITUACAO, DATA_DEMANDA DESC";
         return $this->selectDB($sql, false);
     }
     
     Public Function UpdateDemandas(){
-        $sql = "UPDATE EN_DEMANDAS SET DSC_DEMANDA = '".$this->Populate('dscDemanda','S')."',
+        $responsavel = $this->Populate('codResponsavel','I');
+        if($responsavel == ""){
+        $sql = " UPDATE EN_DEMANDAS SET DSC_DEMANDA = '".$this->Populate('dscDemanda','S')."',
                                        COD_SISTEMA = ".$this->Populate('codSistema','I').",
                                        COD_SISTEMA_ORIGEM = '".$this->Populate('codSistemaOrigem','I')."',
-                                       COD_RESPONSAVEL = '".$this->Populate('codResponsavel','I')."',
                                        COD_SITUACAO = '".$this->Populate('codSituacao','I')."',
                                        IND_PRIORIDADE = '".$this->Populate('indPrioridade','I')."',
                                        TPO_DEMANDA = '".$this->Populate('tpoDemanda','I')."'
                  WHERE COD_DEMANDA = '".$this->Populate('codDemanda','I')."'";
+        } else {
+            $sql = " UPDATE EN_DEMANDAS SET DSC_DEMANDA = '".$this->Populate('dscDemanda','S')."',
+                                           COD_SISTEMA = ".$this->Populate('codSistema','I').",
+                                           COD_SISTEMA_ORIGEM = '".$this->Populate('codSistemaOrigem','I')."',
+                                           COD_RESPONSAVEL = ".$this->Populate('codResponsavel','I').",
+                                           COD_SITUACAO = '".$this->Populate('codSituacao','I')."',
+                                           IND_PRIORIDADE = '".$this->Populate('indPrioridade','I')."',
+                                           TPO_DEMANDA = '".$this->Populate('tpoDemanda','I')."'
+                     WHERE COD_DEMANDA = '".$this->Populate('codDemanda','I')."'";
+        }
         return $this->insertDB($sql);
     }
 

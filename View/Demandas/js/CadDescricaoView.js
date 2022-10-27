@@ -23,7 +23,8 @@ function retornoInsertDescricao(retorno){
             title: "Sucesso!",
             text: "Registro salvo com sucesso!",
             type: "success",
-            showConfirmButton: false
+            showConfirmButton: false,
+            timer: 1500
         });
         $("#descricaoDemanda").modal("hide");
     }else{

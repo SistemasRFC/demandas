@@ -97,7 +97,7 @@ function criarDataTableBasic(nmeTabela) {
     });
 }
 
-function criarDataTable(nmeTabela) {
+function criarDataTable(nmeTabela, orderColum=1) {
     $("#"+nmeTabela).DataTable({
         "language": {
             "emptyTable": "Nenhum registro encontrado",
@@ -121,6 +121,7 @@ function criarDataTable(nmeTabela) {
                 "sortAscending": ": Ordenar colunas de forma ascendente",
                 "sortDescending": ": Ordenar colunas de forma descendente"
             }
-        }
+        },
+        "order": [[orderColum, 'asc']]
     });
 }
