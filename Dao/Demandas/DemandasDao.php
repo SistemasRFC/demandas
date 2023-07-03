@@ -23,9 +23,10 @@ class DemandaDao extends BaseDao
 
     Public Function ListarDemandas($codUsuario){
         $sql= "SELECT D.COD_DEMANDA,
-                      COALESCE(TIMESTAMPDIFF(DAY,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0) AS DIAS_DECORRIDAS,
-                      CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA))<0 THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)), '24:00:00')
-                      ELSE TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)) END AS HORAS_DECORRIDAS,
+                      GetDiasUteis(coalesce(D.DTA_FIM_DEMANDA, NOW()), dta_operacao) as DIAS_DECORRIDAS,
+                      CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(dta_operacao))<0 
+                           THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(dta_operacao)), '24:00:00')
+                      ELSE TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(dta_operacao)) END AS HORAS_DECORRIDAS,
                       D.DSC_DEMANDA,
                       D.COD_SISTEMA,
                       D.COD_SISTEMA_ORIGEM,
@@ -62,6 +63,13 @@ class DemandaDao extends BaseDao
                    ON (COALESCE(TIMESTAMPDIFF(HOUR,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)+
                        COALESCE(TIMESTAMPDIFF(MINUTE,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)+
                        COALESCE(TIMESTAMPDIFF(SECOND,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)) BETWEEN CC.VLR_TEMPO_INICIAL AND CC.VLR_TEMPO_FINAL
+                 left join en_log_situacao_demanda elsd 
+                   on elsd.COD_DEMANDA = d.COD_DEMANDA 
+                  and elsd.COD_situacao = 2
+                  and elsd.DTA_OPERACAO = (select min(DTA_OPERACAO) 
+                                              from en_log_situacao_demanda elsd2 
+                                             where elsd2.COD_DEMANDA = elsd.COD_DEMANDA 
+                                               and elsd2.COD_situacao = 2)
                 WHERE 1=1";
         if($this->Populate('comboTpoDemanda', 'I') !== '0'){
             $sql .=" AND D.COD_SITUACAO = ".$this->Populate('comboTpoDemanda', 'I');
