@@ -9,9 +9,13 @@ $(function() {
     });
     
     $("#btnInformacao").click(function(){
+        $("#codDescricao").val(0);
+        $("#txtDescricao").val('');
+        $("#tpoDescricao").val('');
         $("#txtDescricao").prop('disabled', false);
         $("#tpoDescricao").prop('disabled', false);
         $("#accordionEdit").show();
+        $("#btnSalvarDescricao").prop('hidden', false);
         $("#descricaoDemanda").modal("show");
     });
     
@@ -79,10 +83,12 @@ function montaDescricaoEdit(dados){
 }
 
 function visualizarDescricaoEdit(indice) {
+    $("#codDescricao").val(dadosDsc[indice].COD_DESCRICAO);
     $("#txtDescricao").val(dadosDsc[indice].TXT_DESCRICAO_TOTAL);
     $("#tpoDescricao").val(dadosDsc[indice].TPO_DESCRICAO.substring(0,1));
     $("#txtDescricao").prop('disabled', true);
     $("#tpoDescricao").prop('disabled', true);
+    $("#btnSalvarDescricao").prop('hidden', true);
     $("#descricaoDemanda").modal("show");
 }
 

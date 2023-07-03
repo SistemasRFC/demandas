@@ -1,6 +1,8 @@
 $(function() {
     $("#btnSalvarDescricao").click(function(){
-        inserirDescricao();
+        if($("#codDescricao").val() == 0) {
+            inserirDescricao();
+        }
     });
 
 });
@@ -17,6 +19,7 @@ function inserirDescricao(){
 
 function retornoInsertDescricao(retorno){
     if (retorno[0]){
+        $("#codDescricao").val(0);
         $("#txtDescricao").val('');
         $("#tpoDescricao").val('');
         swal({
@@ -26,6 +29,7 @@ function retornoInsertDescricao(retorno){
             showConfirmButton: false,
             timer: 1500
         });
+        carregaDscDemandaEdit();
         $("#descricaoDemanda").modal("hide");
     }else{
         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
