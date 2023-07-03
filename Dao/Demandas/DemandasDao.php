@@ -27,6 +27,10 @@ class DemandaDao extends BaseDao
                       CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(dta_operacao))<0 
                            THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(dta_operacao)), '24:00:00')
                       ELSE TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(dta_operacao)) END AS HORAS_DECORRIDAS,
+                      COALESCE(TIMESTAMPDIFF(DAY,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0) AS DIAS_CRIADO,
+                      CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA))<0 
+                           THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)), '24:00:00')
+                      ELSE TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)) END AS HORAS_CRIADO,
                       D.DSC_DEMANDA,
                       D.COD_SISTEMA,
                       D.COD_SISTEMA_ORIGEM,
