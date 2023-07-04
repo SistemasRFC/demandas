@@ -125,6 +125,7 @@ function visualizarDemanda(i) {
     $("#status").html(""+dadosDemandaPendente[i].DSC_SITUACAO);
     $(".dscPrioridade").html(""+dadosDemandaPendente[i].DSC_PRIORIDADE);
     $(".tipoDemanda").html(""+dadosDemandaPendente[i].DSC_TIPO);
+    $("#descricao").removeClass("show");
     $("#visuDemanda").modal('show');
 }
 
