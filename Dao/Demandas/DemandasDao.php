@@ -23,10 +23,11 @@ class DemandaDao extends BaseDao
 
     Public Function ListarDemandas($codUsuario){
         $sql= "SELECT D.COD_DEMANDA,
+                      floor(sum(GetDiasUteis(coalesce(DTA_FIM_SITUACAO, now()), DTA_OPERACAO)/60/60/24)) as DIAS_DECORRIDAS,
                       COALESCE((select FLOOR(sum(TIMESTAMPDIFF(second,DTA_OPERACAO, coalesce(DTA_FIM_SITUACAO, now())))/60/60/24) as dia 
                          from en_log_situacao_demanda elsd 
                         where elsd.COD_situacao = 2
-                          and COD_DEMANDA = d.COD_DEMANDA),0) as DIAS_DECORRIDAS,
+                          and COD_DEMANDA = d.COD_DEMANDA),0) as DIAS_DECORRIDA,
                       COALESCE((select CASE WHEN time(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO))))<0 
                         THEN ADDTIME(time(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO)))), '24:00:00')
                         else time(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO)))) end as hora 
