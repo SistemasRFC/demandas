@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['atualiza'])){
     $dbtype   = "mysql";
-    $host     = "192.168.0.74";
+    $host     = "localhost";
     $port     = "3306";
     $user     = "root";
     $password = "Rfm1440@";
