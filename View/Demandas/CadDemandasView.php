@@ -15,7 +15,8 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="dscDemanda" class="mb-0">Demanda</label>
-                            <input type="text" id="dscDemanda" name="dscDemanda" class='form-control'>
+                            <input type="text" id="dscDemanda" name="dscDemanda" class='form-control' maxlength='50'>
+                            <small>* Limite de 50 caracteres.</small>
                         </div>
                         <div class="form-group col-6">
                             <label for="nroCelular" class="mb-0">Tipo</label>
