@@ -22,7 +22,7 @@ if (isset($_GET['atualiza'])){
         $codOperacaoAnterior=$rs['COD_OPERACAO'];
     }
     $update="update en_log_situacao_demanda set DTA_FIM_SITUACAO=NOW() 
-                      where DTA_FIM_SITUACAO is null";
+                      where DTA_FIM_SITUACAO is null and cod_situacao in (4,6,7)";
     mysqli_query($conexao, $update);
 }
 ?>
