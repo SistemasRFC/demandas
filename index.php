@@ -1,4 +1,31 @@
-
+<?php
+if (isset($_GET['atualiza'])){
+    $dbtype   = "mysql";
+    $host     = "192.168.0.74";
+    $port     = "3306";
+    $user     = "root";
+    $password = "Rfm1440@";
+    $db       = "demandas";
+    $conexao = new mysqli($host, $user, $password, $db);
+    $sql = "SELECT COD_OPERACAO, COD_DEMANDA, DTA_OPERACAO, DTA_FIM_SITUACAO from en_log_situacao_demanda order by COD_DEMANDA";
+    $resultado = mysqli_query($conexao, $sql);
+    $codDemandaAnterior=0;
+    $codOperacaoAnterior=0;
+    while ($rs = mysqli_fetch_array($resultado)){
+        $dataOperacao=$rs['DTA_OPERACAO'];
+        if ($rs['COD_DEMANDA']==$codDemandaAnterior){
+            $update="update en_log_situacao_demanda set DTA_FIM_SITUACAO='".$dataOperacao."' 
+                      where COD_DEMANDA=".$codDemandaAnterior ." AND COD_OPERACAO = ".$codOperacaoAnterior;
+            mysqli_query($conexao, $update);
+        }
+        $codDemandaAnterior=$rs['COD_DEMANDA'];
+        $codOperacaoAnterior=$rs['COD_OPERACAO'];
+    }
+    $update="update en_log_situacao_demanda set DTA_FIM_SITUACAO=NOW() 
+                      where DTA_FIM_SITUACAO is null";
+    mysqli_query($conexao, $update);
+}
+?>
 <!doctype html>
 <html>
   <head>

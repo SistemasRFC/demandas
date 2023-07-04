@@ -23,10 +23,16 @@ class DemandaDao extends BaseDao
 
     Public Function ListarDemandas($codUsuario){
         $sql= "SELECT D.COD_DEMANDA,
-                      GetDiasUteis(coalesce(D.DTA_FIM_DEMANDA, NOW()), DTA_OPERACAO) as DIAS_DECORRIDAS,
-                      CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(DTA_OPERACAO))<0 
-                           THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(DTA_OPERACAO)), '24:00:00')
-                      ELSE TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(DTA_OPERACAO)) END AS HORAS_DECORRIDAS,
+                      COALESCE((select FLOOR(sum(TIMESTAMPDIFF(second,DTA_OPERACAO, coalesce(DTA_FIM_SITUACAO, now())))/60/60/24) as dia 
+                         from en_log_situacao_demanda elsd 
+                        where elsd.COD_situacao = 2
+                          and COD_DEMANDA = d.COD_DEMANDA),0) as DIAS_DECORRIDAS,
+                      COALESCE((select CASE WHEN time(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO))))<0 
+                        THEN ADDTIME(time(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO)))), '24:00:00')
+                        else time(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO)))) end as hora 
+                         from en_log_situacao_demanda elsd 
+                        where elsd.COD_situacao = 2
+                          and COD_DEMANDA = d.COD_DEMANDA),0) AS HORAS_DECORRIDAS,            
                       COALESCE(TIMESTAMPDIFF(DAY,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0) AS DIAS_CRIADO,
                       CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA))<0 
                            THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)), '24:00:00')
@@ -175,6 +181,13 @@ class DemandaDao extends BaseDao
     }
     
     Public Function RegistraSituacaoOperacao($codDemanda, $codSituacao, $tpoOperacao, $codUsuario, $codSistemaOrigem){
+        $sql = " SELECT MAX(COD_OPERACAO) AS COD_OPERACAO FROM EN_LOG_SITUACAO_DEMANDA WHERE COD_DEMANDA = ".$codDemanda;
+        $ultimoCodigo = $this->selectDB($sql, false);
+
+        $sql = " UPDATE EN_LOG_SITUACAO_DEMANDA SET DTA_FIM_SITUACAO = NOW() WHERE COD_DEMANDA = ".$codDemanda." 
+                    AND COD_OPERACAO = ".$ultimoCodigo[1][0]['COD_OPERACAO'];
+        $this->insertDB($sql);
+
         $sql = " INSERT INTO EN_LOG_SITUACAO_DEMANDA
                 (   COD_DEMANDA,
                     COD_SITUACAO,
