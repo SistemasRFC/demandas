@@ -147,6 +147,22 @@ function mudarResponsavel(codDemanda) {
 
 function retornoMudarResponsavel(resp) {
     if(resp[0]) {
+        carregaGridDemandasUsuario();
+        carregaGridDemandasAguardando();
+        swal({
+            title: "Sucesso!",
+            text: "Resposável atualizado com sucesso!",
+            type: "success",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } else {
+        swal({
+            title: "Erro!",
+            text: resp[1],
+            type: "error",
+            confirmButtonText: "Fechar"
+        });
     }
 }
 

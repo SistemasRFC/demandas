@@ -1,3 +1,4 @@
+var dadosDsc;
 $(function() {
     $("#btnDescricao").click(function(){
         $("#txtDescricao").prop('disabled', false);
@@ -14,8 +15,8 @@ function carregaDscDemanda(){
     ExecutaDispatch('DescricaoDemandas', 'ListarDescricaoDemandas', 'codDemanda;'+$("#codDemanda").val(), montaDescricao);
 }
 
-function montaDescricao(dados){
-    if (dados[0]) {
+function montaDescricao(resp){
+    if (resp[0]) {
         var grid = '<table id="tbAccordionDsc" class="table table-striped">';
         grid += '<thead><tr>';
         grid += ' <th><b>Descrição</b></th>';
@@ -23,8 +24,9 @@ function montaDescricao(dados){
         grid += ' <th><b>Responsável</b></th>';
         grid += ' <th><b>Ações</b></th>';
         grid += '</tr></thead><tbody>';
-        if (dados[1] !== null) {
-            dados = dados[1];
+        if (resp[1] !== null) {
+            dadosDsc = resp[1];
+            dados = resp[1];
             for (i = 0; i < dados.length; i++) {
                 grid += '<tr>';
                 grid += ' <td>' + dados[i].TXT_DESCRICAO_TOTAL + '</td>';
@@ -46,10 +48,12 @@ function montaDescricao(dados){
 }
 
 function visualizarDescricao(indice) {
+    $("#codDescricao").val(dadosDsc[indice].COD_DESCRICAO);
     $("#txtDescricao").val(dadosDsc[indice].TXT_DESCRICAO_TOTAL);
-    $("#tpoDescricao").val(dadosDsc[indice].TPO_DESCRICAO);
+    $("#tpoDescricao").val(dadosDsc[indice].TPO_DESCRICAO.substring(0,1));
     $("#txtDescricao").prop('disabled', true);
     $("#tpoDescricao").prop('disabled', true);
+    $("#btnSalvarDescricao").prop('hidden', true);
     $("#descricaoDemanda").modal("show");
 
 }
