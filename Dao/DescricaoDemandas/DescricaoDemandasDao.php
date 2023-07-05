@@ -21,7 +21,7 @@ class DescricaoDemandasDao extends BaseDao
         $sql = "SELECT D.COD_DEMANDA,
                        DD.COD_DESCRICAO,
                        DD.TXT_DESCRICAO AS TXT_DESCRICAO_TOTAL,
-                       CASE WHEN LENGTH(DD.TXT_DESCRICAO)>50 THEN CONCAT(SUBSTRING(DD.TXT_DESCRICAO,1,80),'...') ELSE DD.TXT_DESCRICAO END AS TXT_DESCRICAO,
+                       CASE WHEN LENGTH(DD.TXT_DESCRICAO)>80 THEN CONCAT(SUBSTRING(DD.TXT_DESCRICAO,1,80),'...') ELSE DD.TXT_DESCRICAO END AS TXT_DESCRICAO,
                        DATE_FORMAT(DD.DTA_DESCRICAO,'%d/%m/%Y %T') AS DTA_DESCRICAO,
                        CASE WHEN DD.TPO_DESCRICAO = 'R' THEN 'Requisito'
                             WHEN DD.TPO_DESCRICAO = 'O' THEN 'Observação'
