@@ -28,12 +28,10 @@ class DemandaDao extends BaseDao
                          from en_log_situacao_demanda elsd 
                         where elsd.COD_situacao = 2
                           and COD_DEMANDA = d.COD_DEMANDA),0) as DIAS_DECORRIDAS,
-                      COALESCE((select CASE WHEN time(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO))))<0 
-                        THEN ADDTIME(time(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO)))), '24:00:00')
-                        else TIME(SUM(TIMEDIFF(TIME(COALESCE(DTA_FIM_SITUACAO, NOW())), TIME(DTA_OPERACAO)))) end as hora 
-                         from en_log_situacao_demanda d1
-                        where d1.COD_situacao = 2
-                          and d1.COD_DEMANDA = D.COD_DEMANDA),0) AS HORAS_DECORRIDAS,            
+                      COALESCE((select HORAS 
+                                  from VW_CONTABILIZA_HORAS 
+                                 where COD_DEMANDA=D.COD_DEMANDA 
+                                   and COD_SITUACAO=2),0) AS HORAS_DECORRIDAS,            
                       COALESCE(TIMESTAMPDIFF(DAY,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0) AS DIAS_CRIADO,
                       CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA))<0 
                            THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)), '24:00:00')
