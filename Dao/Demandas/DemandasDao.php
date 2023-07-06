@@ -28,10 +28,7 @@ class DemandaDao extends BaseDao
                          from en_log_situacao_demanda elsd 
                         where elsd.COD_situacao = 2
                           and COD_DEMANDA = d.COD_DEMANDA),0) as DIAS_DECORRIDAS,
-                      COALESCE((select HORAS 
-                                  from VW_CONTABILIZA_HORAS 
-                                 where COD_DEMANDA=D.COD_DEMANDA 
-                                   and COD_SITUACAO=2),0) AS HORAS_DECORRIDAS,            
+                      COALESCE(VW.HORAS,0) AS HORAS_DECORRIDAS,           
                       COALESCE(TIMESTAMPDIFF(DAY,D.DTA_DEMANDA, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0) AS DIAS_CRIADO,
                       CASE WHEN TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA))<0 
                            THEN ADDTIME(TIMEDIFF(TIME(COALESCE(D.DTA_FIM_DEMANDA, NOW())), TIME(D.DTA_DEMANDA)), '24:00:00')
@@ -75,10 +72,11 @@ class DemandaDao extends BaseDao
                                               from en_log_situacao_demanda elsd2 
                                              where elsd2.COD_DEMANDA = elsd.COD_DEMANDA 
                                                and elsd2.COD_situacao = 2)
+                 left join VW_CONTABILIZA_HORAS VW 
+                   on VW.COD_DEMANDA = d.COD_DEMANDA 
+                  and VW.COD_situacao = 2                                                 
                  LEFT JOIN EN_CONFIGURA_COR CC
-                   ON (COALESCE(TIMESTAMPDIFF(HOUR, DTA_OPERACAO, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)+
-                       COALESCE(TIMESTAMPDIFF(MINUTE, DTA_OPERACAO, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)+
-                       COALESCE(TIMESTAMPDIFF(SECOND, DTA_OPERACAO, COALESCE(D.DTA_FIM_DEMANDA, NOW())), 0)) BETWEEN CC.VLR_TEMPO_INICIAL AND CC.VLR_TEMPO_FINAL
+                   ON VW.HORAS_TOTAL BETWEEN CC.VLR_TEMPO_INICIAL AND CC.VLR_TEMPO_FINAL
                 WHERE 1=1";
         if($this->Populate('comboTpoDemanda', 'I') !== '0'){
             $sql .=" AND D.COD_SITUACAO = ".$this->Populate('comboTpoDemanda', 'I');
