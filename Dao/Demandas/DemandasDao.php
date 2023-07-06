@@ -76,7 +76,7 @@ class DemandaDao extends BaseDao
                    on VW.COD_DEMANDA = d.COD_DEMANDA 
                   and VW.COD_situacao = 2                                                 
                  LEFT JOIN EN_CONFIGURA_COR CC
-                   ON VW.HORAS_TOTAL BETWEEN CC.VLR_TEMPO_INICIAL AND CC.VLR_TEMPO_FINAL
+                   ON TIME(VW.HORAS_TOTAL) BETWEEN CC.VLR_TEMPO_INICIAL AND CC.VLR_TEMPO_FINAL
                 WHERE 1=1";
         if($this->Populate('comboTpoDemanda', 'I') !== '0'){
             $sql .=" AND D.COD_SITUACAO = ".$this->Populate('comboTpoDemanda', 'I');
