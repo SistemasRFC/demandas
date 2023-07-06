@@ -19,7 +19,7 @@
                             <small>* Limite de 50 caracteres.</small>
                         </div>
                         <div class="form-group col-6">
-                            <label for="nroCelular" class="mb-0">Tipo</label>
+                            <label for="comboTipoDemanda" class="mb-0">Tipo</label>
                             <select id="comboTipoDemanda" class="form-control dropdown-toggle">
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="1"> Incidente </option>
@@ -30,21 +30,21 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="comboSistema" class="mb-0">Sistema</label>
+                            <label class="mb-0">Sistema</label>
                             <div id="divComboSistema"></div>
                         </div>
                         <div class="form-group col-6">
-                            <label for="comboResponsaveis" class="mb-0">Responsável</label>
+                            <label class="mb-0">Responsável</label>
                             <div id="divComboResponsaveis"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="comboSituacao" class="mb-0">Status</label>
+                            <label class="mb-0">Status</label>
                             <div id="divComboSituacao"></div>
                         </div>
                         <div class="form-group col-6">
-                            <label for="codPrioridade" class="mb-0">Prioridade</label>
+                            <label for="comboPrioridade" class="mb-0">Prioridade</label>
                             <select id="comboPrioridade" class="form-control dropdown-toggle">
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="1"> Baixa </option>

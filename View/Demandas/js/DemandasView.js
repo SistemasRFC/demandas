@@ -105,18 +105,15 @@ function retornoUpdateDemandas(retorno){
 }
 
 function visualizarDemanda(indice) {
-    $(".codDemanda").val(dadosListagem[indice].COD_DEMANDA);
+    $("#codDemanda").val(dadosListagem[indice].COD_DEMANDA);
     $(".dscDemanda").html(dadosListagem[indice].DSC_DEMANDA);
     $(".responsavel").html(dadosListagem[indice].NME_USUARIO_COMPLETO);
     $(".dscSistema").html(dadosListagem[indice].NME_SISTEMA);
     $("#status").html(dadosListagem[indice].DSC_SITUACAO);
     $(".dscPrioridade").html(dadosListagem[indice].DSC_PRIORIDADE);
     $(".tipoDemanda").html(dadosListagem[indice].DSC_TIPO);
-    if(dadosListagem[indice].COD_SITUACAO == 6) {
-        $("#footer-visu").hide();
-    } else {
-        $("#footer-visu").show();
-    }
+    $("#footer-visu").hide();
+    $("#descricao").removeClass("show");
     $("#visuDemanda").modal('show');
 }
 
