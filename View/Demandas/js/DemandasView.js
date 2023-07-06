@@ -21,16 +21,17 @@ function carregaGridDemandas(){
 
 function montaGridDemandas(dados){
     if(dados[0]){
-        var grid = '<table id="tbDemandas" class="table table-striped table-responsive">';
+        var grid = '<table id="tbDemandas" class="table table-striped" width="100%">';
         grid += '<thead><tr>';
-        grid += ' <th width="10%"><b>Duração Execução</b></th>';
-        grid += ' <th width="10%"><b>Duração Criada</b></th>';
-        grid += ' <th width="6%"><b>Tipo</b></th>';
-        grid += ' <th width="35%"><b>Demanda</b></th>';
-        grid += ' <th width="8%"><b>Sistema</b></th>';
-        grid += ' <th width="10%"><b>Reponsável</b></th>';
-        grid += ' <th width="3%"><b>Prioridade</b></th>';
-        grid += ' <th width="12%"><b>Status</b></th>';
+        grid += ' <th width="8%"><b>Duração Execução</b></th>';
+        grid += ' <th width="8%"><b>Duração Criada</b></th>';
+        grid += ' <th width="6%"><b>Cod.</b></th>';
+        grid += ' <th width="20%"><b>Demanda</b></th>';
+        grid += ' <th width="10%"><b>Sistema</b></th>';
+        grid += ' <th width="13%"><b>Reponsável</b></th>';
+        grid += ' <th width="10%"><b>Tipo</b></th>';
+        grid += ' <th width="10%"><b>Prioridade</b></th>';
+        grid += ' <th width="10%"><b>Status</b></th>';
         grid += ' <th width="5%"><b>Ações</b></th>';
         grid += '</tr></thead><tbody>';
         if(dados[1] !== null){
@@ -40,10 +41,11 @@ function montaGridDemandas(dados){
                 grid += '<tr>';
                 grid += ' <td style="background-color:'+dados[i].DSC_COR+'">'+dados[i].DIAS_DECORRIDAS+' Dia(s)<br>'+dados[i].HORAS_DECORRIDAS+' Hr(s)</td>';
                 grid += ' <td style="background-color:'+dados[i].DSC_COR+'">'+dados[i].DIAS_CRIADO+' Dia(s)<br>'+dados[i].HORAS_CRIADO+' Hr(s)</td>';
-                grid += ' <td align="center">'+dados[i].DSC_TIPO+'</td>';
+                grid += ' <td>'+dados[i].COD_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].DSC_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].NME_SISTEMA+'</td>';
                 grid += ' <td>'+dados[i].NME_USUARIO_COMPLETO+'</td>';
+                grid += ' <td align="center">'+dados[i].DSC_TIPO+'</td>';
                 grid += ' <td align="center">'+dados[i].DSC_PRIORIDADE+'</td>';
                 grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
                 grid += ' <td>';

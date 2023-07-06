@@ -1,3 +1,13 @@
+<?php
+if (!isset($_SESSION)) {
+    ob_start();
+    session_start();
+}
+if(!$_SESSION['cod_usuario']) {
+    header('location: ../../index.php');
+}
+?>
+
 <script src="../../View/MenuPrincipal/js/Cabecalho.js?rdm=<?php echo time(); ?>"></script>
 
 <nav class="bg-color-white navbar navbar-expand navbar-light topbar static-top">

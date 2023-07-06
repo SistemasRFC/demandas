@@ -28,9 +28,7 @@
 									<div class="row ml-auto" id="divComboTpoDemanda"></div>
 								</div>
 								<div class="card-body">
-									<div class="row" style="justify-content: center;">
-										<div id="tabelaDemandas"></div>
-									</div>
+									<div id="tabelaDemandas"></div>
 								</div>
 							</div>
 						</div>
