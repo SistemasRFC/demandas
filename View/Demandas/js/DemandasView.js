@@ -74,7 +74,6 @@ function montaGridDemandas(dados){
 
 function editarDemanda(indice) {
     carregaCamposDemanda(indice);
-    $("#accordionEdit").show();
     $("#descricaoEdit").removeClass("show");
     $("#accordionDscEdit").html("");
     $("#updateDemandaTitle").html('Editar Demanda');
