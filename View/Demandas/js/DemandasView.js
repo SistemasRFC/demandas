@@ -68,7 +68,7 @@ function montaGridDemandas(dados){
         grid += '</tbody>';
         grid += '</table>';
         $("#tabelaDemandas").html(grid);
-        criarDataTable("tbDemandas", 7);
+        criarDataTable("tbDemandas", 8);
     } 
 }
 
