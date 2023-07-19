@@ -8,6 +8,15 @@ $(function() {
 });
 
 function inserirDescricao(){
+    if($("#tpoDescricao").val() == '') {
+        swal({
+            title: "Erro!",
+            text: "Selecione um tipo de informação!",
+            type: "error",
+            confirmButtonText: "Fechar"
+        });
+        return false;
+    }
     swal({
         title: "Aguarde, salvando registro!",
         imageUrl: "../../Resources/images/preload.gif",
