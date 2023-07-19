@@ -196,7 +196,7 @@ function montaComboResponsaveis(dados){
 
 $(document).ready(function() {
     $("#btnInformacao").attr('disabled', false);
-        $("#btnInformacao").attr('title', 'Incluir informação');
+    $("#btnInformacao").attr('title', 'Incluir informação');
     if ($("#codDemanda").val() === '') {
         $("#btnInformacao").attr('disabled', true);
         $("#btnInformacao").attr('title', 'A Demanda ainda não foi criada!');
