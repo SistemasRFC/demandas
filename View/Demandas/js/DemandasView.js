@@ -77,6 +77,7 @@ function editarDemanda(indice) {
     $("#descricaoEdit").removeClass("show");
     $("#accordionDscEdit").html("");
     $("#updateDemandaTitle").html('Editar Demanda');
+    $("#accordionEdit").show();
     $("#updateDemanda").modal('show');
 }
 
