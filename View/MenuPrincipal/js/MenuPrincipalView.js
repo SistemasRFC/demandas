@@ -1,6 +1,8 @@
 var dadosMinhaDemanda;
 var dadosDemandaPendente;
 var codSituacaoDmd;
+var codSistemaDmd;
+var codResponsavelDmd;
 
 function openDescDemandas(cadDemanda){
     $('#codDemanda').val(cadDemanda);
@@ -137,11 +139,13 @@ function carregaCamposDemanda(indice){
     $("#codDemanda").val(dadosMinhaDemanda[indice].COD_DEMANDA);
     $("#dscDemanda").val(dadosMinhaDemanda[indice].DSC_DEMANDA);
     $("#dtaDemanda").val(dadosMinhaDemanda[indice].DTA_DEMANDA);
-    $("#codResponsavel").val(dadosMinhaDemanda[indice].COD_RESPONSAVEL);
-    $("#codSistema").val(dadosMinhaDemanda[indice].COD_SISTEMA);
     $("#codSistemaOrigem").val(dadosMinhaDemanda[indice].COD_SISTEMA_ORIGEM);
     codSituacaoDmd = dadosMinhaDemanda[indice].COD_SITUACAO;
+    codSistemaDmd = dadosMinhaDemanda[indice].COD_SISTEMA;
+    codResponsavelDmd = dadosMinhaDemanda[indice].COD_RESPONSAVEL;
     $("#codSituacao").val(dadosMinhaDemanda[indice].COD_SITUACAO);
+    $("#codSistema").val(dadosMinhaDemanda[indice].COD_SISTEMA);
+    $("#codResponsavel").val(dadosMinhaDemanda[indice].COD_RESPONSAVEL);
     $("#comboPrioridade").val(dadosMinhaDemanda[indice].IND_PRIORIDADE);
     $("#comboTipoDemanda").val(dadosMinhaDemanda[indice].TPO_DEMANDA);
     $("#codSituacaoAnterior").val(dadosMinhaDemanda[indice].COD_SITUACAO);

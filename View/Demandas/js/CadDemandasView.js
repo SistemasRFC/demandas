@@ -148,7 +148,7 @@ function listaComboSistemas(){
 }
 
 function montaComboSistemas(dados) {
-    CriarSelect('codSistema', dados, -1, false);
+    CriarSelect('codSistema', dados, codSistemaDmd!=undefined?codSistemaDmd:-1, false);
 }
 
 function listaComboSituacao(){
@@ -168,7 +168,7 @@ function listaComboResponsaveis(){
 }
 
 function montaComboResponsaveis(dados) {
-    CriarSelect('codResponsavel', dados, -1, false);
+    CriarSelect('codResponsavel', dados, codResponsavelDmd!=undefined?codResponsavelDmd:-1, false);
 }
 
 // $(document).ready(function() {

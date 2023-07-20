@@ -1,5 +1,7 @@
 var dadosListagem;
 var codSituacaoDmd;
+var codSistemaDmd;
+var codResponsavelDmd;
 $(function() {
     $("#btnNovaDemanda").click(function() {
         listaComboSituacao();
