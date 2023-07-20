@@ -111,6 +111,7 @@ function retornoInsertDemandas(retorno){
     if (retorno[0]){
         $("#codDemanda").val(retorno[2]);
         $("#btnInformacao").attr('disabled', false);
+        $("#btnInformacao").attr('title', 'Incluir informação');
         carregaGridDemandas();
         swal({
             title: "Sucesso!",
@@ -195,12 +196,6 @@ function montaComboResponsaveis(dados){
 }
 
 $(document).ready(function() {
-    $("#btnInformacao").attr('disabled', false);
-    $("#btnInformacao").attr('title', 'Incluir informação');
-    if ($("#codDemanda").val() === '') {
-        $("#btnInformacao").attr('disabled', true);
-        $("#btnInformacao").attr('title', 'A Demanda ainda não foi criada!');
-    }
     listaComboSistemas();
     listaComboSituacao();
     listaComboResponsaveis();

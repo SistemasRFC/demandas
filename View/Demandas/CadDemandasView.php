@@ -10,7 +10,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<input type="hidden" id="codDemanda">
+				<input type="hidden" id="codDemanda" value="0">
                 <div class="container">
                     <div class="row">
                         <div class="form-group col-6">

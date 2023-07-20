@@ -8,10 +8,10 @@ $(function() {
 });
 
 function inserirDescricao(){
-    if($("#tpoDescricao").val() == '') {
+    if($("#tpoDescricao").val() == null || $("#tpoDescricao").val() == '') {
         swal({
             title: "Erro!",
-            text: "Selecione um tipo de informação!",
+            text: "Selecione um tipo de descrição!",
             type: "error",
             confirmButtonText: "Fechar"
         });

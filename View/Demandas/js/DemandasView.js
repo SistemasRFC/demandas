@@ -10,6 +10,8 @@ $(function() {
         $("#comboPrioridade").val('');
         $("#comboTipoDemanda").val('');
         $("#accordionEdit").hide();
+        $("#btnInformacao").attr('disabled', true);
+        $("#btnInformacao").attr('title', 'A Demanda ainda não foi criada!');
         $("#updateDemandaTitle").html("Incluir Demanda");
         $("#updateDemanda").modal("show");
     });
@@ -74,6 +76,8 @@ function montaGridDemandas(dados){
 
 function editarDemanda(indice) {
     carregaCamposDemanda(indice);
+    $("#btnInformacao").attr('disabled', false);
+    $("#btnInformacao").attr('title', 'Incluir informação');
     $("#descricaoEdit").removeClass("show");
     $("#accordionDscEdit").html("");
     $("#updateDemandaTitle").html('Editar Demanda');
@@ -152,15 +156,15 @@ function montaComboTpoDemanda(dados){
 $(document).ready(function() {
     ExecutaDispatch('Situacao', 'ListarSituacao', undefined, montaComboTpoDemanda);
     ExecutaDispatch('Demandas', 'ListarDemandas', 'comboTpoDemanda;0', montaGridDemandas);
-    $("#updateDemanda").on('show', function (e) {
-        if($("#codDemanda").val() == ''){
-            $("#btnHistorico").hide();
-            $("#btnDescricao").hide();
-            $("#btnArquivos").hide();
-        }else{
-            $("#btnHistorico").show();
-            $("#btnDescricao").show();
-            $("#btnArquivos").show();
-        }
-    });
+    // $("#updateDemanda").on('show', function (e) {
+    //     if($("#codDemanda").val() == ''){
+    //         $("#btnHistorico").hide();
+    //         $("#btnInformacao").hide();
+    //         $("#btnArquivos").hide();
+    //     }else{
+    //         $("#btnHistorico").show();
+    //         $("#btnInformacao").show();
+    //         $("#btnArquivos").show();
+    //     }
+    // });
 } );
