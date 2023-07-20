@@ -90,7 +90,7 @@ function editarDemanda(indice) {
 
 function retornoUpdateDemandas(retorno){
     if (retorno[0]){
-        $("#codSituacaoAnterior").val($("#comboSituacao").val());
+        $("#codSituacaoAnterior").val($("#codSituacao").val());
         carregaGridDemandas();
         swal({
             title: "Sucesso!",
