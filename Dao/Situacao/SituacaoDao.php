@@ -12,8 +12,13 @@ class SituacaoDao extends BaseDao
         $this->conect();
     }
 
-    Public Function ListarSituacao(){    
-        return $this->MontarSelect();
+    Public Function ListarSituacao() {
+        $sql = "SELECT COD_SITUACAO AS ID,
+                       DSC_SITUACAO AS DSC,
+                       COD_SITUACAO,
+                       DSC_SITUACAO
+                  FROM EN_SITUACAO";
+        return $this->SelectDB($sql, false);
     }
 
     Public Function UpdateSituacao(){

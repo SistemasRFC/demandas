@@ -36,5 +36,10 @@ class UsuarioController extends BaseController
         $UsuarioModel = new UsuarioModel();
         echo $UsuarioModel->ListarUsuariosAtivos();
     }
+    
+    Public Function ListarUsuariosPorPerfil(){
+        $UsuarioModel = new UsuarioModel();
+        echo $UsuarioModel->ListarUsuariosPorPerfil();
+    }
 }
 $classController = new UsuarioController();

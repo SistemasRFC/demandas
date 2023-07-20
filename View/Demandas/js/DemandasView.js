@@ -1,12 +1,13 @@
 var dadosListagem;
+var codSituacaoDmd;
 $(function() {
-    $("#btnNovaDemanda").click(function(){
+    $("#btnNovaDemanda").click(function() {
+        listaComboSituacao();
         $("#codDemanda").val('');
         $("#dscDemanda").val('');
-        $("#comboSistema").val('');
         $("#codSistemaOrigem").val('');
-        $("#comboResponsaveis").val('');
-        $("#comboSituacao").val('');
+        $("#codSistema").val('');
+        $("#codResponsavel").val('');
         $("#comboPrioridade").val('');
         $("#comboTipoDemanda").val('');
         $("#accordionEdit").hide();
@@ -17,8 +18,9 @@ $(function() {
     });
 });
 
-function carregaGridDemandas(){
-    ExecutaDispatch('Demandas', 'ListarDemandas', 'comboTpoDemanda;'+$("#comboTpoDemanda").val(), montaGridDemandas);
+function carregaGridDemandas() {
+    montaGridDemandas([true, []]);
+    ExecutaDispatch('Demandas', 'ListarDemandas', 'comboTpoDemanda;'+$("#comboTpoDemanda").val()+'|comboSistemas;'+$("#comboSistemas").val()+'|comboResponsaveis;'+$("#comboResponsaveis").val(), montaGridDemandas);
 }
 
 function montaGridDemandas(dados){
@@ -76,6 +78,7 @@ function montaGridDemandas(dados){
 
 function editarDemanda(indice) {
     carregaCamposDemanda(indice);
+    listaComboSituacao();
     $("#btnInformacao").attr('disabled', false);
     $("#btnInformacao").attr('title', 'Incluir informação');
     $("#descricaoEdit").removeClass("show");
@@ -125,46 +128,44 @@ function carregaCamposDemanda(indice){
     $("#codDemanda").val(dadosListagem[indice].COD_DEMANDA);
     $("#dscDemanda").val(dadosListagem[indice].DSC_DEMANDA);
     $("#dtaDemanda").val(dadosListagem[indice].DTA_DEMANDA);
-    $("#comboResponsaveis").val(dadosListagem[indice].COD_RESPONSAVEL);
-    $("#comboSistema").val(dadosListagem[indice].COD_SISTEMA);
+    $("#codSistema").val(dadosListagem[indice].COD_SISTEMA);
+    $("#codResponsavel").val(dadosListagem[indice].COD_RESPONSAVEL);
+    codSituacaoDmd = dadosListagem[indice].COD_SITUACAO;
+    $("#codSituacao").val(dadosListagem[indice].COD_SITUACAO);
     $("#codSistemaOrigem").val(dadosListagem[indice].COD_SISTEMA_ORIGEM);
-    $("#comboSituacao").val(dadosListagem[indice].COD_SITUACAO);
     $("#comboPrioridade").val(dadosListagem[indice].IND_PRIORIDADE);
     $("#comboTipoDemanda").val(dadosListagem[indice].TPO_DEMANDA);
     $("#codSituacaoAnterior").val(dadosListagem[indice].COD_SITUACAO);
 }
 
-function montaComboTpoDemanda(dados){
-    if(dados[0]){
-        dados = dados[1];
-        combo = '<label for="comboTpoDemanda" class="col-sm-2 px-0 col-form-label">Filtro: </label>';
-        combo += '<div class="col-sm-10">';
-        combo += '<select id="comboTpoDemanda" class="form-control dropdown-toggle">';
-        combo += '<option value="0" selected> TODOS </option>';
-        for (i=0;i<dados.length;i++){
-            combo += '<option value="'+dados[i].COD_SITUACAO+'">'+dados[i].DSC_SITUACAO+'</option>';
-        }
-        combo +='</select>';
-        combo +='</div>';
-        $("#divComboTpoDemanda").html(combo);
-        $("#comboTpoDemanda").change(function(){
-            carregaGridDemandas();
-        });
-    }
+function montaFiltroTpoDemanda(dados) {
+    const arr = dados;
+    CriarSelect('comboTpoDemanda', arr, -1, false);
+    $("#comboTpoDemanda").change(function() {
+        carregaGridDemandas();
+    });
+}
+
+function montaFiltroSistemas(dados) {
+    const arr = dados;
+    CriarSelect('comboSistemas', arr, -1, false);
+    $("#comboSistemas").change(function() {
+        carregaGridDemandas();
+    });
+    montaComboSistemas(arr);
+}
+
+function montaFiltroResponsaveis(dados) {
+    CriarSelect('comboResponsaveis', dados, -1, false);
+    $("#comboResponsaveis").change(function() {
+        carregaGridDemandas();
+    });
 }
 
 $(document).ready(function() {
-    ExecutaDispatch('Situacao', 'ListarSituacao', undefined, montaComboTpoDemanda);
-    ExecutaDispatch('Demandas', 'ListarDemandas', 'comboTpoDemanda;0', montaGridDemandas);
-    // $("#updateDemanda").on('show', function (e) {
-    //     if($("#codDemanda").val() == ''){
-    //         $("#btnHistorico").hide();
-    //         $("#btnInformacao").hide();
-    //         $("#btnArquivos").hide();
-    //     }else{
-    //         $("#btnHistorico").show();
-    //         $("#btnInformacao").show();
-    //         $("#btnArquivos").show();
-    //     }
-    // });
+    ExecutaDispatch('Situacao', 'ListarSituacao', undefined, montaFiltroTpoDemanda);
+    ExecutaDispatch('Sistemas', 'ListarSistemasAtivosPorUsuario', undefined, montaFiltroSistemas);
+    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil;2|SemResp;S', montaFiltroResponsaveis);
+    ExecutaDispatch('Demandas', 'ListarDemandas', 'comboTpoDemanda;-1|comboSistemas;-1|comboResponsaveis;-1', montaGridDemandas);
+    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil;2|SemResp;N', montaComboResponsaveis);
 } );

@@ -43,6 +43,11 @@ class UsuarioModel extends BaseModel
         $dao = new UsuarioDao();
         return json_encode($dao->ListarUsuariosAtivos());
     }
+    
+    Public Function ListarUsuariosPorPerfil(){
+        $dao = new UsuarioDao();
+        return json_encode($dao->ListarUsuariosPorPerfil());
+    }
 
     Public Function InsereSistemas($codUsuario){
         $dao = new UsuarioDao();

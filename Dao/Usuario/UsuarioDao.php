@@ -98,6 +98,20 @@ class UsuarioDao extends BaseDao
                  WHERE IND_ATIVO = 'S'";
         return $this->selectDB($sql, false);
     }
+    
+    Public Function ListarUsuariosPorPerfil(){
+        $sql = "SELECT COD_USUARIO AS ID,
+                       NME_USUARIO_COMPLETO AS DSC
+                  FROM SE_USUARIO
+                 WHERE COD_PERFIL = " . $this->Populate('codPerfil', 'I') . "
+                   AND IND_ATIVO = 'S'";
+        if($this->Populate('semResp', 'S') == 'S') {
+            $sql = " UNION
+                    SELECT 0 AS ID,
+                           'Sem Responsável' AS DSC";
+        }
+        return $this->selectDB($sql, false);
+    }
 
     Public Function RemoveSistemasUsuario($codUsuario){
         $sql = "DELETE FROM RE_USUARIO_SISTEMA WHERE COD_USUARIO = $codUsuario";

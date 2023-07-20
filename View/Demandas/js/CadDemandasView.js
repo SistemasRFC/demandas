@@ -102,8 +102,8 @@ function inserirDemanda(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#comboSistema").val()+'|codSistemaOrigem;'+"1"+'|codResponsavel;'+$("#comboResponsaveis").val();
-    parametros += '|codSituacao;'+$("#comboSituacao").val()+'|indPrioridade;'+$("#comboPrioridade").val()+'|tpoDemanda;'+$("#comboTipoDemanda").val();
+    parametros = 'dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#codSistema").val()+'|codSistemaOrigem;'+"1"+'|codResponsavel;'+$("#codResponsavel").val();
+    parametros += '|codSituacao;'+$("#codSituacao").val()+'|indPrioridade;'+$("#comboPrioridade").val()+'|tpoDemanda;'+$("#comboTipoDemanda").val();
     ExecutaDispatch('Demandas', 'InsertDemandas', parametros, retornoInsertDemandas);
 }
 
@@ -120,7 +120,6 @@ function retornoInsertDemandas(retorno){
             showConfirmButton: false,
             timer: 1500
         });
-        // $("#updateDemanda").modal("hide");
     }else{
         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
         swal({
@@ -138,65 +137,28 @@ function updateDemanda(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'codDemanda;'+$("#codDemanda").val()+'|dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#comboSistema").val();
-    parametros += '|codSistemaOrigem;'+"1"+'|codResponsavel;'+$("#comboResponsaveis").val()+'|codSituacao;'+$("#comboSituacao").val();
+    parametros = 'codDemanda;'+$("#codDemanda").val()+'|dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#codSistema").val();
+    parametros += '|codSistemaOrigem;'+"1"+'|codResponsavel;'+$("#codResponsavel").val()+'|codSituacao;'+$("#codSituacao").val();
     parametros += '|codSituacaoAnterior;'+$("#codSituacaoAnterior").val()+'|indPrioridade;'+$("#comboPrioridade").val()+'|tpoDemanda;'+$("#comboTipoDemanda").val();
     ExecutaDispatch('Demandas', 'UpdateDemandas', parametros, retornoUpdateDemandas);
 }
 
-function listaComboSistemas(){
-    ExecutaDispatch('Sistemas', 'ListarSistemasAtivosPorUsuario', undefined, montaComboSistemas);
-}
-
-function montaComboSistemas(dados){
-    if(dados[0]){
-        dados = dados[1];
-         combo = '<select id="comboSistema" class="form-control dropdown-toggle" >';
-         combo += '<option value="" disabled selected>Selecione</option>';
-        for (i=0;i<dados.length;i++){
-            combo += '<option value="'+dados[i].COD_SISTEMA+'">'+dados[i].NME_SISTEMA+'</option>';
-        }
-         combo +='</select>';
-         $("#divComboSistema").html(combo);
-    }
+function montaComboSistemas(dados) {
+    CriarSelect('codSistema', dados, -1, false);
 }
 
 function listaComboSituacao(){
     ExecutaDispatch('Situacao', 'ListarSituacao', undefined, montaComboSituacao);
 }
 
-function montaComboSituacao(dados){
-    if(dados[0]){
-        dados = dados[1];
-         combo = '<select id="comboSituacao" class="form-control dropdown-toggle" >';
-         combo += '<option value="" disabled selected >Selecione</option>';
-        for (i=0;i<dados.length;i++){
-            combo += '<option value="'+dados[i].COD_SITUACAO+'">'+dados[i].DSC_SITUACAO+'</option>';
-        }
-         combo +='</select>';
-         $("#divComboSituacao").html(combo);
+function montaComboSituacao(dados) {
+    if($("#codDemanda").val() == '0' || $("#codDemanda").val() == '') {
+        CriarSelect('codSituacao', dados, 1, true);
+    } else {
+        CriarSelect('codSituacao', dados, codSituacaoDmd, false);
     }
 }
 
-function listaComboResponsaveis(){
-    ExecutaDispatch('Usuario', 'ListarUsuariosAtivos', undefined, montaComboResponsaveis);
+function montaComboResponsaveis(dados) {
+    CriarSelect('codResponsavel', dados, -1, false);
 }
-
-function montaComboResponsaveis(dados){
-    if(dados[0]){
-        dados = dados[1];
-         combo = '<select id="comboResponsaveis" class="form-control dropdown-toggle">';
-         combo += '<option value="" disabled selected>Selecione</option>';
-        for (i=0;i<dados.length;i++){
-            combo += '<option value="'+dados[i].COD_USUARIO+'">'+dados[i].NME_USUARIO_COMPLETO+'</option>';
-        }
-        combo +='</select>';
-        $("#divComboResponsaveis").html(combo);
-    }
-}
-
-$(document).ready(function() {
-    listaComboSistemas();
-    listaComboSituacao();
-    listaComboResponsaveis();
-} );

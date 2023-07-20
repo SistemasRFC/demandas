@@ -31,17 +31,17 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label class="mb-0">Sistema</label>
-                            <div id="divComboSistema"></div>
+                            <div id="tdcodSistema"></div>
                         </div>
                         <div class="form-group col-6">
                             <label class="mb-0">Responsável</label>
-                            <div id="divComboResponsaveis"></div>
+                            <div id="tdcodResponsavel"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
                             <label class="mb-0">Status</label>
-                            <div id="divComboSituacao"></div>
+                            <div id="tdcodSituacao"></div>
                         </div>
                         <div class="form-group col-6">
                             <label for="comboPrioridade" class="mb-0">Prioridade</label>

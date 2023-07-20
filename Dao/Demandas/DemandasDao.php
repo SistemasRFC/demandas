@@ -78,8 +78,18 @@ class DemandaDao extends BaseDao
                  LEFT JOIN EN_CONFIGURA_COR CC
                    ON TIME(VW.HORAS_TOTAL) BETWEEN CC.VLR_TEMPO_INICIAL AND CC.VLR_TEMPO_FINAL
                 WHERE 1=1";
-        if($this->Populate('comboTpoDemanda', 'I') !== '0'){
+        if($this->Populate('comboTpoDemanda', 'I') !== '-1'){
             $sql .=" AND D.COD_SITUACAO = ".$this->Populate('comboTpoDemanda', 'I');
+        }
+        if($this->Populate('comboSistemas', 'I') !== '-1'){
+            $sql .=" AND D.COD_SISTEMA = ".$this->Populate('comboSistemas', 'I');
+        }
+        if($this->Populate('comboResponsaveis', 'I') !== '-1') {
+            if($this->Populate('comboResponsaveis', 'I') == '0') {
+                $sql .=" AND D.COD_RESPONSAVEL IS NULL";
+            } else {
+                $sql .=" AND D.COD_RESPONSAVEL = ".$this->Populate('comboResponsaveis', 'I');
+            }
         }
             $sql .=" GROUP BY COD_DEMANDA
                      ORDER BY D.COD_SITUACAO, DATA_DEMANDA DESC";

@@ -49,8 +49,8 @@ class SistemasDao extends BaseDao
     }
 
     Public Function ListarSistemasAtivosPorUsuario($codUsuario){
-        $sql = "SELECT S.COD_SISTEMA,
-                       S.NME_SISTEMA     
+        $sql = "SELECT S.COD_SISTEMA AS ID,
+                       S.NME_SISTEMA AS DSC     
                   FROM EN_SISTEMAS S
                  INNER JOIN RE_USUARIO_SISTEMA US ON S.COD_SISTEMA = US.COD_SISTEMA
                  WHERE IND_ATIVO = 'S'

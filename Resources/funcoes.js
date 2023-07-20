@@ -65,6 +65,28 @@ function ExecutaDispatch(Controller, Method, Parametros, Callback){
     );     
 }
 
+function CriarSelect(nmeCombo, arrDados, valor, disabled) {
+    if (disabled == undefined) {
+        disabled = false;
+    }
+    $("#td" + nmeCombo).html('');
+    if (disabled == true) {
+        var select = '<select id="' + nmeCombo + '" disabled class="persist form-control">';
+    } else {
+        var select = '<select id="' + nmeCombo + '" class="persist form-control">';
+    }
+    select += '<option value="-1">Selecione...</option>';
+    for (i = 0; i < arrDados[1].length; i++) {
+        if (arrDados[1][i]['ID'] == valor) {
+            select += '<option value="' + arrDados[1][i]['ID'] + '" selected>' + arrDados[1][i]['DSC'] + '</option>';
+        } else {
+            select += '<option value="' + arrDados[1][i]['ID'] + '">' + arrDados[1][i]['DSC'] + '</option>';
+        }
+    }
+    select += '</select>';
+    $("#td" + nmeCombo).html(select);
+}
+
 function criarDataTableBasic(nmeTabela) {
     $("#"+nmeTabela).DataTable({
         "filter": false,
