@@ -12,7 +12,7 @@
 			<div id="content">
 				<?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
 				<input type="hidden" id="codSituacaoAnterior">
-				<input type="hidden" id="codSituacao" value="<?php echo isset($_POST['codSituacao']) ? $_POST['codSituacao'] : ''; ?>">
+				<!-- <input type="hidden" id="codSituacao" value="<?php echo isset($_POST['codSituacao']) ? $_POST['codSituacao'] : ''; ?>"> -->
 				<input type="hidden" id="codSistemaOrigem">
 
 				<div class="container-fluid">
@@ -23,8 +23,6 @@
 					<div class="row">
 						<div class="col-xl-12 col-md-12 mx-0 px-0">
 							<div class="card">
-								<!-- <div class="card-header d-flex align-items-center">
-									</div> -->
 								<div class="card-body">
 									<div class="row d-flex align-items-center">
 										<div class="col-1">
