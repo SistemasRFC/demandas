@@ -1,7 +1,8 @@
 <script src="../../View/Demandas/js/CadDemandasView.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/Demandas/js/CadDescricaoView.js?rdm=<?php echo time(); ?>"></script>
 
 <div class="modal fade" id="updateDemanda" role="dialog" aria-labelledby="modalCadastroDemanda" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="updateDemandaTitle"></h5>
@@ -55,31 +56,64 @@
                         </div>
                     </div>
                 </div>
-                <div id="accordionEdit">
-                    <div class="btn btn-block accordion-header bg-color-primary" id="topDescricaoEdit">
-                        <i class="ml-auto fa-solid fa-angle-right"></i>
-                        <span id="btnDscEdit" class="mb-0 h5" data-toggle="collapse" data-target="#descricaoEdit" aria-expanded="true" aria-controls="collapseOne">
-                            Mais Informações
-                        </span>
-                        <i class="ml-auto fa-solid fa-angle-left"></i>
-                    </div>
+                <div id="accordionEdit" style="width: 100% !important;min-height:fit-content;" class="sidebar">
+                    <!-- <div class="btn btn-block accordion-header bg-color-primary" id="topDescricaoEdit"> -->
+                    <!-- <div class="btn btn-block accordion-header btn-danger" style="background-color: #b22f2f;" id="topDescricaoEdit"> -->
+                        <!-- <i class="ml-auto fa-solid fa-angle-right"></i> -->
+                        <div class="nav-item">
+                            <a href="" class="mb-0 h5 nav-link collapsed p-0" style="width: 100% !important;border-bottom: 1px solid;" id="btnDscEdit" data-toggle="collapse" data-target="#descricaoEdit" aria-expanded="true" aria-controls="collapseOne">
+                               <strong>Mais informações</strong>
+                            </a>
 
-                    <div id="descricaoEdit" class="collapse accordion-body" aria-labelledby="topDescricaoEdit" data-parent="#accordionEdit">
-                        <div class="row">
-                            <div id="accordionDscEdit" class="table"></div>
+                            <div id="descricaoEdit" class="collapse" aria-labelledby="informationOne" data-parent="#accordionEdit">
+                                <div class="collapse-inner">
+                                    <div class="collapse-item" style="background-color: #fff !important;">
+                                        <!-- <div class="row"> -->
+                                            <div id="accordionDscEdit"></div>
+
+                                            <hr>
+
+                                            <input type="hidden" id="codDescricao">
+                                            <div id="formInformacao" class="row">
+                                                <div class="col-8">
+                                                    <label for="txtDescricao">Descrição</label>
+                                                    <textarea class="form-control" id="txtDescricao" rows="3"></textarea>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label for="tpoDescricao">Tipo</label>
+                                                    <select id="tpoDescricao" class="form-control">
+                                                        <option value="" disabled selected hidden>Selecione...</option>
+                                                        <option value="R">Requisito</option>
+                                                        <option value="O">Observação</option>
+                                                        <option value="S">Script</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-12 btn-group">
+                                                    <button type="button" class="btn btn-secondary" id="btnCancelarDescricao">Cancelar</button>
+                                                    <button class="btn btn-primary" id="btnInformacao"><i class="fas fa-plus"></i> Incluir Informação</button>
+                                                    <button type="button" class="btn btn-primary" id="btnSalvarDescricao">Incluir</button>
+                                                </div>
+                                            </div>
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <!-- <i class="fa-solid fa-angle-left"></i> -->
+                    <!-- </div> -->
+
                 </div>
 			</div>
 			<div class="modal-footer btn-group">
 				<button class="btn btn-info" id="btnHistorico">Histórico</button>
 				<!-- <button class="btn btn-warning" id="btnArquivos">Arquivos</button> -->
-				<button class="btn btn-primary" id="btnInformacao">Incluir Informação</button>
 				<button class="btn btn-success" id="btnSalvarDemanda">Salvar</button>
 			</div>
 		</div>
 	</div>
 </div>
-<?php include_once "CadDescricaoView.php"; ?>
+<?php // include_once "CadDescricaoView.php"; ?>
 <?php include_once "HistoricoDemandaView.php"; ?>
 <?php // include_once "CadArquivoView.php"; ?>

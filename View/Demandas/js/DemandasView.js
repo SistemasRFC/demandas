@@ -12,6 +12,9 @@ $(function() {
         $("#codResponsavel").val('');
         $("#comboPrioridade").val('');
         $("#comboTipoDemanda").val('');
+        $("#formInformacao").hide();
+        $("#btnCancelarDescricao").hide();
+        $("#btnSalvarDescricao").hide();
         $("#accordionEdit").hide();
         $("#btnInformacao").attr('disabled', true);
         $("#btnInformacao").attr('title', 'A Demanda ainda não foi criada!');
@@ -85,12 +88,15 @@ function editarDemanda(indice) {
     $("#btnInformacao").attr('title', 'Incluir informação');
     $("#descricaoEdit").removeClass("show");
     $("#accordionDscEdit").html("");
-    $("#updateDemandaTitle").html('Editar Demanda');
+    $("#updateDemandaTitle").html('Demanda '+dadosListagem[indice].COD_DEMANDA);
+    $("#formInformacao").hide();
+    $("#btnCancelarDescricao").hide();
+    $("#btnSalvarDescricao").hide();
     $("#accordionEdit").show();
     $("#updateDemanda").modal('show');
 }
 
-function retornoUpdateDemandas(retorno){
+function retornoUpdateDemandas(retorno) {
     if (retorno[0]){
         $("#codSituacaoAnterior").val($("#codSituacao").val());
         carregaGridDemandas();
@@ -126,7 +132,7 @@ function visualizarDemanda(indice) {
     $("#visuDemanda").modal('show');
 }
 
-function carregaCamposDemanda(indice){
+function carregaCamposDemanda(indice) {
     $("#codDemanda").val(dadosListagem[indice].COD_DEMANDA);
     $("#dscDemanda").val(dadosListagem[indice].DSC_DEMANDA);
     $("#dtaDemanda").val(dadosListagem[indice].DTA_DEMANDA);

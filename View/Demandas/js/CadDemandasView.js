@@ -8,15 +8,25 @@ $(function() {
         }
     });
     
-    $("#btnInformacao").click(function(){
+    $("#btnInformacao").click(function() {
         $("#codDescricao").val(0);
         $("#txtDescricao").val('');
         $("#tpoDescricao").val('');
         $("#txtDescricao").prop('disabled', false);
         $("#tpoDescricao").prop('disabled', false);
-        $("#accordionEdit").show();
         $("#btnSalvarDescricao").prop('hidden', false);
-        $("#descricaoDemanda").modal("show");
+        $("#formInformacao").show();
+        $("#btnCancelarDescricao").show();
+        $("#btnSalvarDescricao").show();
+        $(this).hide();
+        // $("#descricaoDemanda").modal("show");
+    });
+    
+    $("#btnCancelarDescricao").click(() => {
+        $("#formInformacao").hide();
+        $("#btnCancelarDescricao").hide();
+        $("#btnSalvarDescricao").hide();
+        $("#btnInformacao").show();
     });
     
     $("#btnArquivos").click(function(){
@@ -49,7 +59,7 @@ function carregaDscDemandaEdit(){
 
 function montaDescricaoEdit(dados){
     if (dados[0]) {
-        var grid = '<table id="tbAccordionDscEdit" class="table table-striped">';
+        var grid = '<table id="tbAccordionDscEdit" class="table table-striped mb-0" width="100%">';
         grid += '<thead><tr>';
         grid += ' <th><b>Descrição</b></th>';
         grid += ' <th><b>tipo</b></th>';
@@ -89,7 +99,11 @@ function visualizarDescricaoEdit(indice) {
     $("#txtDescricao").prop('disabled', true);
     $("#tpoDescricao").prop('disabled', true);
     $("#btnSalvarDescricao").prop('hidden', true);
-    $("#descricaoDemanda").modal("show");
+    $("#formInformacao").show();
+    $("#btnSalvarDescricao").hide();
+    $("#btnCancelarDescricao").show();
+    $("#btnInformacao").show();
+    // $("#descricaoDemanda").modal("show");
 }
 
 function excluirDescricaoEdit(codDescricao) {
@@ -111,6 +125,7 @@ function inserirDemanda(){
 function retornoInsertDemandas(retorno){
     if (retorno[0]){
         $("#codDemanda").val(retorno[2]);
+        $("#accordionEdit").show();
         $("#btnInformacao").attr('disabled', false);
         $("#btnInformacao").attr('title', 'Incluir informação');
         carregaGridDemandas();

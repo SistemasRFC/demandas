@@ -58,3 +58,11 @@
 .border-right {
     border-right: 1px solid #f4f4f4;
 }
+
+.nav-link#btnDscEdit {
+    color: #780a0a !important;
+}
+
+.nav-link#btnDscEdit:hover {
+    color: #c82828 !important;
+}
