@@ -46,7 +46,15 @@ class UsuarioModel extends BaseModel
     
     Public Function ListarUsuariosPorPerfil(){
         $dao = new UsuarioDao();
-        return json_encode($dao->ListarUsuariosPorPerfil());
+        $result = $dao->ListarUsuariosPorPerfil();
+        if($result[0]) {
+            if($_POST['semResp'] == 'S') {
+                $i = sizeof($result[1]);
+                $result[1][$i]['ID'] = '';
+                $result[1][$i]['DSC'] = 'Sem Responsável';
+            }
+        }
+        return json_encode($result);
     }
 
     Public Function InsereSistemas($codUsuario){

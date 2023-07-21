@@ -167,7 +167,7 @@ function montaFiltroResponsaveis(dados) {
 $(document).ready(function() {
     ExecutaDispatch('Situacao', 'ListarSituacao', undefined, montaFiltroTpoDemanda);
     ExecutaDispatch('Sistemas', 'ListarSistemasAtivosPorUsuario', undefined, montaFiltroSistemas);
-    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil;2|SemResp;S', montaFiltroResponsaveis);
+    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil;2|semResp;S', montaFiltroResponsaveis);
     ExecutaDispatch('Demandas', 'ListarDemandas', 'comboTpoDemanda;-1|comboSistemas;-1|comboResponsaveis;-1', montaGridDemandas);
-    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil;2|SemResp;N', montaComboResponsaveis);
+    listaComboResponsaveis();
 } );

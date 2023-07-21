@@ -97,12 +97,13 @@ function excluirDescricaoEdit(codDescricao) {
 }
 
 function inserirDemanda(){
+    var codResp = $("#codResponsavel").val() == -1?'':$("#codResponsavel").val();
     swal({
         title: "Aguarde, salvando registro!",
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#codSistema").val()+'|codSistemaOrigem;'+"1"+'|codResponsavel;'+$("#codResponsavel").val();
+    parametros = 'dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#codSistema").val()+'|codSistemaOrigem;'+"1"+'|codResponsavel;'+codResp;
     parametros += '|codSituacao;'+$("#codSituacao").val()+'|indPrioridade;'+$("#comboPrioridade").val()+'|tpoDemanda;'+$("#comboTipoDemanda").val();
     ExecutaDispatch('Demandas', 'InsertDemandas', parametros, retornoInsertDemandas);
 }
@@ -132,13 +133,14 @@ function retornoInsertDemandas(retorno){
 }
 
 function updateDemanda(){
+    var codResp = $("#codResponsavel").val() == -1?'':$("#codResponsavel").val();
     swal({
         title: "Aguarde, salvando registro!",
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
     parametros = 'codDemanda;'+$("#codDemanda").val()+'|dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#codSistema").val();
-    parametros += '|codSistemaOrigem;'+"1"+'|codResponsavel;'+$("#codResponsavel").val()+'|codSituacao;'+$("#codSituacao").val();
+    parametros += '|codSistemaOrigem;'+"1"+'|codResponsavel;'+codResp+'|codSituacao;'+$("#codSituacao").val();
     parametros += '|codSituacaoAnterior;'+$("#codSituacaoAnterior").val()+'|indPrioridade;'+$("#comboPrioridade").val()+'|tpoDemanda;'+$("#comboTipoDemanda").val();
     ExecutaDispatch('Demandas', 'UpdateDemandas', parametros, retornoUpdateDemandas);
 }
@@ -164,7 +166,7 @@ function montaComboSituacao(dados) {
 }
 
 function listaComboResponsaveis(){
-    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil;2|SemResp;N', montaComboResponsaveis);
+    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil;2|semResp;N', montaComboResponsaveis);
 }
 
 function montaComboResponsaveis(dados) {

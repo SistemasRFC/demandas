@@ -69,9 +69,9 @@ class DemandaDao extends BaseDao
                    on elsd.COD_DEMANDA = d.COD_DEMANDA 
                   and elsd.COD_situacao = 2
                   and elsd.DTA_OPERACAO = (select min(DTA_OPERACAO) 
-                                              from en_log_situacao_demanda elsd2 
-                                             where elsd2.COD_DEMANDA = elsd.COD_DEMANDA 
-                                               and elsd2.COD_situacao = 2)
+                                             from en_log_situacao_demanda elsd2 
+                                            where elsd2.COD_DEMANDA = elsd.COD_DEMANDA 
+                                              and elsd2.COD_situacao = 2)
                  left join VW_CONTABILIZA_HORAS VW 
                    on VW.COD_DEMANDA = d.COD_DEMANDA 
                   and VW.COD_situacao = 2                                                 
@@ -85,8 +85,8 @@ class DemandaDao extends BaseDao
             $sql .=" AND D.COD_SISTEMA = ".$this->Populate('comboSistemas', 'I');
         }
         if($this->Populate('comboResponsaveis', 'I') !== '-1') {
-            if($this->Populate('comboResponsaveis', 'I') == '0') {
-                $sql .=" AND D.COD_RESPONSAVEL IS NULL";
+            if($this->Populate('comboResponsaveis', 'I') == '') {
+                $sql .=" AND D.COD_RESPONSAVEL IS NULL ";
             } else {
                 $sql .=" AND D.COD_RESPONSAVEL = ".$this->Populate('comboResponsaveis', 'I');
             }
