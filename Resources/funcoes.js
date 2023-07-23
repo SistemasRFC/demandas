@@ -87,12 +87,14 @@ function CriarSelect(nmeCombo, arrDados, valor, disabled) {
     $("#td" + nmeCombo).html(select);
 }
 
-function criarDataTableBasic(nmeTabela) {
+function criarDataTableBasic(nmeTabela, altura=50) {
     $("#"+nmeTabela).DataTable({
         "filter": false,
         "ordering": false,
         "info": false,
         "paging": false,
+        "scrollCollapse": true,
+        "scrollY": altura+'vh',
         "language": {
             "emptyTable": "Nenhum registro encontrado",
             "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

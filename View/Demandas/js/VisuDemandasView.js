@@ -1,12 +1,13 @@
 var dadosDsc;
 $(function() {
-    $("#btnDescricao").click(function(){
-        $("#txtDescricao").prop('disabled', false);
-        $("#tpoDescricao").prop('disabled', false);
-        $("#descricaoDemanda").modal("show");
+    $("#btnCancelarDescricaoVisu").click(function() {
+        $("#formInformacaoVisu").hide();
+        $(this).hide();
     });
     
     $("#btnDsc").click(function() {
+        $("#formInformacaoVisu").hide();
+        $("#btnCancelarDescricaoVisu").hide();
         carregaDscDemanda();
     });
 });
@@ -43,17 +44,17 @@ function montaDescricao(resp){
         grid += '</tbody>';
         grid += '</table>';
         $("#accordionDsc").html(grid);
-        criarDataTableBasic("tbAccordionDsc");
+        criarDataTableBasic("tbAccordionDsc", 35);
     } 
 }
 
 function visualizarDescricao(indice) {
-    $("#codDescricao").val(dadosDsc[indice].COD_DESCRICAO);
-    $("#txtDescricao").val(dadosDsc[indice].TXT_DESCRICAO_TOTAL);
-    $("#tpoDescricao").val(dadosDsc[indice].TPO_DESCRICAO.substring(0,1));
-    $("#txtDescricao").prop('disabled', true);
-    $("#tpoDescricao").prop('disabled', true);
-    $("#btnSalvarDescricao").prop('hidden', true);
-    $("#descricaoDemanda").modal("show");
+    $("#codDescricaoV").val(dadosDsc[indice].COD_DESCRICAO);
+    $("#txtDescricaoV").val(dadosDsc[indice].TXT_DESCRICAO_TOTAL);
+    $("#tpoDescricaoV").val(dadosDsc[indice].TPO_DESCRICAO.substring(0,1));
+    $("#txtDescricaoV").prop('disabled', true);
+    $("#tpoDescricaoV").prop('disabled', true);
+    $("#formInformacaoVisu").show();
+    $("#btnCancelarDescricaoVisu").show();
 
 }

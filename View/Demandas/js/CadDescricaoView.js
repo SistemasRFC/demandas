@@ -39,7 +39,6 @@ function retornoInsertDescricao(retorno){
             timer: 1500
         });
         carregaDscDemandaEdit();
-        $("#descricaoDemanda").modal("hide");
     }else{
         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
         swal({

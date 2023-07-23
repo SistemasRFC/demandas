@@ -14,12 +14,10 @@ $(function() {
         $("#tpoDescricao").val('');
         $("#txtDescricao").prop('disabled', false);
         $("#tpoDescricao").prop('disabled', false);
-        $("#btnSalvarDescricao").prop('hidden', false);
         $("#formInformacao").show();
         $("#btnCancelarDescricao").show();
         $("#btnSalvarDescricao").show();
         $(this).hide();
-        // $("#descricaoDemanda").modal("show");
     });
     
     $("#btnCancelarDescricao").click(() => {
@@ -88,22 +86,21 @@ function montaDescricaoEdit(dados){
         grid += '</tbody>';
         grid += '</table>';
         $("#accordionDscEdit").html(grid);
-        criarDataTableBasic("tbAccordionDscEdit");
+        criarDataTableBasic("tbAccordionDscEdit", 25);
     } 
 }
 
 function visualizarDescricaoEdit(indice) {
+    console.log('visualizarDescricaoEdit', dadosDsc[indice]);
     $("#codDescricao").val(dadosDsc[indice].COD_DESCRICAO);
     $("#txtDescricao").val(dadosDsc[indice].TXT_DESCRICAO_TOTAL);
     $("#tpoDescricao").val(dadosDsc[indice].TPO_DESCRICAO.substring(0,1));
     $("#txtDescricao").prop('disabled', true);
     $("#tpoDescricao").prop('disabled', true);
-    $("#btnSalvarDescricao").prop('hidden', true);
     $("#formInformacao").show();
     $("#btnSalvarDescricao").hide();
     $("#btnCancelarDescricao").show();
     $("#btnInformacao").show();
-    // $("#descricaoDemanda").modal("show");
 }
 
 function excluirDescricaoEdit(codDescricao) {
@@ -187,9 +184,3 @@ function listaComboResponsaveis(){
 function montaComboResponsaveis(dados) {
     CriarSelect('codResponsavel', dados, codResponsavelDmd!=undefined?codResponsavelDmd:-1, false);
 }
-
-// $(document).ready(function() {
-//     listaComboSistemas();
-//     listaComboSituacao();
-//     listaComboResponsaveis();
-// });

@@ -95,7 +95,11 @@ function editarDemanda(indice) {
     listaComboResponsaveis();
     $("#descricaoEdit").removeClass("show");
     $("#accordionDscEdit").html("");
-    $("#updateDemandaTitle").html('Editar Demanda');
+    $("#updateDemandaTitle").html('Demanda '+dadosMinhaDemanda[indice].COD_DEMANDA);
+    $("#formInformacao").hide();
+    $("#btnCancelarDescricao").hide();
+    $("#btnSalvarDescricao").hide();
+    $("#accordionEdit").show();
     $("#updateDemanda").modal('show');
 }
 
@@ -128,10 +132,11 @@ function visualizarDemanda(i) {
     $(".responsavel").html(""+dadosDemandaPendente[i].NME_USUARIO_COMPLETO);
     $(".dscSistema").html(""+dadosDemandaPendente[i].NME_SISTEMA);
     $(".dscSituacao").html(""+dadosDemandaPendente[i].DSC_SITUACAO);
-    $("#status").html(""+dadosDemandaPendente[i].DSC_SITUACAO);
+    $(".status").html(""+dadosDemandaPendente[i].DSC_SITUACAO);
     $(".dscPrioridade").html(""+dadosDemandaPendente[i].DSC_PRIORIDADE);
     $(".tipoDemanda").html(""+dadosDemandaPendente[i].DSC_TIPO);
     $("#descricao").removeClass("show");
+    $("#visuDemandaTitle").html('Visão Demanda '+dadosDemandaPendente[i].COD_DEMANDA);
     $("#visuDemanda").modal('show');
 }
 

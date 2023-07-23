@@ -57,53 +57,45 @@
                     </div>
                 </div>
                 <div id="accordionEdit" style="width: 100% !important;min-height:fit-content;" class="sidebar">
-                    <!-- <div class="btn btn-block accordion-header bg-color-primary" id="topDescricaoEdit"> -->
-                    <!-- <div class="btn btn-block accordion-header btn-danger" style="background-color: #b22f2f;" id="topDescricaoEdit"> -->
-                        <!-- <i class="ml-auto fa-solid fa-angle-right"></i> -->
-                        <div class="nav-item">
-                            <a href="" class="mb-0 h5 nav-link collapsed p-0" style="width: 100% !important;border-bottom: 1px solid;" id="btnDscEdit" data-toggle="collapse" data-target="#descricaoEdit" aria-expanded="true" aria-controls="collapseOne">
-                               <strong>Mais informações</strong>
-                            </a>
+                    <div class="nav-item">
+                        <a href="" class="mb-0 h5 nav-link collapsed p-0" style="width: 100% !important;border-bottom: 1px solid;" id="btnDscEdit" data-toggle="collapse" data-target="#descricaoEdit" aria-expanded="true" aria-controls="collapseOne">
+                            <strong>Mais informações</strong>
+                        </a>
 
-                            <div id="descricaoEdit" class="collapse" aria-labelledby="informationOne" data-parent="#accordionEdit">
-                                <div class="collapse-inner">
-                                    <div class="collapse-item" style="background-color: #fff !important;">
-                                        <!-- <div class="row"> -->
-                                            <div id="accordionDscEdit"></div>
+                        <div id="descricaoEdit" class="collapse m-0" style="border: 1px solid #780a0a;" aria-labelledby="informationOne" data-parent="#accordionEdit">
+                            <div class="collapse-inner">
+                                <div class="collapse-item" style="background-color: #fff !important;">
+                                    <div id="accordionDscEdit"></div>
 
-                                            <hr>
+                                    <hr>
 
-                                            <input type="hidden" id="codDescricao">
-                                            <div id="formInformacao" class="row">
-                                                <div class="col-8">
-                                                    <label for="txtDescricao">Descrição</label>
-                                                    <textarea class="form-control" id="txtDescricao" rows="3"></textarea>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label for="tpoDescricao">Tipo</label>
-                                                    <select id="tpoDescricao" class="form-control">
-                                                        <option value="" disabled selected hidden>Selecione...</option>
-                                                        <option value="R">Requisito</option>
-                                                        <option value="O">Observação</option>
-                                                        <option value="S">Script</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-1">
-                                                <div class="col-12 btn-group">
-                                                    <button type="button" class="btn btn-secondary" id="btnCancelarDescricao">Cancelar</button>
-                                                    <button class="btn btn-primary" id="btnInformacao"><i class="fas fa-plus"></i> Incluir Informação</button>
-                                                    <button type="button" class="btn btn-primary" id="btnSalvarDescricao">Incluir</button>
-                                                </div>
-                                            </div>
-                                        <!-- </div> -->
+                                    <input type="hidden" id="codDescricao">
+                                    <div id="formInformacao" class="row">
+                                        <div class="col-8">
+                                            <label for="txtDescricao" class="mb-0">Descrição</label>
+                                            <textarea class="form-control" id="txtDescricao" rows="3"></textarea>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="tpoDescricao" class="mb-0">Tipo</label>
+                                            <select id="tpoDescricao" class="form-control">
+                                                <option value="" disabled selected hidden>Selecione...</option>
+                                                <option value="R">Requisito</option>
+                                                <option value="O">Observação</option>
+                                                <option value="S">Script</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-12 btn-group">
+                                            <button type="button" class="btn btn-secondary" id="btnCancelarDescricao">Cancelar</button>
+                                            <button class="btn btn-warning" id="btnInformacao"><i class="fas fa-plus"></i> Incluir Informação</button>
+                                            <button type="button" class="btn btn-primary" id="btnSalvarDescricao">Incluir</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <i class="fa-solid fa-angle-left"></i> -->
-                    <!-- </div> -->
-
+                    </div>
                 </div>
 			</div>
 			<div class="modal-footer btn-group">
@@ -114,6 +106,5 @@
 		</div>
 	</div>
 </div>
-<?php // include_once "CadDescricaoView.php"; ?>
 <?php include_once "HistoricoDemandaView.php"; ?>
 <?php // include_once "CadArquivoView.php"; ?>

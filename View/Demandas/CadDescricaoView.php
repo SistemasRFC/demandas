@@ -1,4 +1,4 @@
-<script src="../../View/Demandas/js/CadDescricaoView.js?rdm=<?php echo time(); ?>"></script>
+<!-- <script src="../../View/Demandas/js/CadDescricaoView.js?rdm=<?php // echo time(); ?>"></script>
 
 <div class="modal fade" id="descricaoDemanda" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1051 !important;">
 	<div class="modal-dialog modal-lg" role="document" style="box-shadow: 0 4px 8px 0 rgba(0 0 0 / 30%);">
@@ -30,9 +30,9 @@
                 </div>
 			</div>
 			<div class="modal-footer btn-group">
-				<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-success" id="btnSalvarDescricao">Salvar</button> -->
+				!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-success" id="btnSalvarDescricao">Salvar</button> --
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
