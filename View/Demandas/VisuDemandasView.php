@@ -1,5 +1,4 @@
 <script src="../../View/Demandas/js/VisuDemandasView.js?rdm=<?php echo time(); ?>"></script>
-<script src="../../View/Demandas/js/CadDescricaoView.js?rdm=<?php echo time(); ?>"></script>
 
 <div class="modal fade" id="visuDemanda" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
@@ -69,8 +68,6 @@
                                     <div class="row mt-2">
                                         <div class="col-12 btn-group">
                                             <button type="button" class="btn btn-secondary" id="btnCancelarDescricaoVisu">Cancelar</button>
-                                            <!-- <button class="btn btn-warning" id="btnDescricao"><i class="fas fa-plus"></i> Incluir Informação</button>
-                                            <button type="button" class="btn btn-primary" id="btnSalvarDescricao">Incluir</button> -->
                                         </div>
                                     </div>
                                 </div>

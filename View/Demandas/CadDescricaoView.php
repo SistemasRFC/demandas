@@ -30,8 +30,7 @@
                 </div>
 			</div>
 			<div class="modal-footer btn-group">
-				!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-success" id="btnSalvarDescricao">Salvar</button> --
+				
 			</div>
 		</div>
 	</div>
