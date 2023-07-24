@@ -15,7 +15,9 @@ $(function() {
         $("#formInformacao").hide();
         $("#btnCancelarDescricao").hide();
         $("#btnSalvarDescricao").hide();
-        $("#accordionEdit").hide();
+        $("#btnInformacao").show();
+        $("#accordionEdit").attr('disabled', true);
+        $("#descricaoEdit").hide();
         $("#btnInformacao").attr('disabled', true);
         $("#btnInformacao").attr('title', 'A Demanda ainda não foi criada!');
         $("#updateDemandaTitle").html("Incluir Demanda");
