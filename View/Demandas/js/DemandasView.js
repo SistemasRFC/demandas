@@ -38,10 +38,10 @@ function montaGridDemandas(dados){
         grid += ' <th width="20%"><b>Demanda</b></th>';
         grid += ' <th width="10%"><b>Sistema</b></th>';
         grid += ' <th width="13%"><b>Reponsável</b></th>';
-        grid += ' <th width="10%"><b>Tipo</b></th>';
+        // grid += ' <th width="10%"><b>Tipo</b></th>';
         grid += ' <th width="10%"><b>Prioridade</b></th>';
         grid += ' <th width="10%"><b>Status</b></th>';
-        grid += ' <th width="5%"><b>Ações</b></th>';
+        grid += ' <th width="10%"><b>Ações</b></th>';
         grid += '</tr></thead><tbody>';
         if(dados[1] !== null){
             dadosListagem = dados[1];
@@ -54,20 +54,20 @@ function montaGridDemandas(dados){
                 grid += ' <td>'+dados[i].DSC_DEMANDA+'</td>';
                 grid += ' <td>'+dados[i].NME_SISTEMA+'</td>';
                 grid += ' <td>'+dados[i].NME_USUARIO_COMPLETO+'</td>';
-                grid += ' <td align="center">'+dados[i].DSC_TIPO+'</td>';
+                // grid += ' <td align="center">'+dados[i].DSC_TIPO+'</td>';
                 grid += ' <td align="center">'+dados[i].DSC_PRIORIDADE+'</td>';
                 grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
-                grid += ' <td>';
+                grid += ' <td class="btn-group">';
                 if(dados[i].COD_SITUACAO != 6) {
-                    grid += '   <button class="btn btn-link" title="Editar" onClick="javascript:editarDemanda('+i+');">';
+                    grid += '   <button class="btn btn-outline-primary p-1" title="Editar" onClick="javascript:editarDemanda('+i+');">';
                     grid += '       <i class="fa-solid fa-pencil"></i>';
                     grid += '   </button>';
                 }else {
-                    grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:visualizarDemanda('+i+');">';
+                    grid += '   <button class="btn btn-outline-primary p-1" title="Visualizar" onClick="javascript:visualizarDemanda('+i+');">';
                     grid += '       <i class="fa-regular fa-eye"></i>';
                     grid += '   </button>';
                 }
-                grid += '   <button class="btn btn-link" title="Histórico" onClick="javascript:carregaGridHistorico('+dados[i].COD_DEMANDA+');" data-toggle="modal" data-target="#historicoDemanda">';
+                grid += '   <button class="btn btn-outline-info p-1" title="Histórico" onClick="javascript:carregaGridHistorico('+dados[i].COD_DEMANDA+');" data-toggle="modal" data-target="#historicoDemanda">';
                 grid += '       <i class="fa-solid fa-clock-rotate-left"></i>';
                 grid += '   </button>';
                 grid += ' </td>';
@@ -77,7 +77,7 @@ function montaGridDemandas(dados){
         grid += '</tbody>';
         grid += '</table>';
         $("#tabelaDemandas").html(grid);
-        criarDataTable("tbDemandas", 8);
+        criarDataTable("tbDemandas", 7);
     } 
 }
 

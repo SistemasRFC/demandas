@@ -29,15 +29,15 @@
 											<h5 class="text-gray-900">Filtros:</h5>
 										</div>
 										<div class="col-2">
-											<label class="mb-0" for="comboTpoDemanda">Situação: </label>
+											<label class="mb-0">Situação: </label>
 											<div id="tdcomboTpoDemanda"></div>
 										</div>
 										<div class="col-2">
-											<label class="mb-0" for="comboSistemas">Sistema: </label>
+											<label class="mb-0">Sistema: </label>
 											<div id="tdcomboSistemas"></div>
 										</div>
 										<div class="col-2">
-											<label class="mb-0" for="comboResponsaveis">Responsável: </label>
+											<label class="mb-0">Responsável: </label>
 											<div id="tdcomboResponsaveis"></div>
 										</div>
 									</div>

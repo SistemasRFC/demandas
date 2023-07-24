@@ -32,19 +32,19 @@ $(function() {
         $("#ArquivosDemanda").modal("show");
     });
     
-    $("#btnHistorico").click(function(){
-        if ($("#codDemanda").val()!= '' ){
-            carregaGridHistorico($("#codDemanda").val());
-        }else{            
-            $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-        swal({
-            title: "Erro!",
-            text: "Selecione uma Demanda!",
-            type: "info",
-            confirmButtonText: "Fechar"
-        });
-        }
-    });
+    // $("#btnHistorico").click(function(){
+    //     if ($("#codDemanda").val()!= '' ) {
+    //         carregaGridHistorico($("#codDemanda").val());
+    //     } else {            
+    //         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
+    //         swal({
+    //             title: "Erro!",
+    //             text: "Selecione uma Demanda!",
+    //             type: "info",
+    //             confirmButtonText: "Fechar"
+    //         });
+    //     }
+    // });
 
     $("#btnDscEdit").click(function() {
         carregaDscDemandaEdit();
@@ -62,7 +62,7 @@ function montaDescricaoEdit(dados){
         grid += ' <th><b>Descrição</b></th>';
         grid += ' <th><b>tipo</b></th>';
         grid += ' <th><b>Responsável</b></th>';
-        grid += ' <th><b>Ações</b></th>';
+        grid += ' <th width="12%"><b>Ações</b></th>';
         grid += '</tr></thead><tbody>';
         if (dados[1] !== null) {
             dados = dados[1];
@@ -72,11 +72,11 @@ function montaDescricaoEdit(dados){
                 grid += ' <td>' + dados[i].TXT_DESCRICAO + '</td>';
                 grid += ' <td>' + dados[i].TPO_DESCRICAO + '</td>';
                 grid += ' <td>' + dados[i].NME_USUARIO + '</td>';
-                grid += ' <td>';
-                grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:visualizarDescricaoEdit(\''+i+'\');">';
+                grid += ' <td class="btn-group">';
+                grid += '   <button class="btn btn-outline-primary p-1" title="Visualizar" onClick="javascript:visualizarDescricaoEdit(\''+i+'\');">';
                 grid += '       <i class="fa-regular fa-eye"></i>';
                 grid += '   </button>';
-                grid += '   <button class="btn btn-link" title="Excluir" onClick="javascript:excluirDescricaoEdit('+dados[i].COD_DESCRICAO+');">';
+                grid += '   <button class="btn btn-outline-danger" style="padding-inline: 7px;" title="Excluir" onClick="javascript:excluirDescricaoEdit('+dados[i].COD_DESCRICAO+');">';
                 grid += '       <i class="fa-solid fa-trash"></i>';
                 grid += '   </button>';
                 grid += ' </td>';
@@ -86,7 +86,7 @@ function montaDescricaoEdit(dados){
         grid += '</tbody>';
         grid += '</table>';
         $("#accordionDscEdit").html(grid);
-        criarDataTableBasic("tbAccordionDscEdit", 25);
+        criarDataTableBasic("tbAccordionDscEdit", true, 25);
     } 
 }
 

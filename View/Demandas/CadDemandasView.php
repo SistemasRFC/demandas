@@ -64,7 +64,7 @@
 
                         <div id="descricaoEdit" class="collapse m-0" style="border: 1px solid #780a0a;" aria-labelledby="informationOne" data-parent="#accordionEdit">
                             <div class="collapse-inner">
-                                <div class="collapse-item" style="background-color: #fff !important;">
+                                <div class="collapse-item m-0" style="background-color: #fff !important;">
                                     <div id="accordionDscEdit"></div>
 
                                     <hr>
@@ -98,10 +98,12 @@
                     </div>
                 </div>
 			</div>
-			<div class="modal-footer btn-group">
-				<button class="btn btn-info" id="btnHistorico">Histórico</button>
-				<!-- <button class="btn btn-warning" id="btnArquivos">Arquivos</button> -->
-				<button class="btn btn-success" id="btnSalvarDemanda">Salvar</button>
+			<div class="modal-footer justify-content-center">
+                <div class="col-5">
+                    <!-- <button class="btn btn-info" id="btnHistorico" data-toggle="modal" data-target="#historicoDemanda">Histórico</button> -->
+                    <!-- <button class="btn btn-warning" id="btnArquivos">Arquivos</button> -->
+                    <button class="btn btn-success btn-block" id="btnSalvarDemanda">Salvar</button>
+                </div>
 			</div>
 		</div>
 	</div>

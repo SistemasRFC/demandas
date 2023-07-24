@@ -33,7 +33,7 @@ function montaGridDemandasUsuario(dados){
                 grid += ' <td>'+dados[i].NME_USUARIO_COMPLETO+'</td>';
                 grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
                 grid += ' <td>';
-                grid += '   <button class="btn btn-link" title="Editar" onClick="javascript:editarDemanda('+i+');">';
+                grid += '   <button class="btn btn-outline-primary p-1" title="Editar" onClick="javascript:editarDemanda('+i+');">';
                 grid += '       <i class="fa-solid fa-pencil"></i>';
                 grid += '   </button>';
                 grid += ' </td>';
@@ -70,11 +70,11 @@ function montaGridDemandasAguardando(dados){
                 grid += ' <td>'+dados[i].NME_SISTEMA+'</td>';
                 grid += ' <td>'+dados[i].DSC_TIPO+'</td>';
                 grid += ' <td>'+dados[i].DSC_PRIORIDADE+'</td>';
-                grid += ' <td>';
-                grid += '   <button class="btn btn-link" title="Visualizar" onClick="javascript:visualizarDemanda('+i+', `P`);">';
+                grid += ' <td class="btn-group">';
+                grid += '   <button class="btn btn-outline-primary p-1" title="Visualizar" onClick="javascript:visualizarDemanda('+i+', `P`);">';
                 grid += '       <i class="fa-regular fa-eye"></i>';
                 grid += '   </button>';
-                grid += '   <button class="btn btn-link" title="Atribuir para mim" onClick="javascript:mudarResponsavel('+dados[i].COD_DEMANDA+');">';
+                grid += '   <button class="btn btn-outline-success" style="padding-inline: 7px;" title="Atribuir para mim" onClick="javascript:mudarResponsavel('+dados[i].COD_DEMANDA+');">';
                 grid += '       <i class="fa-regular fa-user"></i>';
                 grid += '   </button>';
                 grid += ' </td>';

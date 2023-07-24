@@ -44,7 +44,7 @@ function montaDescricao(resp){
         grid += '</tbody>';
         grid += '</table>';
         $("#accordionDsc").html(grid);
-        criarDataTableBasic("tbAccordionDsc", 35);
+        criarDataTableBasic("tbAccordionDsc", true, 35);
     } 
 }
 

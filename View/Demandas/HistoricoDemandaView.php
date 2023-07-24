@@ -1,7 +1,7 @@
 <script src="../../View/Demandas/js/HistoricoDemandaView.js?rdm=<?php echo time(); ?>"></script>
 
-<div class="modal fade" id="historicoDemanda" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document" style="box-shadow: 0 4px 8px 0 rgba(0 0 0 / 30%);">
+<div class="modal fade mt-5" id="historicoDemanda" role="dialog" aria-hidden="true" z-index="10">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Histórico da Demanda</h5>
@@ -10,11 +10,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="container">
-					<div class="row">
-						<div id="tabelaHistorico" class="table"></div>
-					</div>
-				</div>
+				<div id="tabelaHistorico"></div>
 			</div>
 		</div>
 	</div>

@@ -49,9 +49,8 @@ class UsuarioModel extends BaseModel
         $result = $dao->ListarUsuariosPorPerfil();
         if($result[0]) {
             if($_POST['semResp'] == 'S') {
-                $i = sizeof($result[1]);
-                $result[1][$i]['ID'] = '';
-                $result[1][$i]['DSC'] = 'Sem Responsável';
+                $semPai = (object) array('ID' => '', 'DSC' => 'Sem Responsável');
+                array_unshift($result[1], $semPai);
             }
         }
         return json_encode($result);

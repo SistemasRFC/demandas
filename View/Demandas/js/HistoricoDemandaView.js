@@ -4,7 +4,7 @@ function carregaGridHistorico(codDemanda){
 
 function montaGridHistorico(dados){
     if(dados[0]){ 
-        var grid = '<table id="tbHistorico" class="table table-striped">';
+        var grid = '<table id="tbHistorico" class="table table-striped mb-0" style="width: 100% !important">';
         grid += '<thead><tr>';
         grid += ' <th><b>Data</b></th>';
         grid += ' <th><b>Tipo de Operação</b></th>';
@@ -25,7 +25,6 @@ function montaGridHistorico(dados){
         grid += '</tbody>';
         grid += '</table>';
         $("#tabelaHistorico").html(grid);
-        $("#historicoDemanda").modal("show");
         criarDataTableBasic("tbHistorico");
     } 
 }
