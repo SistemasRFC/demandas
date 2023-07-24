@@ -86,8 +86,10 @@ function montaGridDemandas(dados){
 function editarDemanda(indice) {
     carregaCamposDemanda(indice);
     listaComboSituacao();
+    $("#btnInformacao").show();
     $("#btnInformacao").attr('disabled', false);
     $("#btnInformacao").attr('title', 'Incluir informação');
+    $("#descricaoEdit").hide();
     $("#descricaoEdit").removeClass("show");
     $("#accordionDscEdit").html("");
     $("#updateDemandaTitle").html('Demanda '+dadosListagem[indice].COD_DEMANDA);
@@ -95,6 +97,7 @@ function editarDemanda(indice) {
     $("#btnCancelarDescricao").hide();
     $("#btnSalvarDescricao").hide();
     $("#accordionEdit").show();
+    $("#accordionEdit").attr('disabled', false);
     $("#updateDemanda").modal('show');
 }
 
