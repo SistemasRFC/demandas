@@ -16,8 +16,8 @@ $(function() {
         $("#btnCancelarDescricao").hide();
         $("#btnSalvarDescricao").hide();
         $("#btnInformacao").show();
-        $("#accordionEdit").attr('disabled', true);
-        $("#descricaoEdit").hide();
+        $("#btnDscEdit").hide();
+        $("#descricaoEdit").removeClass("show");
         $("#btnInformacao").attr('disabled', true);
         $("#btnInformacao").attr('title', 'A Demanda ainda não foi criada!');
         $("#updateDemandaTitle").html("Incluir Demanda");
@@ -89,7 +89,6 @@ function editarDemanda(indice) {
     $("#btnInformacao").show();
     $("#btnInformacao").attr('disabled', false);
     $("#btnInformacao").attr('title', 'Incluir informação');
-    $("#descricaoEdit").hide();
     $("#descricaoEdit").removeClass("show");
     $("#accordionDscEdit").html("");
     $("#updateDemandaTitle").html('Demanda '+dadosListagem[indice].COD_DEMANDA);
@@ -97,7 +96,7 @@ function editarDemanda(indice) {
     $("#btnCancelarDescricao").hide();
     $("#btnSalvarDescricao").hide();
     $("#accordionEdit").show();
-    $("#accordionEdit").attr('disabled', false);
+    $("#btnDscEdit").show();
     $("#updateDemanda").modal('show');
 }
 

@@ -122,8 +122,8 @@ function inserirDemanda(){
 function retornoInsertDemandas(retorno){
     if (retorno[0]){
         $("#codDemanda").val(retorno[2]);
-        $("#descricaoEdit").hide();
-        $("#accordionEdit").attr('disabled', false);
+        $("#descricaoEdit").removeClass("show");
+        $("#btnDscEdit").show();
         $("#btnInformacao").attr('disabled', false);
         $("#btnInformacao").attr('title', 'Incluir informação');
         carregaGridDemandas();
