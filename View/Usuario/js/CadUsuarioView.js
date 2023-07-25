@@ -23,22 +23,22 @@ function inserirUsuario(){
     }
     parametros = 'nmeUsuario;'+$("#txtLogin").val()+'|nmeUsuarioCompleto;'+$("#nmeUsuario").val()+'|nroTelCelular;'+$("#nroCelular").val();
     parametros += '|txtEmail;'+$("#txtEmail").val()+'|codPerfil;'+$("#comboPerfil").val()+'|indAtivo;'+indAtivo;
+    parametros += '|codSistemas;'+$('#comboSistema').val();
     ExecutaDispatch('Usuario', 'InsertUsuario', parametros, retornoInsertUsuario);
 }
 
 function retornoInsertUsuario(retorno){
-    if (retorno[0]){
-        $("#codUsuario").val('');
-        carregaGridUsuario();
+    if (retorno[0]) {
+        $("#cadUsuario").modal("hide");
         swal({
             title: "Sucesso!",
             text: "Registro salvo com sucesso!\n\r A Senha para Acessar é: 123459.",
             type: "success",
             confirmButtonText: "Fechar"
         });        
-        $("#cadUsuario").modal("hide");
-    }else{
-        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
+        carregaGridUsuario();
+    } else {
+        // $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
         swal({
             title: "Erro!",
             text: retorno[1],
