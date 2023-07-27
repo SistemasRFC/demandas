@@ -9,7 +9,8 @@ class DemandaModel extends BaseModel
                                 4=>'CONCLUÍDA',
                                 5=>'ENVIADA PARA HOMOLOGAÇÃO',
                                 6=>'FINALIZADA',
-                                7=>'CANCELADA');
+                                7=>'CANCELADA',
+                                8=>'PENDÊCIA TÉCNICA');
 
     public function __construct(){
         If (!isset($_SESSION)){
