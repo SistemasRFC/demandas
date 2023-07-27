@@ -76,9 +76,11 @@ function montaDescricaoEdit(dados){
                 grid += '   <button class="btn btn-outline-primary p-1" title="Visualizar" onClick="javascript:visualizarDescricaoEdit(\''+i+'\');">';
                 grid += '       <i class="fa-regular fa-eye"></i>';
                 grid += '   </button>';
-                grid += '   <button class="btn btn-outline-danger" style="padding-inline: 7px;" title="Excluir" onClick="javascript:excluirDescricaoEdit('+dados[i].COD_DESCRICAO+');">';
-                grid += '       <i class="fa-solid fa-trash"></i>';
-                grid += '   </button>';
+                if(dados[i].COD_USUARIO == $("#codUsuarioSessao").val()) {
+                    grid += '   <button class="btn btn-outline-danger" style="padding-inline: 7px;" title="Excluir" onClick="javascript:excluirDescricaoEdit('+dados[i].COD_DESCRICAO+');">';
+                    grid += '       <i class="fa-solid fa-trash"></i>';
+                    grid += '   </button>';
+                }
                 grid += ' </td>';
                 grid += '</tr>';
             }
