@@ -1,5 +1,5 @@
 <?php
-define('PATH', 'C:/Git/demandas/');
+define('PATH', '/var/www/html/demandas/');
 
 define('AGUARDANDO_ATENDIMENTO', 1);
 define('EM_DESENVOLVIMENTO', 2);

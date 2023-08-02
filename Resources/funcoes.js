@@ -1,3 +1,9 @@
+$(document).ready(function(){
+    setInterval(function(){
+        ExecutaDispatch('Login', 'estaAtivo', 'verificaPermissao<=>N');
+        
+    }, 240000);
+});
 function VerificaSessao(){
     $.post('../../Controller/MenuPrincipal/MenuPrincipalController.php', {
         async: false,

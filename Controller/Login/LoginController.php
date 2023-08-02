@@ -23,5 +23,9 @@ class LoginController extends BaseController{
         $LoginModel = new LoginModel();
         echo $LoginModel->AlteraSenha();        
     }
+    
+    Public Function estaAtivo(){
+        echo json_encode(array(true, null));
+    }
 }
 $teste = new LoginController();
