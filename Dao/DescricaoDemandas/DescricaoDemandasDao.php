@@ -57,6 +57,14 @@ class DescricaoDemandasDao extends BaseDao
         return $this->insertDB($sql);
     }
 
+    Public Function UpdateDescricaoDemandas() {
+        $sql = "UPDATE RE_DESCRICAO_DEMANDA
+                   SET TXT_DESCRICAO = '".$this->Populate('txtDescricao', 'S')."',
+                       TPO_DESCRICAO = '".$this->Populate('tpoDescricao', 'S')."'
+                 WHERE COD_DESCRICAO = ".$this->Populate('codDescricao', 'I');
+        return $this->insertDB($sql);
+    }
+
     Public Function DeleteDescricaoDemandas(){
         $sql = "DELETE FROM RE_DESCRICAO_DEMANDA WHERE COD_DESCRICAO = ".$this->Populate('codDescricao', 'I');
         return $this->insertDB($sql);

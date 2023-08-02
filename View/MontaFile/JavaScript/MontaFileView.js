@@ -5,7 +5,7 @@ $(function() {
 })
 
 function GeraFile(dscTabela,nmeFile){    
-    parametros = "dscTabela;"+dscTabela+"|nmeFile;"+nmeFile;
+    parametros = "dscTabela<=>"+dscTabela+"|nmeFile<=>"+nmeFile;
     ExecutaDispatch('MontaFile', 'GeraFile', parametros, undefined);    
 }
 

@@ -23,12 +23,11 @@ function inserirArquivo(){
             success: function(data){
                 data = eval('('+data+')');
                 if(data.sucesso == true){
-                    parametros = 'codDemanda;'+$("#codDemanda").val()+'|dscArquivo;'+$("#dscArquivo").val()+'|arquivoScript;'+data.msg;
+                    parametros = 'codDemanda<=>'+$("#codDemanda").val()+'|dscArquivo<=>'+$("#dscArquivo").val()+'|arquivoScript<=>'+data.msg;
                     ExecutaDispatch('ArquivoDemandas', 'InsertArquivoDemandas', parametros, retornoInsertArquivo);
                 }
             }
-        });        
-//        ExecutaDispatch('ArquivoDemandas', 'uploadArquivoDemandas', 'arquivo;'+formData, retornoCaminhoArquivo);
+        });
     }else{
         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
         swal({
@@ -39,17 +38,6 @@ function inserirArquivo(){
         });
     }
 }
-
-//function retornoCaminhoArquivo(data){    
-//    if(data.sucesso == true){
-//        $("#dscCaminhoArquivo").val(data.msg);
-//        parametros = 'codDemanda;'+$("#codDemanda").val()+'|txtDescricao;'+$("#dscCaminhoArquivo").val()+'|tpoDescricao;'+$("#tpoDescricao").val();
-//        ExecutaDispatch('ArquivoDemandas', 'InsertArquivoDemandas', parametros, retornoInsertArquivo);
-//        $('#resposta').html('<img src="'+ data.msg +'" />');
-//    }else{
-//        $('#resposta').html(data.msg);
-//    }
-//}
 
 function retornoInsertArquivo(retorno){
     if (retorno[0]){
@@ -74,7 +62,7 @@ function retornoInsertArquivo(retorno){
 }
 
 function carregaGridArquivo(){
-    ExecutaDispatch('ArquivoDemandas', 'ListarArquivoDemandas', 'codDemanda;'+$("#codDemanda").val(), montaGridArquivo);
+    ExecutaDispatch('ArquivoDemandas', 'ListarArquivoDemandas', 'codDemanda<=>'+$("#codDemanda").val(), montaGridArquivo);
 }
 
 function montaGridArquivo(dados){
@@ -111,5 +99,5 @@ function montaGridArquivo(dados){
 //}
 
 function excluirArquivo(codArquivo){
-    ExecutaDispatch('ArquivoDemandas', 'DeleteArquivoDemandas', 'codArquivo;'+codArquivo, carregaGridArquivo);
+    ExecutaDispatch('ArquivoDemandas', 'DeleteArquivoDemandas', 'codArquivo<=>'+codArquivo, carregaGridArquivo);
 }

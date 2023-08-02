@@ -1,13 +1,15 @@
 $(function() {
     $("#btnSalvarDescricao").click(function(){
-        if($("#codDescricao").val() == 0) {
-            inserirDescricao();
+        var acao = 'InsertDescricaoDemandas';
+        if($("#codDescricao").val() > 0) {
+            acao = 'UpdateDescricaoDemandas';
         }
+        inserirDescricao(acao);
     });
 
 });
 
-function inserirDescricao(){
+function inserirDescricao(method){
     if($("#tpoDescricao").val() == null || $("#tpoDescricao").val() == '') {
         swal({
             title: "Erro!",
@@ -22,8 +24,8 @@ function inserirDescricao(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-        parametros = 'codDemanda;'+$("#codDemanda").val()+'|txtDescricao;'+$("#txtDescricao").val()+'|codSistemaOrigem;'+"1"+'|tpoDescricao;'+$("#tpoDescricao").val();
-        ExecutaDispatch('DescricaoDemandas', 'InsertDescricaoDemandas', parametros, retornoInsertDescricao);
+        parametros = 'codDescricao<=>'+$("#codDescricao").val()+'codDemanda<=>'+$("#codDemanda").val()+'|txtDescricao<=>'+$("#txtDescricao").val()+'|codSistemaOrigem<=>'+"1"+'|tpoDescricao<=>'+$("#tpoDescricao").val();
+        ExecutaDispatch('DescricaoDemandas', method, parametros, retornoInsertDescricao);
 }
 
 function retornoInsertDescricao(retorno){

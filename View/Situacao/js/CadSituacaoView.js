@@ -15,7 +15,7 @@ function inserirSituacao(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'codSituacao;'+$("#codSituacao").val()+'|dscSituacao;'+$("#dscSituacao").val();
+    parametros = 'codSituacao<=>'+$("#codSituacao").val()+'|dscSituacao<=>'+$("#dscSituacao").val();
     ExecutaDispatch('Situacao', 'InsertSituacao', parametros, retornoInsert);
 }
 
@@ -57,6 +57,6 @@ function updateSituacao(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'codSituacao;'+$("#codSituacao").val()+'|dscSituacao;'+$("#dscSituacao").val();
+    parametros = 'codSituacao<=>'+$("#codSituacao").val()+'|dscSituacao<=>'+$("#dscSituacao").val();
     ExecutaDispatch('Situacao', 'UpdateSituacao', parametros, retornoInsert);
 }

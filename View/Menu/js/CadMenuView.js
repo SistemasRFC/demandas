@@ -28,13 +28,13 @@ function salvarMenu(){
         indVisible = 'S';
     }      
     ExecutaDispatch('Menu', 'SalvarMenu', 
-                    "dscMenu;"+$("#dscMenu").val()+"|"+
-                    "codMenu;"+$("#codMenu").val()+"|"+
-                    "nmeController;"+$("#nmeController").val()+"|"+
-                    "nmeMethod;"+$("#nmeMethod").val()+"|"+
-                    "codMenuPai;"+$("#codMenuPai").val()+"|"+
-                    "indAtivo;"+indAtivo+"|"+
-                    "indVisible;"+indVisible, trataRetornoSalvar);
+                    "dscMenu<=>"+$("#dscMenu").val()+"|"+
+                    "codMenu<=>"+$("#codMenu").val()+"|"+
+                    "nmeController<=>"+$("#nmeController").val()+"|"+
+                    "nmeMethod<=>"+$("#nmeMethod").val()+"|"+
+                    "codMenuPai<=>"+$("#codMenuPai").val()+"|"+
+                    "indAtivo<=>"+indAtivo+"|"+
+                    "indVisible<=>"+indVisible, trataRetornoSalvar);
 
 }
 

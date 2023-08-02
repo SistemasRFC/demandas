@@ -52,7 +52,7 @@ $(function() {
 });
 
 function carregaDscDemandaEdit(){
-    ExecutaDispatch('DescricaoDemandas', 'ListarDescricaoDemandas', 'codDemanda;'+$("#codDemanda").val(), montaDescricaoEdit);
+    ExecutaDispatch('DescricaoDemandas', 'ListarDescricaoDemandas', 'codDemanda<=>'+$("#codDemanda").val(), montaDescricaoEdit);
 }
 
 function montaDescricaoEdit(dados){
@@ -73,12 +73,16 @@ function montaDescricaoEdit(dados){
                 grid += ' <td>' + dados[i].TPO_DESCRICAO + '</td>';
                 grid += ' <td>' + dados[i].NME_USUARIO + '</td>';
                 grid += ' <td class="btn-group">';
-                grid += '   <button class="btn btn-outline-primary p-1" title="Visualizar" onClick="javascript:visualizarDescricaoEdit(\''+i+'\');">';
-                grid += '       <i class="fa-regular fa-eye"></i>';
-                grid += '   </button>';
                 if(dados[i].COD_USUARIO == $("#codUsuarioSessao").val()) {
+                    grid += '   <button class="btn btn-outline-primary p-1" title="Editar" onClick="javascript:editarDescricaoEdit(\''+i+'\');">';
+                    grid += '       <i class="fas fa-pencil"></i>';
+                    grid += '   </button>';
                     grid += '   <button class="btn btn-outline-danger" style="padding-inline: 7px;" title="Excluir" onClick="javascript:excluirDescricaoEdit('+dados[i].COD_DESCRICAO+');">';
                     grid += '       <i class="fa-solid fa-trash"></i>';
+                    grid += '   </button>';
+                } else {
+                    grid += '   <button class="btn btn-outline-primary p-1" title="Visualizar" onClick="javascript:visualizarDescricaoEdit(\''+i+'\');">';
+                    grid += '       <i class="fa-regular fa-eye"></i>';
                     grid += '   </button>';
                 }
                 grid += ' </td>';
@@ -92,8 +96,19 @@ function montaDescricaoEdit(dados){
     } 
 }
 
+function editarDescricaoEdit(indice) {
+    $("#codDescricao").val(dadosDsc[indice].COD_DESCRICAO);
+    $("#txtDescricao").val(dadosDsc[indice].TXT_DESCRICAO_TOTAL);
+    $("#tpoDescricao").val(dadosDsc[indice].TPO_DESCRICAO.substring(0,1));
+    $("#txtDescricao").prop('disabled', false);
+    $("#tpoDescricao").prop('disabled', false);
+    $("#formInformacao").show();
+    $("#btnSalvarDescricao").show();
+    $("#btnCancelarDescricao").show();
+    $("#btnInformacao").hide();
+}
+
 function visualizarDescricaoEdit(indice) {
-    console.log('visualizarDescricaoEdit', dadosDsc[indice]);
     $("#codDescricao").val(dadosDsc[indice].COD_DESCRICAO);
     $("#txtDescricao").val(dadosDsc[indice].TXT_DESCRICAO_TOTAL);
     $("#tpoDescricao").val(dadosDsc[indice].TPO_DESCRICAO.substring(0,1));
@@ -106,7 +121,7 @@ function visualizarDescricaoEdit(indice) {
 }
 
 function excluirDescricaoEdit(codDescricao) {
-    ExecutaDispatch('DescricaoDemandas', 'DeleteDescricaoDemandas', 'codDescricao;'+codDescricao, carregaDscDemandaEdit);
+    ExecutaDispatch('DescricaoDemandas', 'DeleteDescricaoDemandas', 'codDescricao<=>'+codDescricao, carregaDscDemandaEdit);
 }
 
 function inserirDemanda(){
@@ -116,8 +131,8 @@ function inserirDemanda(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#codSistema").val()+'|codSistemaOrigem;'+"1"+'|codResponsavel;'+codResp;
-    parametros += '|codSituacao;'+$("#codSituacao").val()+'|indPrioridade;'+$("#comboPrioridade").val()+'|tpoDemanda;'+$("#comboTipoDemanda").val();
+    parametros = 'dscDemanda<=>'+$("#dscDemanda").val()+'|codSistema<=>'+$("#codSistema").val()+'|codSistemaOrigem<=>'+"1"+'|codResponsavel<=>'+codResp;
+    parametros += '|codSituacao<=>'+$("#codSituacao").val()+'|indPrioridade<=>'+$("#comboPrioridade").val()+'|tpoDemanda<=>'+$("#comboTipoDemanda").val();
     ExecutaDispatch('Demandas', 'InsertDemandas', parametros, retornoInsertDemandas);
 }
 
@@ -154,9 +169,9 @@ function updateDemanda(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'codDemanda;'+$("#codDemanda").val()+'|dscDemanda;'+$("#dscDemanda").val()+'|codSistema;'+$("#codSistema").val();
-    parametros += '|codSistemaOrigem;'+"1"+'|codResponsavel;'+codResp+'|codSituacao;'+$("#codSituacao").val();
-    parametros += '|codSituacaoAnterior;'+$("#codSituacaoAnterior").val()+'|indPrioridade;'+$("#comboPrioridade").val()+'|tpoDemanda;'+$("#comboTipoDemanda").val();
+    parametros = 'codDemanda<=>'+$("#codDemanda").val()+'|dscDemanda<=>'+$("#dscDemanda").val()+'|codSistema<=>'+$("#codSistema").val();
+    parametros += '|codSistemaOrigem<=>'+"1"+'|codResponsavel<=>'+codResp+'|codSituacao<=>'+$("#codSituacao").val();
+    parametros += '|codSituacaoAnterior<=>'+$("#codSituacaoAnterior").val()+'|indPrioridade<=>'+$("#comboPrioridade").val()+'|tpoDemanda<=>'+$("#comboTipoDemanda").val();
     ExecutaDispatch('Demandas', 'UpdateDemandas', parametros, retornoUpdateDemandas);
 }
 
@@ -181,7 +196,7 @@ function montaComboSituacao(dados) {
 }
 
 function listaComboResponsaveis(){
-    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil;2|semResp;N', montaComboResponsaveis);
+    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil<=>2|semResp<=>N', montaComboResponsaveis);
 }
 
 function montaComboResponsaveis(dados) {

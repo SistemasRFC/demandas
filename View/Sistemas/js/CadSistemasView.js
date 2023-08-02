@@ -19,7 +19,7 @@ function inserirSistema(){
     if ($("#indAtivo").is(":checked")){
         indAtivo = 'S';
     }
-    parametros = 'codSistema;'+$("#codSistema").val()+'|nmeSistema;'+$("#nmeSistema").val()+'|nmeBanco;'+$("#nmeBanco").val()+'|indAtivo;'+indAtivo;
+    parametros = 'codSistema<=>'+$("#codSistema").val()+'|nmeSistema<=>'+$("#nmeSistema").val()+'|nmeBanco<=>'+$("#nmeBanco").val()+'|indAtivo<=>'+indAtivo;
     ExecutaDispatch('Sistemas', 'InsertSistemas', parametros, retornoInsertSistema);
 }
 
@@ -73,6 +73,6 @@ function updateSistema(){
     if ($("#indAtivo").is(":checked")){
         indAtivo = 'S';
     }
-    parametros = 'codSistema;'+$("#codSistema").val()+'|nmeSistema;'+$("#nmeSistema").val()+'|nmeBanco;'+$("#nmeBanco").val()+'|indAtivo;'+indAtivo;
+    parametros = 'codSistema<=>'+$("#codSistema").val()+'|nmeSistema<=>'+$("#nmeSistema").val()+'|nmeBanco<=>'+$("#nmeBanco").val()+'|indAtivo<=>'+indAtivo;
     ExecutaDispatch('Sistemas', 'UpdateSistemas', parametros, retornoInsertSistema);
 }

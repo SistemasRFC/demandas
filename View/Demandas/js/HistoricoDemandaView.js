@@ -1,5 +1,5 @@
 function carregaGridHistorico(codDemanda){
-    ExecutaDispatch('Demandas', 'ListarLogsDemanda', 'codDemanda;'+codDemanda, montaGridHistorico);
+    ExecutaDispatch('Demandas', 'ListarLogsDemanda', 'codDemanda<=>'+codDemanda, montaGridHistorico);
 }
 
 function montaGridHistorico(dados){

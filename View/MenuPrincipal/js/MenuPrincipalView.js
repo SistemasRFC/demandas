@@ -157,7 +157,7 @@ function carregaCamposDemanda(indice){
 }
 
 function mudarResponsavel(codDemanda) {
-    ExecutaDispatch('Demandas', 'MudarResponsavelDemanda', 'codDemanda;'+codDemanda, retornoMudarResponsavel);
+    ExecutaDispatch('Demandas', 'MudarResponsavelDemanda', 'codDemanda<=>'+codDemanda, retornoMudarResponsavel);
 }
 
 function retornoMudarResponsavel(resp) {

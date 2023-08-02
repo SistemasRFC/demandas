@@ -5,7 +5,7 @@ $(function() {
     });
     $("#btnPesquisar").click(function(){
         ExecutaDispatch('Menu', 'ListarMenusPermissao', 
-                        'codPerfil;'+$("#codPerfil").val(),
+                        'codPerfil<=>'+$("#codPerfil").val(),
                         MontaListaMenus);
     });
 });
@@ -25,7 +25,7 @@ function SalvarPermissao(){
         }        
     }); 
     ExecutaDispatch('Permissao', 'SalvarPermissao', 
-                    'codPerfil;'+$("#codPerfil").val()+'|codMenu;'+checkBoxes,
+                    'codPerfil<=>'+$("#codPerfil").val()+'|codMenu<=>'+checkBoxes,
                     swal.close());    
 }
 

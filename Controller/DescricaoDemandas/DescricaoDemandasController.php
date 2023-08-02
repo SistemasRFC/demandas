@@ -20,7 +20,12 @@ class DescricaoDemandasController extends BaseController
     Public Function InsertDescricaoDemandas(){
         $DescricaoDemandasModel = new DescricaoDemandasModel();
         echo $DescricaoDemandasModel->InsertDescricaoDemandas();
-    }	
+    }
+    
+    Public Function UpdateDescricaoDemandas(){
+        $DescricaoDemandasModel = new DescricaoDemandasModel();
+        echo $DescricaoDemandasModel->UpdateDescricaoDemandas();
+    }
 
     Public Function DeleteDescricaoDemandas(){
         $DescricaoDemandasModel = new DescricaoDemandasModel();

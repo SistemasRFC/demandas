@@ -7,7 +7,7 @@ $(function() {
         }
     });
     $("#btnReiniciaSenha").click(function(){
-        ExecutaDispatch('Usuario', 'ReiniciarSenha', 'codUsuario;'+$("#codUsuario").val(), retornoReiniciaSenha);
+        ExecutaDispatch('Usuario', 'ReiniciarSenha', 'codUsuario<=>'+$("#codUsuario").val(), retornoReiniciaSenha);
     });
 });
 
@@ -21,8 +21,8 @@ function inserirUsuario(){
     if ($("#indAtivo").is(":checked")){
         indAtivo = 'S';
     }
-    parametros = 'nmeUsuario;'+$("#txtLogin").val()+'|nmeUsuarioCompleto;'+$("#nmeUsuario").val()+'|nroTelCelular;'+$("#nroCelular").val();
-    parametros += '|txtEmail;'+$("#txtEmail").val()+'|codPerfil;'+$("#comboPerfil").val()+'|indAtivo;'+indAtivo;
+    parametros = 'nmeUsuario<=>'+$("#txtLogin").val()+'|nmeUsuarioCompleto<=>'+$("#nmeUsuario").val()+'|nroTelCelular<=>'+$("#nroCelular").val();
+    parametros += '|txtEmail<=>'+$("#txtEmail").val()+'|codPerfil<=>'+$("#comboPerfil").val()+'|indAtivo<=>'+indAtivo;
     parametros += '|codSistemas;'+$('#comboSistema').val();
     ExecutaDispatch('Usuario', 'InsertUsuario', parametros, retornoInsertUsuario);
 }
@@ -86,8 +86,8 @@ function updateUsuario(){
     if ($("#indAtivo").is(":checked")){
         indAtivo = 'S';
     }
-    parametros = 'codUsuario;'+$("#codUsuario").val()+'|nmeUsuario;'+$("#txtLogin").val()+'|nmeUsuarioCompleto;'+$("#nmeUsuario").val()+'|nroTelCelular;'+$("#nroCelular").val();
-    parametros += '|txtEmail;'+$("#txtEmail").val()+'|codPerfil;'+$("#comboPerfil").val()+'|indAtivo;'+indAtivo;
+    parametros = 'codUsuario<=>'+$("#codUsuario").val()+'|nmeUsuario<=>'+$("#txtLogin").val()+'|nmeUsuarioCompleto<=>'+$("#nmeUsuario").val()+'|nroTelCelular<=>'+$("#nroCelular").val();
+    parametros += '|txtEmail<=>'+$("#txtEmail").val()+'|codPerfil<=>'+$("#comboPerfil").val()+'|indAtivo<=>'+indAtivo;
     parametros += '|codSistemas;'+$('#comboSistema').val();
     ExecutaDispatch('Usuario', 'UpdateUsuario', parametros, retornoUpdateUsuario);
 }

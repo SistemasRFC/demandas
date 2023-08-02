@@ -30,6 +30,12 @@ class DescricaoDemandasModel extends BaseModel
         $result = $dao->InsertDescricaoDemandas($_SESSION['cod_usuario']);
         return json_encode($result);        
     }
+    
+    Public Function UpdateDescricaoDemandas(){
+        $dao = new DescricaoDemandasDao();        
+        $result = $dao->UpdateDescricaoDemandas();
+        return json_encode($result);        
+    }
 
     Public Function DeleteDescricaoDemandas(){
         $dao = new DescricaoDemandasDao();

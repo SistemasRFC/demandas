@@ -36,7 +36,7 @@ function ExecutaDispatch(Controller, Method, Parametros, Callback){
     if (Parametros != undefined){
         var dados = Parametros.split('|'); 
         for (i=0;i<dados.length;i++){
-            var campos = dados[i].split(';');
+            var campos = dados[i].split('<=>');
             Object.defineProperty(obj, campos[0], {
                                 __proto__: null,
                                 enumerable : true,

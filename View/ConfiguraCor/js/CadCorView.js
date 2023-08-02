@@ -14,7 +14,7 @@ function inserirPeriodoCor(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'codConfiguraCor;'+$("#codConfiguraCor").val()+'|vlrTempoInicial;'+$("#vlrTempoInicial").val()+'|vlrTempoFinal;'+$("#vlrTempoFinal").val()+'|dscCor;'+$("#dscCor").val();
+    parametros = 'codConfiguraCor<=>'+$("#codConfiguraCor").val()+'|vlrTempoInicial<=>'+$("#vlrTempoInicial").val()+'|vlrTempoFinal<=>'+$("#vlrTempoFinal").val()+'|dscCor<=>'+$("#dscCor").val();
     ExecutaDispatch('ConfiguraCor', 'InsertConfiguraCor', parametros, retornoInsertPeriodoCor);
 }
 
@@ -59,6 +59,6 @@ function updatePeriodoCor(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'codConfiguraCor;'+$("#codConfiguraCor").val()+'|vlrTempoInicial;'+$("#vlrTempoInicial").val()+'|vlrTempoFinal;'+$("#vlrTempoFinal").val()+'|dscCor;'+$("#dscCor").val();
+    parametros = 'codConfiguraCor<=>'+$("#codConfiguraCor").val()+'|vlrTempoInicial<=>'+$("#vlrTempoInicial").val()+'|vlrTempoFinal<=>'+$("#vlrTempoFinal").val()+'|dscCor<=>'+$("#dscCor").val();
     ExecutaDispatch('ConfiguraCor', 'UpdateConfiguraCor', parametros, retornoInsertPeriodoCor);
 }

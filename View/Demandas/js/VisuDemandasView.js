@@ -13,7 +13,7 @@ $(function() {
 });
 
 function carregaDscDemanda(){
-    ExecutaDispatch('DescricaoDemandas', 'ListarDescricaoDemandas', 'codDemanda;'+$("#codDemanda").val(), montaDescricao);
+    ExecutaDispatch('DescricaoDemandas', 'ListarDescricaoDemandas', 'codDemanda<=>'+$("#codDemanda").val(), montaDescricao);
 }
 
 function montaDescricao(resp){

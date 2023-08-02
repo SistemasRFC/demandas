@@ -1,6 +1,6 @@
-<html lang="pt-BR">
+<html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
 
         <title>Demandas</title>
         <script src="../../../demandas/Resources/jquery/jquery-1.10.1.min.js"></script>
