@@ -24,7 +24,7 @@ function inserirDescricao(method){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-        parametros = 'codDescricao<=>'+$("#codDescricao").val()+'codDemanda<=>'+$("#codDemanda").val()+'|txtDescricao<=>'+$("#txtDescricao").val()+'|codSistemaOrigem<=>'+"1"+'|tpoDescricao<=>'+$("#tpoDescricao").val();
+        parametros = 'codDescricao<=>'+$("#codDescricao").val()+'|codDemanda<=>'+$("#codDemanda").val()+'|txtDescricao<=>'+$("#txtDescricao").val()+'|codSistemaOrigem<=>'+"1"+'|tpoDescricao<=>'+$("#tpoDescricao").val();
         ExecutaDispatch('DescricaoDemandas', method, parametros, retornoInsertDescricao);
 }
 
