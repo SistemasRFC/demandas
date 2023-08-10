@@ -100,10 +100,11 @@ class UsuarioDao extends BaseDao
     }
     
     Public Function ListarUsuariosPorPerfil(){
+        $prefil = $this->Populate('codPerfil', 'S');
         $sql = "SELECT COD_USUARIO AS ID,
                        NME_USUARIO_COMPLETO AS DSC
                   FROM SE_USUARIO
-                 WHERE COD_PERFIL = " . $this->Populate('codPerfil', 'I') . "
+                 WHERE COD_PERFIL IN ($prefil)
                    AND IND_ATIVO = 'S' ";
         return $this->selectDB($sql, false);
     }

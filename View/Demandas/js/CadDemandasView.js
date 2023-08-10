@@ -194,7 +194,7 @@ function updateDemanda(){
     ExecutaDispatch('Demandas', 'UpdateDemandas', parametros, retornoUpdateDemandas);
 }
 
-function listaComboSistemas(){
+function listaComboSistemas() {
     ExecutaDispatch('Sistemas', 'ListarSistemasAtivosPorUsuario', undefined, montaComboSistemas);
 }
 
@@ -202,7 +202,7 @@ function montaComboSistemas(dados) {
     CriarSelect('codSistema', dados, codSistemaDmd!=undefined?codSistemaDmd:-1, false);
 }
 
-function listaComboSituacao(){
+function listaComboSituacao() {
     ExecutaDispatch('Situacao', 'ListarSituacao', undefined, montaComboSituacao);
 }
 
@@ -214,8 +214,8 @@ function montaComboSituacao(dados) {
     }
 }
 
-function listaComboResponsaveis(){
-    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil<=>2|semResp<=>N', montaComboResponsaveis);
+function listaComboResponsaveis() {
+    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil<=>2,3|semResp<=>N', montaComboResponsaveis);
 }
 
 function montaComboResponsaveis(dados) {

@@ -8,8 +8,8 @@ $(function() {
         $("#codDemanda").val('');
         $("#dscDemanda").val('');
         $("#codSistemaOrigem").val('');
-        $("#codSistema").val('');
-        $("#codResponsavel").val('');
+        $("#codSistema").val('-1');
+        $("#codResponsavel").val('-1');
         $("#comboPrioridade").val('');
         $("#comboTipoDemanda").val('');
         $("#formInformacao").hide();
@@ -143,7 +143,8 @@ function carregaCamposDemanda(indice) {
     $("#dscDemanda").val(dadosListagem[indice].DSC_DEMANDA);
     $("#dtaDemanda").val(dadosListagem[indice].DTA_DEMANDA);
     $("#codSistema").val(dadosListagem[indice].COD_SISTEMA);
-    $("#codResponsavel").val(dadosListagem[indice].COD_RESPONSAVEL);
+    var resp = dadosListagem[indice].COD_RESPONSAVEL;
+    $("#codResponsavel").val(resp ? resp : '-1');
     codSituacaoDmd = dadosListagem[indice].COD_SITUACAO;
     $("#codSituacao").val(dadosListagem[indice].COD_SITUACAO);
     $("#codSistemaOrigem").val(dadosListagem[indice].COD_SISTEMA_ORIGEM);
@@ -179,7 +180,7 @@ function montaFiltroResponsaveis(dados) {
 $(document).ready(function() {
     ExecutaDispatch('Situacao', 'ListarSituacao', undefined, montaFiltroTpoDemanda);
     ExecutaDispatch('Sistemas', 'ListarSistemasAtivosPorUsuario', undefined, montaFiltroSistemas);
-    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil<=>2|semResp<=>S', montaFiltroResponsaveis);
+    ExecutaDispatch('Usuario', 'ListarUsuariosPorPerfil', 'codPerfil<=>2,3|semResp<=>S', montaFiltroResponsaveis);
     ExecutaDispatch('Demandas', 'ListarDemandas', 'comboTpoDemanda<=>-1|comboSistemas<=>-1|comboResponsaveis<=>-1', montaGridDemandas);
     listaComboResponsaveis();
 } );

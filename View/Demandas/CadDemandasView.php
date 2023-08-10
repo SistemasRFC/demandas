@@ -22,7 +22,7 @@
                         <div class="form-group col-6">
                             <label for="comboTipoDemanda" class="mb-0">Tipo</label>
                             <select id="comboTipoDemanda" class="form-control dropdown-toggle">
-                                <option value="" disabled selected>Selecione</option>
+                                <option value="" disabled selected>Selecione...</option>
                                 <option value="1"> Incidente </option>
                                 <option value="2"> Corretiva </option>
                                 <option value="3"> Evolutiva </option>
@@ -47,7 +47,7 @@
                         <div class="form-group col-6">
                             <label for="comboPrioridade" class="mb-0">Prioridade</label>
                             <select id="comboPrioridade" class="form-control dropdown-toggle">
-                                <option value="" disabled selected>Selecione</option>
+                                <option value="" disabled selected>Selecione...</option>
                                 <option value="1"> Baixa </option>
                                 <option value="2"> Normal </option>
                                 <option value="3"> Alta </option>
