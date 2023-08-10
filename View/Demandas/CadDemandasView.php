@@ -2,7 +2,7 @@
 <script src="../../View/Demandas/js/CadDescricaoView.js?rdm=<?php echo time(); ?>"></script>
 
 <div class="modal fade" id="updateDemanda" role="dialog" aria-labelledby="modalCadastroDemanda" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
+	<div class="modal-dialog modal-lg" role="document" style="max-width: 1000px;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="updateDemandaTitle"></h5>

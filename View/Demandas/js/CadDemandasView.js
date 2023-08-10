@@ -62,7 +62,8 @@ function montaDescricaoEdit(dados){
         grid += ' <th><b>Descrição</b></th>';
         grid += ' <th><b>tipo</b></th>';
         grid += ' <th><b>Responsável</b></th>';
-        grid += ' <th width="12%"><b>Ações</b></th>';
+        grid += ' <th class="text-center" width="15%"><b>Validação</b></th>';
+        grid += ' <th class="text-center" width="12%"><b>Ações</b></th>';
         grid += '</tr></thead><tbody>';
         if (dados[1] !== null) {
             dados = dados[1];
@@ -72,14 +73,28 @@ function montaDescricaoEdit(dados){
                 grid += ' <td>' + dados[i].TXT_DESCRICAO + '</td>';
                 grid += ' <td>' + dados[i].TPO_DESCRICAO + '</td>';
                 grid += ' <td>' + dados[i].NME_USUARIO + '</td>';
-                grid += ' <td class="btn-group">';
+                grid += ' <td align="center" width="15%">';
+                if($("#codSituacao").val() == 5 && $("#codPerfilSessao").val() == 3 && dados[i].IND_REVISAO == 'P') {
+                    grid += '   <button class="btn btn-outline-success" style="padding: 0.25rem 0.57rem;" title="Aprovar" onClick="javascript:revisarDescricao(\'A\', \''+dados[i].COD_DESCRICAO+'\');">';
+                    grid += '       <i class="fa-solid fa-check"></i>';
+                    grid += '   </button>';
+                    grid += '   <button class="btn btn-outline-danger" style="padding: 0.25rem 0.7rem;" title="Reprovar" onClick="javascript:revisarDescricao(\'R\', \''+dados[i].COD_DESCRICAO+'\');">';
+                    grid += '       <i class="fa-solid fa-xmark"></i>';
+                    grid += '   </button>';
+                } else {
+                    grid += ' <i class="'+dados[i].REVISAO+'"></i>';
+                }
+                grid += ' </td>';
+                grid += ' <td align="center" width="12%">';
                 if(dados[i].COD_USUARIO == $("#codUsuarioSessao").val()) {
-                    grid += '   <button class="btn btn-outline-primary p-1" title="Editar" onClick="javascript:editarDescricaoEdit(\''+i+'\');">';
-                    grid += '       <i class="fas fa-pencil"></i>';
-                    grid += '   </button>';
-                    grid += '   <button class="btn btn-outline-danger" style="padding-inline: 7px;" title="Excluir" onClick="javascript:excluirDescricaoEdit('+dados[i].COD_DESCRICAO+');">';
-                    grid += '       <i class="fa-solid fa-trash"></i>';
-                    grid += '   </button>';
+                    grid += '   <div class="btn-group">';
+                    grid += '       <button class="btn btn-outline-primary" style="padding: 0.25rem 0.5rem;" title="Editar" onClick="javascript:editarDescricaoEdit(\''+i+'\');">';
+                    grid += '           <i class="fas fa-pencil"></i>';
+                    grid += '       </button>';
+                    grid += '       <button class="btn btn-outline-danger" style="padding: 0.25rem 0.57rem;" title="Excluir" onClick="javascript:excluirDescricaoEdit('+dados[i].COD_DESCRICAO+');">';
+                    grid += '           <i class="fa-solid fa-trash"></i>';
+                    grid += '       </button>';
+                    grid += '   </div>';
                 } else {
                     grid += '   <button class="btn btn-outline-primary p-1" title="Visualizar" onClick="javascript:visualizarDescricaoEdit(\''+i+'\');">';
                     grid += '       <i class="fa-regular fa-eye"></i>';
@@ -94,6 +109,10 @@ function montaDescricaoEdit(dados){
         $("#accordionDscEdit").html(grid);
         criarDataTableBasic("tbAccordionDscEdit", true, 25);
     } 
+}
+
+function revisarDescricao(indRevisao, codDescricao) {
+    ExecutaDispatch('DescricaoDemandas', 'UpdateRevisaoDescricao', 'codDescricao<=>'+codDescricao+'|indRevisao<=>'+indRevisao, carregaDscDemandaEdit);
 }
 
 function editarDescricaoEdit(indice) {

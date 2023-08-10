@@ -12,6 +12,7 @@ if(!$_SESSION['cod_usuario']) {
 
 <nav class="bg-color-white navbar navbar-expand navbar-light topbar static-top">
     <input type="hidden" id="codUsuarioSessao">
+    <input type="hidden" id="codPerfilSessao">
     
     <a class="sidebar-brand color-primary d-flex align-items-center justify-content-center" href="../../../demandas/View/MenuPrincipal/MenuPrincipalView.php">
         <div class="sidebar-brand-icon">

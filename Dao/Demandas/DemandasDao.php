@@ -4,22 +4,22 @@ class DemandaDao extends BaseDao
 {
     Protected $tableName = "EN_DEMANDAS";
     
-    Protected $columns = array ("tpoDemanda"   => array("column" =>"TPO_DEMANDA", "typeColumn" =>"I"),
-                                "dscDemanda"   => array("column" =>"DSC_DEMANDA", "typeColumn" =>"S"),
-                                "codSistema"   => array("column" =>"COD_SISTEMA", "typeColumn" =>"I"),
-                                "dtaDemanda"   => array("column" =>"DTA_DEMANDA", "typeColumn" =>"D"),
-                                "codResponsavel"   => array("column" =>"COD_RESPONSAVEL", "typeColumn" =>"I"),
-                                "codSituacao"   => array("column" =>"COD_SITUACAO", "typeColumn" =>"I"),
-                                "indPrioridade"   => array("column" =>"IND_PRIORIDADE", "typeColumn" =>"I"),
-                                "dtaFimDemanda"   => array("column" =>"DTA_FIM_DEMANDA", "typeColumn" =>"D"),
-                                "codUsuario"   => array("column" =>"COD_USUARIO", "typeColumn" =>"I"),
-                                "codSistemaOrigem"   => array("column" =>"COD_SISTEMA_ORIGEM", "typeColumn" =>"I"));
+    Protected $columns = array ("tpoDemanda"        => array("column" =>"TPO_DEMANDA",        "typeColumn" =>"I"),
+                                "dscDemanda"        => array("column" =>"DSC_DEMANDA",        "typeColumn" =>"S"),
+                                "codSistema"        => array("column" =>"COD_SISTEMA",        "typeColumn" =>"I"),
+                                "dtaDemanda"        => array("column" =>"DTA_DEMANDA",        "typeColumn" =>"D"),
+                                "codResponsavel"    => array("column" =>"COD_RESPONSAVEL",    "typeColumn" =>"I"),
+                                "codSituacao"       => array("column" =>"COD_SITUACAO",       "typeColumn" =>"I"),
+                                "indPrioridade"     => array("column" =>"IND_PRIORIDADE",     "typeColumn" =>"I"),
+                                "dtaFimDemanda"     => array("column" =>"DTA_FIM_DEMANDA",    "typeColumn" =>"D"),
+                                "codUsuario"        => array("column" =>"COD_USUARIO",        "typeColumn" =>"I"),
+                                "codSistemaOrigem"  => array("column" =>"COD_SISTEMA_ORIGEM", "typeColumn" =>"I"));
     
     Protected $columnKey = array("codDemanda"=> array("column" =>"COD_DEMANDA", "typeColumn" => "I"));
     
-    Public Function __construct(){
-        $this->conect();
-    }
+    // Public Function __construct(){
+    //     $this->conect();
+    // }
 
     Public Function ListarDemandas($codUsuario){
         $sql= "SELECT D.COD_DEMANDA,
@@ -94,6 +94,10 @@ class DemandaDao extends BaseDao
             $sql .=" GROUP BY COD_DEMANDA
                      ORDER BY D.COD_SITUACAO, DATA_DEMANDA DESC";
         return $this->selectDB($sql, false);
+    }
+
+    public function BuscarDemanda($codDemanda) {
+        return $this->MontarSelect("AND COD_DEMANDA = $codDemanda");
     }
     
     Public Function UpdateDemandas(){

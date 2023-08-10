@@ -93,6 +93,7 @@ class MenuPrincipalDao extends BaseDao
 
   Public Function CarregaDadosUsuario($codUsuario){
     $sql = "SELECT COD_USUARIO,
+                   COD_PERFIL,
                    NME_USUARIO_COMPLETO
               FROM SE_USUARIO U
              WHERE U.COD_USUARIO = ".$codUsuario;

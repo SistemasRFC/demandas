@@ -30,6 +30,11 @@ class DescricaoDemandasController extends BaseController
     Public Function DeleteDescricaoDemandas(){
         $DescricaoDemandasModel = new DescricaoDemandasModel();
         echo $DescricaoDemandasModel->DeleteDescricaoDemandas();
-    }	
+    }
+
+    Public Function UpdateRevisaoDescricao(){
+        $DescricaoDemandasModel = new DescricaoDemandasModel();
+        echo $DescricaoDemandasModel->UpdateRevisaoDescricao();
+    }
 }
 $classController = new DescricaoDemandasController();

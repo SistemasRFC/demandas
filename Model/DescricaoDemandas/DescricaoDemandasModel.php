@@ -42,6 +42,12 @@ class DescricaoDemandasModel extends BaseModel
         $result = $dao->DeleteDescricaoDemandas();
         return json_encode($result);
     }
+
+    public function UpdateRevisaoDescricao() {
+        $dao = new DescricaoDemandasDao();
+        $result = $dao->UpdateRevisaoDescricao();
+        return json_encode($result);
+    }
     
 }
 

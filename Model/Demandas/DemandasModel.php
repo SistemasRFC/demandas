@@ -1,6 +1,7 @@
 <?php
 include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Demandas/DemandasDao.php");
+include_once(PATH."Dao/DescricaoDemandas/DescricaoDemandasDao.php");
 class DemandaModel extends BaseModel
 {
     public static $dscDemandas = array(1=>'AGUARDANDO ATENDIMENTO',
@@ -55,8 +56,16 @@ class DemandaModel extends BaseModel
         $dao->IniciaTransacao();
         $result[0] = false;
         $result[1] = "Essa demanda não pode ser alterada!";
-        if ($dao->Populate('codSituacaoAnterior', 'I')!=FINALIZADA && $dao->Populate('codSituacaoAnterior', 'I')!=CANCELADA){
-            switch ($dao->Populate('codSituacao', 'I')){
+        $codDemanda = $dao->Populate('codDemanda','I');
+        $novaSituacao = $dao->Populate('codSituacao','I');
+
+        $result = $dao->BuscarDemanda($codDemanda);
+        // var_dump($result);die;
+        if($result[0] && $result[1] != null) {
+            $situacaoAtual = $result[1][0]['COD_SITUACAO'];
+        }
+        if ($situacaoAtual!=FINALIZADA && $situacaoAtual!=CANCELADA){
+            switch ($novaSituacao){
                 case FINALIZADA:
                     $result = $dao->FinalizaDemanda();
                     break;
@@ -68,10 +77,14 @@ class DemandaModel extends BaseModel
                     break;
             }
         }
+        if($situacaoAtual != ENVIADA_PARA_HOMOLOGACAO && $novaSituacao == ENVIADA_PARA_HOMOLOGACAO) {
+            $descricaoDao = new DescricaoDemandasDao();
+            $result = $descricaoDao->UpdateDescricoesReprovadas($codDemanda);
+        }
 
         if($result[0] && $result[1]!=null){
-            if ($dao->Populate('codSituacao', 'I')!=$dao->Populate('codSituacaoAnterior', 'I')){
-                $result = $dao->RegistraSituacaoOperacao($dao->Populate('codDemanda', 'I'), $dao->Populate('codSituacao', 'I'), 'U', $_SESSION['cod_usuario'], $dao->Populate('codSistemaOrigem', 'I'));
+            if ($novaSituacao!=$dao->Populate('codSituacaoAnterior', 'I')){
+                $result = $dao->RegistraSituacaoOperacao($dao->Populate('codDemanda', 'I'), $novaSituacao, 'U', $_SESSION['cod_usuario'], $dao->Populate('codSistemaOrigem', 'I'));
             }
             
             if ($result[0]){

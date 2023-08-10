@@ -6,6 +6,7 @@ function carregaDadosUsuario(){
         result = eval('('+result+')');
         if (result[0]) {
             $("#codUsuarioSessao").val(result[1][0].COD_USUARIO);
+            $("#codPerfilSessao").val(result[1][0].COD_PERFIL);
             localStorage.setItem("codUsuario", result[1][0].COD_USUARIO);
             $("#usuSessao").html(''+result[1][0].NME_USUARIO_COMPLETO);
         }

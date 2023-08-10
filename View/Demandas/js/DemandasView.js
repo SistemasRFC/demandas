@@ -34,32 +34,33 @@ function montaGridDemandas(dados){
     if(dados[0]){
         var grid = '<table id="tbDemandas" class="table table-striped" width="100%">';
         grid += '<thead><tr>';
-        grid += ' <th width="8%"><b>Duração Execução</b></th>';
-        grid += ' <th width="8%"><b>Duração Criada</b></th>';
-        grid += ' <th width="6%"><b>Cod.</b></th>';
-        grid += ' <th width="20%"><b>Demanda</b></th>';
-        grid += ' <th width="10%"><b>Sistema</b></th>';
-        grid += ' <th width="13%"><b>Reponsável</b></th>';
+        grid += ' <th width="8%" class="text-center"><b>Tempo de Execução</b></th>';
+        // grid += ' <th width="8%"><b>Duração Criada</b></th>';
+        grid += ' <th width="7%" class="text-center"><b>Cód.</b></th>';
+        grid += ' <th width="27%" class="text-center"><b>Demanda</b></th>';
+        grid += ' <th width="10%" class="text-center"><b>Sistema</b></th>';
+        grid += ' <th width="15%" class="text-center"><b>Reponsável</b></th>';
         // grid += ' <th width="10%"><b>Tipo</b></th>';
-        grid += ' <th width="10%"><b>Prioridade</b></th>';
-        grid += ' <th width="10%"><b>Status</b></th>';
-        grid += ' <th width="10%"><b>Ações</b></th>';
+        grid += ' <th width="9%" class="text-center"><b>Prioridade</b></th>';
+        grid += ' <th width="16%" class="text-center"><b>Status</b></th>';
+        grid += ' <th width="8%" class="text-center"><b>Ações</b></th>';
         grid += '</tr></thead><tbody>';
         if(dados[1] !== null){
             dadosListagem = dados[1];
             dados = dados[1];
             for (i=0;i<dados.length;i++){
                 grid += '<tr>';
-                grid += ' <td style="background-color:'+dados[i].DSC_COR+'">'+dados[i].DIAS_DECORRIDAS+' Dia(s)<br>'+dados[i].HORAS_DECORRIDAS+' Hr(s)</td>';
-                grid += ' <td style="background-color:'+dados[i].DSC_COR+'">'+dados[i].DIAS_CRIADO+' Dia(s)<br>'+dados[i].HORAS_CRIADO+' Hr(s)</td>';
-                grid += ' <td>'+dados[i].COD_DEMANDA+'</td>';
-                grid += ' <td>'+dados[i].DSC_DEMANDA+'</td>';
-                grid += ' <td>'+dados[i].NME_SISTEMA+'</td>';
-                grid += ' <td>'+dados[i].NME_USUARIO_COMPLETO+'</td>';
+                grid += ' <td width="8%" style="background-color:'+dados[i].DSC_COR+'">'+dados[i].DIAS_DECORRIDAS+' Dia(s)<br>'+dados[i].HORAS_DECORRIDAS+' Hr(s)</td>';
+                // grid += ' <td style="background-color:'+dados[i].DSC_COR+'">'+dados[i].DIAS_CRIADO+' Dia(s)<br>'+dados[i].HORAS_CRIADO+' Hr(s)</td>';
+                grid += ' <td width="7%">'+dados[i].COD_DEMANDA+'</td>';
+                grid += ' <td width="27%">'+dados[i].DSC_DEMANDA+'</td>';
+                grid += ' <td width="10%">'+dados[i].NME_SISTEMA+'</td>';
+                grid += ' <td width="15%">'+dados[i].NME_USUARIO_COMPLETO+'</td>';
                 // grid += ' <td align="center">'+dados[i].DSC_TIPO+'</td>';
-                grid += ' <td align="center">'+dados[i].DSC_PRIORIDADE+'</td>';
-                grid += ' <td>'+dados[i].DSC_SITUACAO+'</td>';
-                grid += ' <td class="btn-group">';
+                grid += ' <td width="9%" align="center">'+dados[i].DSC_PRIORIDADE+'</td>';
+                grid += ' <td width="16%" align="center">'+dados[i].DSC_SITUACAO+'</td>';
+                grid += ' <td width="8%" align="center">';
+                grid += ' <div class="btn-group">';
                 if(dados[i].COD_SITUACAO != 6) {
                     grid += '   <button class="btn btn-outline-primary p-1" title="Editar" onClick="javascript:editarDemanda('+i+');">';
                     grid += '       <i class="fa-solid fa-pencil"></i>';
@@ -72,6 +73,7 @@ function montaGridDemandas(dados){
                 grid += '   <button class="btn btn-outline-info p-1" title="Histórico" onClick="javascript:carregaGridHistorico('+dados[i].COD_DEMANDA+');" data-toggle="modal" data-target="#historicoDemanda">';
                 grid += '       <i class="fa-solid fa-clock-rotate-left"></i>';
                 grid += '   </button>';
+                grid += ' </div>';
                 grid += ' </td>';
                 grid += '</tr>';
             }
