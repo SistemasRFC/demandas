@@ -23,7 +23,7 @@ function inserirUsuario(){
     }
     parametros = 'nmeUsuario<=>'+$("#txtLogin").val()+'|nmeUsuarioCompleto<=>'+$("#nmeUsuario").val()+'|nroTelCelular<=>'+$("#nroCelular").val();
     parametros += '|txtEmail<=>'+$("#txtEmail").val()+'|codPerfil<=>'+$("#comboPerfil").val()+'|indAtivo<=>'+indAtivo;
-    parametros += '|codSistemas;'+$('#comboSistema').val();
+    parametros += '|codSistemas<=>'+$('#comboSistema').val();
     ExecutaDispatch('Usuario', 'InsertUsuario', parametros, retornoInsertUsuario);
 }
 
@@ -88,7 +88,7 @@ function updateUsuario(){
     }
     parametros = 'codUsuario<=>'+$("#codUsuario").val()+'|nmeUsuario<=>'+$("#txtLogin").val()+'|nmeUsuarioCompleto<=>'+$("#nmeUsuario").val()+'|nroTelCelular<=>'+$("#nroCelular").val();
     parametros += '|txtEmail<=>'+$("#txtEmail").val()+'|codPerfil<=>'+$("#comboPerfil").val()+'|indAtivo<=>'+indAtivo;
-    parametros += '|codSistemas;'+$('#comboSistema').val();
+    parametros += '|codSistemas<=>'+$('#comboSistema').val();
     ExecutaDispatch('Usuario', 'UpdateUsuario', parametros, retornoUpdateUsuario);
 }
 
